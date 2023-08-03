@@ -1,0 +1,108 @@
+---
+format: pdf
+pdf-engine: xelatex
+toc: true
+toc-depth: 4
+toc-title: "Table of Contents"
+toc-location: body
+code-line-numbers: true
+number-sections: true
+mainfont: Inter
+sansfont: Inter
+keep-tex: true
+colorlinks: true
+include-in-header: 
+  text: |
+    \usepackage{amsmath, xparse}
+    \usepackage{fancyvrb, fvextra}
+    \usepackage{bm}
+    \usepackage{svg}
+    \usepackage{listings}
+    \usepackage{xifthen}
+    \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}  
+    \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
+    \newcommand\rowop[1]{\scriptstyle\smash{\xrightarrow[\vphantom{#1}]{\mkern-4mu#1\mkern-4mu}}}
+    \DeclareDocumentCommand\converttorows%
+    {>{\SplitList{,}}m}%
+    {\ProcessList{#1}{\converttorow}}
+    \NewDocumentCommand{\converttorow}{m}
+    {\ifthenelse{\isempty{#1}}{}{\rowop{#1}}\\}
+
+    \DeclareDocumentCommand \rowops{m}
+    {\;
+    \begin{matrix}
+    \converttorows {#1}
+    \end{matrix}
+    \; }
+
+include-before-body: 
+  text: |
+    \input{./title.tex}
+    \newpage
+---
+
+{{< pagebreak >}}
+
+# Systems of Linear Equations and Matrices
+
+## Matrix Operations
+
+- Matrix operations are given as: rows x columns
+- Two matrices are equal $\iff$ they have the same dimensions and values
+
+### Addition & Subtraction
+Two matrices can be added/subtracted $\iff$ they have the same dimensions.
+![](img/addition-subtraction.png)
+
+### Scalar Multiplication
+- Scalar multiplication is defined as multiplying each element of a matrix by a number
+![](img/scalar.png)
+
+### Matrix Multiplication
+- We can __only__ multiply an (m x n) by (n x p) matrix. 
+- The resulting matrix will be (m x p)
+
+### Examples
+
+1. 
+\begin{align*}
+&\begin{bmatrix} 1 & 2 \\ 3 & 4\end{bmatrix}\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \\
+&= \begin{bmatrix} 1 \cdot 1 + 2 \cdot 3 & 1 \cdot 2 + 2 \cdot 4 \\ 3 \cdot 1 + 4 \cdot 3 & 3 \cdot 2 + 4 \cdot 4 \end{bmatrix} \\
+&= \begin{bmatrix} 7 & 10 \\ 15 & 22 \end{bmatrix}
+\end{align*}
+
+2.
+\begin{align*}
+&\begin{bmatrix}2 & -3 \\ 5 & 0 \\ -2 & 4 \\ 1 & 2 \end{bmatrix}\begin{bmatrix}-1 \\ 3 \end{bmatrix} \\
+&=\begin{bmatrix} 2 \cdot (-1) + (-3) \cdot 3 \\ 5 \cdot (-1) + 0 \cdot 3 \\ -2 \cdot (-1) + 4 \cdot 3 \\ 1 \cdot (-1) + 2 \cdot 3 \end{bmatrix} \\
+&=\begin{bmatrix} -11 \\ -5 \\ 14 \\ 5 \end{bmatrix}
+\end{align*}
+
+3.
+\begin{align*}
+&\begin{bmatrix}4 & 5 & -1 \end{bmatrix}\begin{bmatrix} 8 \\ 0 \\ 2\end{bmatrix} \\
+&= \begin{bmatrix} 4 \cdot 8 + 5 \cdot 0 + (-1) \cdot 2 \end{bmatrix} \\
+&= \begin{bmatrix} 30 \end{bmatrix}
+\end{align*}
+
+## Transpose of a Matrix
+The transpose of an (m x n) matrix is the (n x m) matrix where the rows and columns are swapped.
+
+If $B = \begin{bmatrix} 4 & 2 \\ -1 & 0 \\ 3 & 5 \end{bmatrix}, B^T = \begin{bmatrix} 4 & -1 & 3 \\ 2 & 0 & 5 \end{bmatrix}$
+
+\begin{align*}
+B \cdot B^T &= \begin{bmatrix} 4 & 2 \\ -1 & 0 \\ 3 & 5 \end{bmatrix} \begin{bmatrix} 4 & -1 & 3 \\ 2 & 0 & 5 \end{bmatrix} \\ 
+&= \begin{bmatrix} 4 \cdot 4 + 2 \cdot 2 & 4 \cdot (-1) + 2 \cdot 0 & 4 \cdot 3 + 2 \cdot 5 \\ (-1) \cdot 4 + 0 \cdot 2 & (-1) \cdot (-1) + 0 \cdot 0 & (-1) \cdot 3 + 0 \cdot 5 \\ 3 \cdot 4 + 5 \cdot 2 & 3 \cdot (-1) + 5 \cdot 0 & 3 \cdot 3 + 5 \cdot 5 \end{bmatrix} \\ 
+&= \begin{bmatrix} 20 & -4 & 22 \\ -4 & 1 & -3 \\ 22 & -3 & 34\end{bmatrix}
+\end{align*}
+
+- The transpose of a matrix is **always** multiplicative with the original. 
+- There is also a **main diagonal** that is the diagonal from the top left to the bottom right, but only square matrices have these.
+- The **trace** of a square matrix $A$ is equal to the sum of all the elements on the main diagonal: $\mathrm{tr}(A)$
+
+### Transpose Matrix Properties
+- $(A^T)^T = A$
+- $(A + B)^T = A^T + B^T$
+- $(A - B)^T = A^T - B^T$
+- $(kA)^T = kA^T$
+- $(AB)^T = B^T A^T$

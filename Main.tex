@@ -1,0 +1,305 @@
+% Options for packages loaded elsewhere
+\PassOptionsToPackage{unicode}{hyperref}
+\PassOptionsToPackage{hyphens}{url}
+\PassOptionsToPackage{dvipsnames,svgnames,x11names}{xcolor}
+%
+\documentclass[
+  letterpaper,
+  DIV=11,
+  numbers=noendperiod]{scrartcl}
+
+\usepackage{amsmath,amssymb}
+\usepackage{iftex}
+\ifPDFTeX
+  \usepackage[T1]{fontenc}
+  \usepackage[utf8]{inputenc}
+  \usepackage{textcomp} % provide euro and other symbols
+\else % if luatex or xetex
+  \usepackage{unicode-math}
+  \defaultfontfeatures{Scale=MatchLowercase}
+  \defaultfontfeatures[\rmfamily]{Ligatures=TeX,Scale=1}
+\fi
+\usepackage{lmodern}
+\ifPDFTeX\else  
+    % xetex/luatex font selection
+  \setmainfont[]{Inter}
+  \setsansfont[]{Inter}
+\fi
+% Use upquote if available, for straight quotes in verbatim environments
+\IfFileExists{upquote.sty}{\usepackage{upquote}}{}
+\IfFileExists{microtype.sty}{% use microtype if available
+  \usepackage[]{microtype}
+  \UseMicrotypeSet[protrusion]{basicmath} % disable protrusion for tt fonts
+}{}
+\makeatletter
+\@ifundefined{KOMAClassName}{% if non-KOMA class
+  \IfFileExists{parskip.sty}{%
+    \usepackage{parskip}
+  }{% else
+    \setlength{\parindent}{0pt}
+    \setlength{\parskip}{6pt plus 2pt minus 1pt}}
+}{% if KOMA class
+  \KOMAoptions{parskip=half}}
+\makeatother
+\usepackage{xcolor}
+\setlength{\emergencystretch}{3em} % prevent overfull lines
+\setcounter{secnumdepth}{5}
+% Make \paragraph and \subparagraph free-standing
+\ifx\paragraph\undefined\else
+  \let\oldparagraph\paragraph
+  \renewcommand{\paragraph}[1]{\oldparagraph{#1}\mbox{}}
+\fi
+\ifx\subparagraph\undefined\else
+  \let\oldsubparagraph\subparagraph
+  \renewcommand{\subparagraph}[1]{\oldsubparagraph{#1}\mbox{}}
+\fi
+
+
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}\usepackage{longtable,booktabs,array}
+\usepackage{calc} % for calculating minipage widths
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+\usepackage{graphicx}
+\makeatletter
+\def\maxwidth{\ifdim\Gin@nat@width>\linewidth\linewidth\else\Gin@nat@width\fi}
+\def\maxheight{\ifdim\Gin@nat@height>\textheight\textheight\else\Gin@nat@height\fi}
+\makeatother
+% Scale images if necessary, so that they will not overflow the page
+% margins by default, and it is still possible to overwrite the defaults
+% using explicit options in \includegraphics[width, height, ...]{}
+\setkeys{Gin}{width=\maxwidth,height=\maxheight,keepaspectratio}
+% Set default figure placement to htbp
+\makeatletter
+\def\fps@figure{htbp}
+\makeatother
+
+\usepackage{amsmath, xparse}
+\usepackage{fancyvrb, fvextra}
+\usepackage{bm}
+\usepackage{svg}
+\usepackage{listings}
+\usepackage{xifthen}
+\DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
+\lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
+\newcommand\rowop[1]{\scriptstyle\smash{\xrightarrow[\vphantom{#1}]{\mkern-4mu#1\mkern-4mu}}}
+\DeclareDocumentCommand\converttorows%
+{>{\SplitList{,}}m}%
+{\ProcessList{#1}{\converttorow}}
+\NewDocumentCommand{\converttorow}{m}
+{\ifthenelse{\isempty{#1}}{}{\rowop{#1}}\\}
+
+\DeclareDocumentCommand \rowops{m}
+{\;
+\begin{matrix}
+\converttorows {#1}
+\end{matrix}
+\; }
+\KOMAoption{captions}{tableheading}
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\AtBeginDocument{%
+\ifdefined\contentsname
+  \renewcommand*\contentsname{Table of contents}
+\else
+  \newcommand\contentsname{Table of contents}
+\fi
+\ifdefined\listfigurename
+  \renewcommand*\listfigurename{List of Figures}
+\else
+  \newcommand\listfigurename{List of Figures}
+\fi
+\ifdefined\listtablename
+  \renewcommand*\listtablename{List of Tables}
+\else
+  \newcommand\listtablename{List of Tables}
+\fi
+\ifdefined\figurename
+  \renewcommand*\figurename{Figure}
+\else
+  \newcommand\figurename{Figure}
+\fi
+\ifdefined\tablename
+  \renewcommand*\tablename{Table}
+\else
+  \newcommand\tablename{Table}
+\fi
+}
+\@ifpackageloaded{float}{}{\usepackage{float}}
+\floatstyle{ruled}
+\@ifundefined{c@chapter}{\newfloat{codelisting}{h}{lop}}{\newfloat{codelisting}{h}{lop}[chapter]}
+\floatname{codelisting}{Listing}
+\newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{caption}{}{\usepackage{caption}}
+\@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
+\makeatother
+\makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\ifLuaTeX
+  \usepackage{selnolig}  % disable illegal ligatures
+\fi
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
+\urlstyle{same} % disable monospaced font for URLs
+\hypersetup{
+  colorlinks=true,
+  linkcolor={blue},
+  filecolor={Maroon},
+  citecolor={Blue},
+  urlcolor={Blue},
+  pdfcreator={LaTeX via pandoc}}
+
+\author{}
+\date{}
+
+\begin{document}
+\input{./title.tex}
+\newpage
+
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, interior hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, breakable, sharp corners, boxrule=0pt]}{\end{tcolorbox}}\fi
+
+\renewcommand*\contentsname{Table of Contents}
+{
+\hypersetup{linkcolor=}
+\setcounter{tocdepth}{4}
+\tableofcontents
+}
+\newpage{}
+
+\hypertarget{systems-of-linear-equations-and-matrices}{%
+\section{Systems of Linear Equations and
+Matrices}\label{systems-of-linear-equations-and-matrices}}
+
+\hypertarget{matrix-operations}{%
+\subsection{Matrix Operations}\label{matrix-operations}}
+
+\begin{itemize}
+\tightlist
+\item
+  Matrix operations are given as: rows x columns
+\item
+  Two matrices are equal \(\iff\) they have the same dimensions and
+  values
+\end{itemize}
+
+\hypertarget{addition-subtraction}{%
+\subsubsection{Addition \& Subtraction}\label{addition-subtraction}}
+
+Two matrices can be added/subtracted \(\iff\) they have the same
+dimensions. \includegraphics{img/addition-subtraction.png}
+
+\hypertarget{scalar-multiplication}{%
+\subsubsection{Scalar Multiplication}\label{scalar-multiplication}}
+
+\begin{itemize}
+\tightlist
+\item
+  Scalar multiplication is defined as multiplying each element of a
+  matrix by a number \includegraphics{img/scalar.png}
+\end{itemize}
+
+\hypertarget{matrix-multiplication}{%
+\subsubsection{Matrix Multiplication}\label{matrix-multiplication}}
+
+\begin{itemize}
+\tightlist
+\item
+  We can \textbf{only} multiply an (m x n) by (n x p) matrix.
+\item
+  The resulting matrix will be (m x p)
+\end{itemize}
+
+\hypertarget{examples}{%
+\subsubsection{Examples}\label{examples}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \begin{align*}
+  &\begin{bmatrix} 1 & 2 \\ 3 & 4\end{bmatrix}\begin{bmatrix} 1 & 2 \\ 3 & 4 \end{bmatrix} \\
+  &= \begin{bmatrix} 1 \cdot 1 + 2 \cdot 3 & 1 \cdot 2 + 2 \cdot 4 \\ 3 \cdot 1 + 4 \cdot 3 & 3 \cdot 2 + 4 \cdot 4 \end{bmatrix} \\
+  &= \begin{bmatrix} 7 & 10 \\ 15 & 22 \end{bmatrix}
+  \end{align*}
+\item
+  \begin{align*}
+  &\begin{bmatrix}2 & -3 \\ 5 & 0 \\ -2 & 4 \\ 1 & 2 \end{bmatrix}\begin{bmatrix}-1 \\ 3 \end{bmatrix} \\
+  &=\begin{bmatrix} 2 \cdot (-1) + (-3) \cdot 3 \\ 5 \cdot (-1) + 0 \cdot 3 \\ -2 \cdot (-1) + 4 \cdot 3 \\ 1 \cdot (-1) + 2 \cdot 3 \end{bmatrix} \\
+  &=\begin{bmatrix} -11 \\ -5 \\ 14 \\ 5 \end{bmatrix}
+  \end{align*}
+\item
+  \begin{align*}
+  &\begin{bmatrix}4 & 5 & -1 \end{bmatrix}\begin{bmatrix} 8 \\ 0 \\ 2\end{bmatrix} \\
+  &= \begin{bmatrix} 4 \cdot 8 + 5 \cdot 0 + (-1) \cdot 2 \end{bmatrix} \\
+  &= \begin{bmatrix} 30 \end{bmatrix}
+  \end{align*}
+\end{enumerate}
+
+\hypertarget{transpose-of-a-matrix}{%
+\subsection{Transpose of a Matrix}\label{transpose-of-a-matrix}}
+
+The transpose of an (m x n) matrix is the (n x m) matrix where the rows
+and columns are swapped.
+
+If
+\(B = \begin{bmatrix} 4 & 2 \\ -1 & 0 \\ 3 & 5 \end{bmatrix}, B^T = \begin{bmatrix} 4 & -1 & 3 \\ 2 & 0 & 5 \end{bmatrix}\)
+
+\begin{align*}
+B \cdot B^T &= \begin{bmatrix} 4 & 2 \\ -1 & 0 \\ 3 & 5 \end{bmatrix} \begin{bmatrix} 4 & -1 & 3 \\ 2 & 0 & 5 \end{bmatrix} \\ 
+&= \begin{bmatrix} 4 \cdot 4 + 2 \cdot 2 & 4 \cdot (-1) + 2 \cdot 0 & 4 \cdot 3 + 2 \cdot 5 \\ (-1) \cdot 4 + 0 \cdot 2 & (-1) \cdot (-1) + 0 \cdot 0 & (-1) \cdot 3 + 0 \cdot 5 \\ 3 \cdot 4 + 5 \cdot 2 & 3 \cdot (-1) + 5 \cdot 0 & 3 \cdot 3 + 5 \cdot 5 \end{bmatrix} \\ 
+&= \begin{bmatrix} 20 & -4 & 22 \\ -4 & 1 & -3 \\ 22 & -3 & 34\end{bmatrix}
+\end{align*}
+
+\begin{itemize}
+\tightlist
+\item
+  The transpose of a matrix is \textbf{always} multiplicative with the
+  original.
+\item
+  There is also a \textbf{main diagonal} that is the diagonal from the
+  top left to the bottom right.
+\item
+  The \textbf{trace} of a square matrix \(A\) is equal to the sum of all
+  the elements on the main diagonal: \(\mathrm{tr}(A)\)
+\end{itemize}
+
+\hypertarget{transpose-matrix-properties}{%
+\subsubsection{Transpose Matrix
+Properties}\label{transpose-matrix-properties}}
+
+\begin{itemize}
+\tightlist
+\item
+  \((A^T)^T = A\)
+\item
+  \((A + B)^T = A^T + B^T\)
+\item
+  \((A - B)^T = A^T - B^T\)
+\item
+  \((kA)^T = kA^T\)
+\item
+  \((AB)^T = B^T A^T\)
+\end{itemize}
+
+
+
+\end{document}
