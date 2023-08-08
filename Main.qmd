@@ -277,3 +277,86 @@ Doing these things changes the matrix, but it's the same system!
 \end{align*}
 
 And so... $x=3$ and $y=4$!
+
+## Connection to Matrices
+If we can make a system's matrix look like
+
+$\left[\begin{array}{ccc|c}1 & 0 & 0 & c_1 \\ 0 & 1 & 0 & c_2 \\ 0 & 0 & 1 & c_3 \end{array}\right]$, 
+
+then the solution to the system will be the ordered triple $(c_1, c_2, c_3)$.
+
+### Example 2: again
+
+\systeme{2x+y=10, 6x+3y=10}
+
+\begin{align*}
+\left[\begin{array}{cc|c}2 & 1 & 10 \\ 6 & 3 & 10 \end{array}\right] \rowops{\frac{1}{2}R1,} \left[\begin{array}{cc|c}1 & \frac{1}{2} & 5 \\ 6 & 3 & 10 \end{array}\right] \rowops{,R2-6R1,} \left[\begin{array}{cc|c}1 & \frac{1}{2} & 5 \\ 0 & 0 & -20 \end{array}\right]
+\end{align*}
+
+This is inconsistent, so there is no solution.
+
+### Example 3: again
+
+\systeme{5x-2y=4, 15x-6y=12}
+
+\begin{align*}
+\left[\begin{array}{cc|c}5 & -2 & 4 \\ 15 & -6 & 12\end{array}\right]\rowops{\frac{1}{5}R1,}\left[\begin{array}{cc|c}1 & -\frac{2}{5} & \frac{4}{5} \\ 15 & -6 & 12 \end{array}\right]\rowops{,R2-15R1}\left[\begin{array}{cc|c}1 & -\frac{2}{5} & \frac{4}{5} \\ 0 & 0 & 0 \end{array}\right]
+\end{align*}
+
+Since $0 = 0$, there are infinitely many solutions.
+
+### Example 4: Solve the following system
+
+\systeme{x_1-2x_2 + x_3 = 0, 2x_2-8x_3=8, -4x_1+5x_2+9x_3=-9}
+
+\begin{align*}
+&\left[\begin{array}{ccc|c}
+1 & -2 & 1 & 0 \\ 0 & 2 & -8 & 8 \\ -4 & 5 & 9 & -9
+\end{array}\right]\rowops{R3+4R1,}\left[\begin{array}{ccc|c}1 & -2 & 1 & 0 \\ 0 & 2 & -8 & 8 \\ 0 & -3 & 13 & -9 \end{array}\right]\rowops{,R3+\frac{3}{2}R2,}\left[\begin{array}{ccc|c}1 & -2 & 1 & 0 \\ 0 & 2 & -8 & 8 \\ 0 & 0 & -1 & 3 \end{array}\right] \\
+&\rowops{,\frac{1}{2}R_2,}
+\left[\begin{array}{ccc|c}
+1 & -2 & 1 & 0 \\ 0 & 1 & -4 & 4 \\ 0 & -3 & 13 & -9 
+\end{array}\right] \rowops{R_1+2R_2,,R_3+3R_2}\left[\begin{array}{ccc|c}
+1 & 0 & -7 & 8 \\ 0 & 1 & -4 & 4 \\ 0 & 0 & 1 & 3
+\end{array}\right]\rowops{R1+7R_3,R_2+4R_3,}\left[\begin{array}{ccc|c}
+1 & 0 & 0 & 29 \\ 0 & 1 & 0 & 16 \\ 0 & 0 & 1 & 3
+\end{array}\right]
+\end{align*}
+
+Therefore the solution to $(x_1, x_2, x_3)$ is $(29, 16, 3)$.
+
+### Homework
+
+\systeme{x + y + 2z = 8, -x - 2y + 3z = 1, 3x - 7y + 4z = 10}
+
+\begin{align*}
+&\left[\begin{array}{ccc|c}
+1 & 1 & 2 & 8 \\
+-1 & -2 & 3 & 1 \\
+3 & -7 & 4 & 10
+\end{array}\right]\rowops{,R_2+R_1,R_3-3R_1}
+\left[\begin{array}{ccc|c}
+1 & 1 & 2 & 8 \\
+0 & -1 & 5 & 9 \\
+0 & -10 & -2 & -14
+\end{array}\right]\rowops{,-R_2, -R_3}\left[\begin{array}{ccc|c}
+1 & 1 & 2 & 8 \\
+0 & 1 & -5 & -9 \\
+0 & 10 & 2 & 14
+\end{array}\right] \\
+&\rowops{R_1-R_2,,R_3-10R_2}\left[\begin{array}{ccc|c}
+1 & 0 & 7 & 17 \\
+0 & 1 & -5 & -9 \\
+0 & 0 & 52 & 104
+\end{array}\right]\rowops{,,\frac{1}{52}R_3}\left[\begin{array}{ccc|c}
+1 & 0 & 7 & 17 \\
+0 & 1 & -5 & -9 \\
+0 & 0 & 1 & 2
+\end{array}\right]\rowops{R_1-7R_3,R_2+5R_3}\left[\begin{array}{ccc|c}
+1 & 0 & 0 & 3 \\
+0 & 1 & 0 & 1 \\
+0 & 0 & 1 & 2
+\end{array}\right]
+\end{align*}
+
+Therefore, the solution to $(x, y, z)$ is $(3, 1, 2)$.
