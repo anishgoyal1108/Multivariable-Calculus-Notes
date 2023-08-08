@@ -84,7 +84,9 @@
 \usepackage{fancyvrb, fvextra}
 \usepackage{unicode-math}
 \usepackage{svg}
+\usepackage{multicol}
 \usepackage{listings}
+\usepackage{systeme}
 \usepackage{xifthen}
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
@@ -176,7 +178,7 @@
 \input{./title.tex}
 \newpage
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, breakable, enhanced, frame hidden, sharp corners]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, sharp corners, interior hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced, breakable, boxrule=0pt]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -419,6 +421,142 @@ In each part, compute the given expression (where possible).
   &= 34
   \end{align*}
 \end{enumerate}
+
+\hypertarget{intro-to-systems}{%
+\section{Intro to Systems}\label{intro-to-systems}}
+
+What are we looking for?
+
+Lines: How many possible solutions?
+
+\begin{itemize}
+\tightlist
+\item
+  Infinite solutions
+\item
+  One solution
+\item
+  No solutions
+\end{itemize}
+
+Planes: How many possible solutions?
+
+\begin{itemize}
+\tightlist
+\item
+  Infinite solutions
+\item
+  No solutions
+\end{itemize}
+
+What does linear actually mean?
+
+\begin{itemize}
+\tightlist
+\item
+  The word linear \emph{really} means that you've got equations with
+  variables and \textbf{all} of the variables are degree one.
+\item
+  This means that there is no limit to the number of dimensions in a
+  linear system.
+\end{itemize}
+
+\begin{center}
+\includegraphics[width=0.8\textwidth,height=\textheight]{img/linearsystems.png}
+\end{center}
+
+\hypertarget{review-solve-the-following-systems}{%
+\subsection{Review: Solve the following
+systems}\label{review-solve-the-following-systems}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \systeme{2x+y=10, 3x-y=5}
+
+  \begin{align*}
+  5x &= 15 \\
+  x &= 3 \\
+  2(3)+y &= 10 \\
+  6 + y &= 10 \\
+  y &= 4
+  \end{align*}
+\item
+  \systeme{2x+y=10, 6x+3y=10}
+
+  \begin{align*}
+  y &= 10-2x \\
+  6x + 3(10-2x) &= 10 \\
+  6x + 30 - 6x &= 10 \\
+  30 &= 10 \therefore \text { no solution}
+  \end{align*}
+\item
+  \systeme{5x-2y=4, 15x-6y=12}
+
+  \begin{align*}
+  0 &= 0 \\
+  12 &= 12 \therefore \text{ infinite solutions}
+  \end{align*}
+\end{enumerate}
+
+\begin{multicols}{2}
+  \hypertarget{review-solve-the-following-systems}{%
+  \subsubsection{Consistent}\label{consistent}}
+
+  \begin{itemize}
+    \tightlist
+    \item A system of equations is \textbf{consistent} if it has at least one solution.
+  \end{itemize}
+
+\columnbreak
+
+  \hypertarget{review-solve-the-following-systems}{%
+  \subsubsection{Inconsistent}\label{inconsistent}}
+
+  \begin{itemize}
+    \tightlist
+    \item A system of equations is \textbf{inconsistent} if it has no solutions.
+  \end{itemize}
+
+\end{multicols}
+
+\newpage{}
+
+\hypertarget{the-augmented-matrix}{%
+\subsection{The Augmented Matrix}\label{the-augmented-matrix}}
+
+\Large\systeme{x-y+2z=5,2x-2y+4z=10,3x-3y+6z=15}
+\(\longrightarrow \left[\begin{array}{ccc|c}1 & -1 & 2 & 5 \\ 2 & -2 & 4 & 10 \\ 3 & -3 & 6 & 15 \end{array}\right]\)
+\normalsize
+
+\hypertarget{elementary-row-operations}{%
+\subsection{Elementary Row Operations}\label{elementary-row-operations}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Interchange 2 rows
+\item
+  Multiply a row by a non-zero constant
+\item
+  Add/substract a multiple of one row to/from another row
+\end{enumerate}
+
+Doing these things changes the matrix, but it's the same system!
+
+\hypertarget{example-1-again}{%
+\subsubsection{Example 1\ldots{} again}\label{example-1-again}}
+
+\systeme{2x+y=10, 3x-y=5}
+
+\begin{align*}
+\Large
+\left[\begin{array}{cc|c}2 & 1 & 10 \\ 3 & -1 & 5 \end{array} \right]&\rowops{\frac{1}{2}R_1,}\left[\begin{array}{cc|c}1 & \frac{1}{2} & 5 \\ 3 & -1 & 5 \end{array} \right] \rowops{,R_2-3R_1}\left[\begin{array}{cc|c}1 & \frac{1}{2} & 5 \\ 0 & -\frac{5}{2} & -10 \end{array}\right] \\
+&\rowops{,-\frac{2}{5}R_2} \left[\begin{array}{cc|c}1 & \frac{1}{2} & 5 \\ 0 & 1 & 4 \end{array}\right]\rowops{R1-\frac{1}{2}R_2,}\left[\begin{array}{cc|c}1 & 0 & 3 \\ 0 & 1 & 4 \end{array}\right]
+\end{align*}
+
+And so\ldots{} \(x=3\) and \(y=4\)!
 
 
 
