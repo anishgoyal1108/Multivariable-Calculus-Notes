@@ -325,7 +325,7 @@ Since $0 = 0$, there are infinitely many solutions.
 
 Therefore the solution to $(x_1, x_2, x_3)$ is $(29, 16, 3)$.
 
-### Homework
+### Elementary Row Operations \& REF Homework Problem (08/08/2023)
 
 \systeme{x + y + 2z = 8, -x - 2y + 3z = 1, 3x - 7y + 4z = 10}
 
@@ -352,7 +352,7 @@ Therefore the solution to $(x_1, x_2, x_3)$ is $(29, 16, 3)$.
 1 & 0 & 7 & 17 \\
 0 & 1 & -5 & -9 \\
 0 & 0 & 1 & 2
-\end{array}\right]\rowops{R_1-7R_3,R_2+5R_3}\left[\begin{array}{ccc|c}
+\end{array}\right]\rowops{R_1-7R_3,R_2+5R_3,}\left[\begin{array}{ccc|c}
 1 & 0 & 0 & 3 \\
 0 & 1 & 0 & 1 \\
 0 & 0 & 1 & 2

@@ -178,7 +178,7 @@
 \input{./title.tex}
 \newpage
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[breakable, interior hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, sharp corners, boxrule=0pt, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, boxrule=0pt, interior hidden, breakable, borderline west={3pt}{0pt}{shadecolor}, sharp corners, enhanced]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -612,8 +612,9 @@ system}\label{example-4-solve-the-following-system}}
 
 Therefore the solution to \((x_1, x_2, x_3)\) is \((29, 16, 3)\).
 
-\hypertarget{homework}{%
-\subsubsection{Homework}\label{homework}}
+\hypertarget{elementary-row-operations-ref-homework-problem-08082023}{%
+\subsubsection{Elementary Row Operations \& REF Homework Problem
+(08/08/2023)}\label{elementary-row-operations-ref-homework-problem-08082023}}
 
 \systeme{x + y + 2z = 8, -x - 2y + 3z = 1, 3x - 7y + 4z = 10}
 
@@ -640,7 +641,7 @@ Therefore the solution to \((x_1, x_2, x_3)\) is \((29, 16, 3)\).
 1 & 0 & 7 & 17 \\
 0 & 1 & -5 & -9 \\
 0 & 0 & 1 & 2
-\end{array}\right]\rowops{R_1-7R_3,R_2+5R_3}\left[\begin{array}{ccc|c}
+\end{array}\right]\rowops{R_1-7R_3,R_2+5R_3,}\left[\begin{array}{ccc|c}
 1 & 0 & 0 & 3 \\
 0 & 1 & 0 & 1 \\
 0 & 0 & 1 & 2
