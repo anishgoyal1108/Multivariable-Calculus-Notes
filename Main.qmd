@@ -433,3 +433,54 @@ Therefore, the solution $(x_1, x_2, x_3)$ is $(1, -1, 2)$.
 &\left[\begin{array}{cccc|c}1 & 0 & 0 & -1 & 2 \\ 0 & 1 & 0 & -\frac{10}{3} & -\frac{13}{3} \\ 0 & 0 & 1 & \frac{7}{6} & \frac{19}{6} \\ 0 & 0 & 0 & -\frac{13}{6} & -\frac{13}{6} \end{array}\right]\rowops{,,,\frac{-6}{13}R_4}\left[\begin{array}{cccc|c}1 & 0 & 0 & -1 & 2 \\ 0 & 1 & 0 & -\frac{10}{3} & -\frac{13}{3} \\ 0 & 0 & 1 & \frac{7}{6} & \frac{19}{6} \\ 0 & 0 & 0 & 1 & 1 \end{array}\right]\rowops{R_1+R_4,R_2+\frac{10}{3}R_4,R_3-\frac{7}{6}R_4,} \\
 &\left[\begin{array}{cccc|c}1 & 0 & 0 & 0 & 3 \\ 0 & 1 & 0 & 0 & -1 \\ 0 & 0 & 1 & 0 & 2 \\ 0 & 0 & 0 & 1 & 1 \end{array}\right] \Longrightarrow \systeme*{w=3, x=-1, y=2, z=1}
 \end{align*}
+
+{{< pagebreak >}}
+
+## Gauss-Jordan Elimination
+### Goal:
+To get the matrix into RREF
+
+Solve:
+\systeme{x_1-3x_3=-2, 3x_1+x_2-2x_3=5, 2x_1+2x_2+x_3=4}
+
+\begin{align*}
+&\left[\begin{array}{ccc|c}1 & 0 & -3 & -2 \\ 3 & 1 & -2 & 5 \\ 2 & 2 & 1 & 4\end{array}\right]\rowops{,R_2-3R_1,R_3-2R_1}\left[\begin{array}{ccc|c}1 & 0 & -3 & -2 \\ 0 & 1 & 7 & 11 \\ 0 & 2 & 7 & 8\end{array}\right]\rowops{,,R_3-2R_2}\left[\begin{array}{ccc|c}1 & 0 & -3 & -2 \\ 0 & 1 & 7 & 11 \\ 0 & 0 & -7 & -14\end{array}\right]\\
+&\rowops{,,\frac{-1}{7}R_3}\left[\begin{array}{ccc|c}1 & 0 & -3 & -2 \\ 0 & 1 & 7 & 11 \\ 0 & 0 & 1 & 2\end{array}\right]\rowops{R_1+3R_3,R_2-7R_3,}\left[\begin{array}{ccc|c}1 & 0 & 0 & 4 \\ 0 & 1 & 0 & -3 \\ 0 & 0 & 1 & 2\end{array}\right] \Longrightarrow \systeme*{x_1=4, x_2=-3, x_3=2}
+\end{align*}
+
+## Matrix Properties, Equations, and Inverses
+
+### With Real Numbers
+- If $ab = bc$, then $a = c$, if $b \ne 0$
+- If $ab = 0$, then $a = 0$ or $b = 0$, or both
+
+### With Matrices
+- If $AB = AC$, then $B = C$, if $A$ is invertible
+- If $AB = [0]$, then $A = [0]$ or $B = [0]$, or both
+
+#### Multiply:
+\begin{align*}
+&\begin{bmatrix} 2 & 3 \\ 3 & 5 \end{bmatrix}
+\begin{bmatrix} 5 & -3 \\ -3 & 2 \end{bmatrix} \\
+&= \begin{bmatrix} 2(5)+3(-3) & 2(-3)+3(2) \\ 3(5)+5(-3) & 3(-3)+5(2) \end{bmatrix} \\
+&= \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
+\end{align*}
+
+### Matrix Inverses
+- If a matrix has an inverse, it is said to be invertible or non-singular. 
+- If a matrix does not have an inverse, it is said to be singular.
+
+- Every square matrix has a "special number" associated with it called the **determinant**.
+
+- For the $2 \times 2$ matrix $A = \begin{bmatrix}a & b \\ c & d \end{bmatrix}$, the determinant is $ad-bc$
+- $A^{-1} = \frac{1}{\det{A}}\begin{bmatrix}d & -b \\ -c & a \end{bmatrix}$
+- When $\det{A} = 0$, the matrix is singular and has no inverse (since you cannot divide by zero)
+
+Find the inverse of $A = \begin{bmatrix}4 & 3 \\ 1 & 2 \end{bmatrix}$
+
+\begin{align*}
+&\begin{bmatrix}4 & 3 \\ 1 & 2 \end{bmatrix}^{-1} &= \frac{1}{\det{A}}\begin{bmatrix}2 & -3 \\ -1 & 4 \end{bmatrix} \\
+&= \frac{1}{(4)(2)-(3)(1)}\begin{bmatrix}2 & -3 \\ -1 & 4 \end{bmatrix} \\
+&= \frac{1}{5}\begin{bmatrix}2 & -3 \\ -1 & 4 \end{bmatrix} \\
+&= \begin{bmatrix}\frac{2}{5} & -\frac{3}{5} \\ -\frac{1}{5} & \frac{4}{5} \end{bmatrix}
+\end{align*}
