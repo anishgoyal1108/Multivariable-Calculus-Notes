@@ -603,7 +603,7 @@ Are the following matrices elementary?
 
 {{< pagebreak >}}
 
-## Homework Makeups
+## Unit 1 & 2 Homework Problems
 
 ### "Gaussian Elimination" (08/11/2023)
 
@@ -877,62 +877,65 @@ $A=\begin{vmatrix}\sin\theta & \cos\theta & 0 \\
 &= 64
 \end{align*}
 
+{{< pagebreak >}}
+
 ### Adjoints and Cramer's Rule (09/05)
 #### Find the inverse of $A=\begin{bmatrix}2 & 5 & 5 \\ -1 & -1 & 0 \\ 2 & 4 & 3\end{bmatrix}$ using the adjoint method
 \begin{align*}
 \det(A) &= 2\begin{vmatrix}-1 & 0 \\ 4 & 3\end{vmatrix}-5\begin{vmatrix}-1 & 0 \\ 2 & 3\end{vmatrix}+5\begin{vmatrix}-1 & -1 \\ 2 & 4\end{vmatrix} \\
-&= 2(-3)-5(-3)+5(-6) \\
-&= -6+15-30 \\
-&= -21 \\
-\text{adj}(A) &= \begin{bmatrix}(-1)^{1+1}\begin{vmatrix}-1 & 0 \\ 4 & 3\end{vmatrix} & (-1)^{1+2}\begin{vmatrix}-1 & 0 \\ 2 & 3\end{vmatrix} & (-1)^{1+3}\begin{vmatrix}-1 & -1 \\ 2 & 4\end{vmatrix} \\ (-1)^{2+1}\begin{vmatrix}5 & 5 \\ 4 & 3\end{vmatrix} & (-1)^{2+2}\begin{vmatrix}2 & 5 \\ 2 & 3\end{vmatrix} & (-1)^{2+3}\begin{vmatrix}2 & 5 \\ -1 & -1\end{vmatrix} \\ (-1)^{3+1}\begin{vmatrix}5 & 5 \\ -1 & 0\end{vmatrix} & (-1)^{3+2}\begin{vmatrix}2 & 5 \\ -1 & 0\end{vmatrix} & (-1)^{3+3}\begin{vmatrix}2 & 5 \\ -1 & -1\end{vmatrix}\end{bmatrix} \\
-&= \begin{bmatrix}(-1)(-3) & (-1)(-3) & (-1)(-6) \\ (-1)(-5) & (-1)(-1) & (-1)(-1) \\ (-1)(-5) & (-1)(-2) & (-1)(-3)\end{bmatrix} \\
-&= \begin{bmatrix}3 & 3 & 6 \\ 5 & 1 & 1 \\ 5 & 2 & 3\end{bmatrix} \\
-\therefore A^{-1} &= -\frac{1}{21}\begin{bmatrix}3 & 3 & 6 \\ 5 & 1 & 1 \\ 5 & 2 & 3\end{bmatrix} \\
-&= \begin{bmatrix}-\frac{1}{7} & -\frac{1}{7} & -\frac{2}{7} \\ -\frac{5}{21} & -\frac{1}{21} & -\frac{1}{21} \\ -\frac{5}{21} & -\frac{2}{21} & -\frac{1}{7}\end{bmatrix}
+&= 2(-3)-5(-3)+5(-2) \\
+&= -6+15-10 \\
+&= -1 \\
+\text{adj}(A) &= \begin{bmatrix}(-1)^{1+1}\begin{vmatrix}-1 & 0 \\ 4 & 3\end{vmatrix} & (-1)^{1+2}\begin{vmatrix}-1 & 0 \\ 2 & 3\end{vmatrix} & (-1)^{1+3}\begin{vmatrix}-1 & -1 \\ 2 & 4\end{vmatrix} \\ (-1)^{2+1}\begin{vmatrix}5 & 5 \\ 4 & 3\end{vmatrix} & (-1)^{2+2}\begin{vmatrix}2 & 5 \\ 2 & 3\end{vmatrix} & (-1)^{2+3}\begin{vmatrix}2 & 5 \\ 2 & 4\end{vmatrix} \\ (-1)^{3+1}\begin{vmatrix}5 & 5 \\ -1 & 0\end{vmatrix} & (-1)^{3+2}\begin{vmatrix}2 & 5 \\ -1 & 0\end{vmatrix} & (-1)^{3+3}\begin{vmatrix}2 & 5 \\ -1 & -1\end{vmatrix}\end{bmatrix} \\
+&= \begin{bmatrix}(-1)(3) & -(-1)(3) & -4+2 \\ -(15-20) & 6-10 & -(8-10) \\ 5 & -5 & -2+5\end{bmatrix}^T \\
+&= \begin{bmatrix}-3 & 3 & -2 \\ 5 & -4 & 2 \\ 5 & -5 & 3\end{bmatrix}^T \\
+&= \begin{bmatrix}-3 & 5 & 5 \\ 3 & -4 & -5 \\ -2 & 2 & 3\end{bmatrix} \\
+\therefore \ A^{-1} &= -\begin{bmatrix}-3 & 5 & 5 \\ 3 & -4 & -5 \\ -2 & 2 & 3\end{bmatrix} \\
+&= \begin{bmatrix}3 & -5 & -5 \\ -3 & 4 & 5 \\ 2 & -2 & -3\end{bmatrix}
 \end{align*}
 
 {{< pagebreak >}}
 
 #### Solve the following system of equations using Cramer's Rule
-\systeme{4x+5y=2,11x+y+2z=3,x+5y+2z=1}
+\systeme{4x+5y=2,11x+y+2z=3,x+5y+2z=1} $\longrightarrow \begin{vmatrix} 4 & 5 & 0 \\ 11 & 1 & 2 \\ 1 & 5 & 2\end{vmatrix} \longrightarrow 4\begin{vmatrix}1 & 2 \\ 5 & 2\end{vmatrix}-5\begin{vmatrix}11 & 2 \\ 1 & 2\end{vmatrix} = -132$
 \begin{align*}
-x &= \frac{\begin{vmatrix}2 & 5 & 0 \\ 3 & 1 & 2 \\ 1 & 5 & 2\end{vmatrix}}{\begin{vmatrix}4 & 5 & 0 \\ 11 & 1 & 2 \\ 1 & 5 & 2\end{vmatrix}} \\
-&= \frac{2\begin{vmatrix}1 & 2 \\ 5 & 2\end{vmatrix}-5\begin{vmatrix}3 & 2 \\ 1 & 2\end{vmatrix}+0\begin{vmatrix}3 & 1 \\ 1 & 5\end{vmatrix}}{4\begin{vmatrix}1 & 2 \\ 5 & 2\end{vmatrix}-5\begin{vmatrix}11 & 2 \\ 1 & 2\end{vmatrix}+0\begin{vmatrix}11 & 1 \\ 1 & 5\end{vmatrix}} \\
-&= \frac{2(2-10)-5(6-2)+0(15-1)}{4(2-10)-5(22-2)+0(55-1)} \\
-&= \frac{-16-20}{-32-100} \\
-&= \frac{-36}{-132} \\
-&= \frac{3}{11}
-\end{align*}
-\begin{align*}
-y &= \frac{\begin{vmatrix}4 & 2 & 0 \\ 11 & 3 & 2 \\ 1 & 1 & 2\end{vmatrix}}{\begin{vmatrix}4 & 5 & 0 \\ 11 & 1 & 2 \\ 1 & 5 & 2\end{vmatrix}} \\
-&= \frac{4\begin{vmatrix}3 & 2 \\ 1 & 2\end{vmatrix}-2\begin{vmatrix}11 & 2 \\ 1 & 2\end{vmatrix}+0\begin{vmatrix}11 & 3 \\ 1 & 1\end{vmatrix}}{4\begin{vmatrix}1 & 2 \\ 5 & 2\end{vmatrix}-5\begin{vmatrix}11 & 2 \\ 1 & 2\end{vmatrix}+0\begin{vmatrix}11 & 1 \\ 1 & 5\end{vmatrix}} \\
-&= \frac{4(6-2)-2(22-2)+0(11-3)}{4(2-10)-5(22-2)+0(55-1)} \\
-&= \frac{16-40}{-32-100} \\
-&= \frac{-24}{-132} \\
-&= \frac{2}{11}
-\end{align*}
-\begin{align*}
-z &= \frac{\begin{vmatrix}4 & 5 & 2 \\ 11 & 1 & 3 \\ 1 & 5 & 1\end{vmatrix}}{\begin{vmatrix}4 & 5 & 0 \\ 11 & 1 & 2 \\ 1 & 5 & 2\end{vmatrix}} \\
-&= \frac{4\begin{vmatrix}1 & 3 \\ 5 & 1\end{vmatrix}-5\begin{vmatrix}11 & 3 \\ 1 & 1\end{vmatrix}+2\begin{vmatrix}11 & 1 \\ 1 & 5\end{vmatrix}}{4\begin{vmatrix}1 & 2 \\ 5 & 2\end{vmatrix}-5\begin{vmatrix}11 & 2 \\ 1 & 2\end{vmatrix}+0\begin{vmatrix}11 & 1 \\ 1 & 5\end{vmatrix}} \\
-&= \frac{4(1-15)-5(11-3)+2(55-1)}{4(2-10)-5(22-2)+0(55-1)} \\
-&= \frac{-56-40+108}{-32-100} \\
-&= \frac{12}{-132} \\
-&= -\frac{1}{11}
+\det{(x)} &= \begin{vmatrix}2 & 5 & 0 \\ 3 & 1 & 2 \\ 1 & 5 & 2\end{vmatrix} \\
+&= 2\begin{vmatrix}1 & 2 \\ 5 & 2\end{vmatrix}-5\begin{vmatrix}3 & 2 \\ 1 & 2\end{vmatrix} \\
+&= 2(2-10)-5(6-2) \\
+&= -16-20 \\
+&= -36 \\
+\det{(y)} &= \begin{vmatrix}4 & 2 & 0 \\ 11 & 3 & 2 \\ 1 & 1 & 2\end{vmatrix} \\
+&= 4\begin{vmatrix}3 & 2 \\ 1 & 2\end{vmatrix}-2\begin{vmatrix}11 & 2 \\ 1 & 2\end{vmatrix} \\
+&= 4(6-2)-2(22-2) \\
+&= 16-40 \\
+&= -24 \\
+\det{(z)} &= \begin{vmatrix}4 & 5 & 2 \\ 11 & 1 & 3 \\ 1 & 5 & 1\end{vmatrix} \\
+&= 4\begin{vmatrix}1 & 3 \\ 5 & 1\end{vmatrix}-5\begin{vmatrix}11 & 3 \\ 1 & 3\end{vmatrix}+2\begin{vmatrix}11 & 1 \\ 1 & 5\end{vmatrix} \\
+&= 4(1-15)-5(33-3)+2(55-1) \\
+&= -56-150+108 \\
+&= -98 \\
 \end{align*}
 
-Therefore, the solution is $(x, y, z) = (\frac{3}{11}, \frac{2}{11}, -\frac{1}{11})$
+Therefore, the solution $(x, y, z) = (\frac{3}{11}, \frac{2}{11}, -\frac{49}{66})$
 
 {{< pagebreak >}}
 
-#### Use Cramer's rule to solve for $y$ without solving for the unknowns $x, z,$ and $w$S
+#### Use Cramer's rule to solve for $y$ without solving for the unknowns $x, z,$ and $w$
 \systeme{4x+y+z+w=6, 3x+7y-z+w=1,7x+3y-5z+8w=-3,x+y+z+2w=3}
 \begin{align*}
-y &= \frac{\begin{vmatrix}4 & 6 & 1 & 3 \\ 3 & 1 & 1 & 3 \\ 7 & -3 & -5 & -3 \\ 1 & 3 & 2 & 3\end{vmatrix}}{\begin{vmatrix}4 & 1 & 1 & 1 \\ 3 & 7 & -1 & 1 \\ 7 & 3 & -5 & 8 \\ 1 & 1 & 2 & 1\end{vmatrix}} \\
-&= \frac{4\begin{vmatrix}7 & -3 & -3 \\ 1 & 1 & 3 \\ 3 & -5 & -3\end{vmatrix}-6\begin{vmatrix}3 & 1 & 3 \\ 7 & -1 & 3 \\ 3 & -5 & -3\end{vmatrix}+1\begin{vmatrix}3 & 1 & 3 \\ 7 & -3 & 3 \\ 3 & -5 & -3\end{vmatrix}-3\begin{vmatrix}3 & 1 & 3 \\ 7 & -3 & -1 \\ 3 & -5 & 3\end{vmatrix}}{4\begin{vmatrix}7 & -1 & 1 \\ 1 & 1 & 3 \\ 3 & -5 & -3\end{vmatrix}-1\begin{vmatrix}3 & 1 & 3 \\ 7 & -1 & 3 \\ 3 & -5 & -3\end{vmatrix}-1\begin{vmatrix}3 & 7 & 3 \\ 7 & 1 & 3 \\ 3 & 3 & -3\end{vmatrix}+1\begin{vmatrix}3 & 7 & -1 \\ 7 & 1 & 3 \\ 3 & 3 & -5\end{vmatrix}} \\
-&= \frac{4(-3-9+9)-6(-9+21-15)+1(-9+21-15)-3(-9+21+3)}{4(-7+3+15)-1(-9+21-15)-1(-9+21-15)+1(-9+21+15)} \\
-&= \frac{4(-3)-6(-3)+1(-3)-3(15)}{4(11)-1(-3)-1(-3)+1(27)} \\
-&= \frac{-12+18-3-45}{44+3+3+27} \\
-&= \frac{-42}{77} \\
-&= -\frac{6}{11}
+A &= \begin{vmatrix} 1 & 4 & 1 & 1 \\ 1 & 3 & 7 & -1 \\ 8 & 7 & 3 & -5 \\ 2 & 1 & 1 & 1\end{vmatrix} = \begin{vmatrix} 3 & 7 & -1 \\ 7 & 3 & -5 \\ 1 & 1 & 1 \end{vmatrix} -4 \begin{vmatrix} 1 & 7 & -1 \\ 8 & 3 & -5 \\ 2 & 1 & 1 \end{vmatrix} + \begin{vmatrix} 1 & 3 & -1 \\ 8 & 7 & -5 \\ 2 & 1 & 1 \end{vmatrix} - \begin{vmatrix} 1 & 3 & 7 \\ 8 & 7 & 3 \\ 2 & 1 & 1 \end{vmatrix} \\
+&= 3\begin{vmatrix} 3 & -5 \\ 1 & 1 \end{vmatrix} -7\begin{vmatrix} 7 & -5 \\ 1 & 1 \end{vmatrix} - \begin{vmatrix} 7 & 3 \\ 1 & 1 \end{vmatrix} \rightarrow 3(3+5)-7(7+5)-(7-3) \rightarrow 24-84-4 \rightarrow -64\\ 
+&-4\left(\begin{vmatrix}3 & -5 \\ 1 & 1\end{vmatrix} - 7\begin{vmatrix} 8 & -5 \\ 2 & 1 \end{vmatrix} - \begin{vmatrix}8 & 3 \\ 2 & 1 \end{vmatrix}\right) \rightarrow -4\left(8-7(8+10)-(8-6)\right) \rightarrow -4(8-126-2) \rightarrow 480 \\ 
+&+ \begin{vmatrix}7 & -5 \\ 1 & 1 \end{vmatrix} -3\begin{vmatrix}8 & -5 \\ 2 & 1 \end{vmatrix} - \begin{vmatrix} 8 & 7 \\ 2 & 1 \end{vmatrix} \rightarrow (7+5)-3(8+10)-(8-14) \rightarrow 12-54+6 \rightarrow -36\\
+&-\left(\begin{vmatrix}7 & 3 \\ 1 & 1\end{vmatrix}-3\begin{vmatrix} 8 & 3 \\ 2 & 1 \end{vmatrix} +7\begin{vmatrix}8 & 7 \\ 2 & 1 \end{vmatrix}\right) \rightarrow -(7-3)-3(8-6)+7(8-14) \rightarrow -(4-6-42) \rightarrow 44 \\
+&= -64+480-36+44 \\
+&= 424 \\
+\det{(y)} &= \begin{vmatrix}1 & 4 & 6 & 1 \\ 1 & 3 & 1 & -1 \\ 8 & 7 & -3 & -5 \\ 2 & 1 & 3 & 1 \end{vmatrix} = \begin{vmatrix}3 & 1 & -1 \\ 7 & -3 & -5 \\ 1 & 3 & 1 \end{vmatrix}-4\begin{vmatrix}1 & 1 & -1 \\ 8 & -3 & -5 \\ 2 & 3 & 1 \end{vmatrix}+6\begin{vmatrix}1 & 3 & -1 \\ 8 & 7 & -5 \\ 2 & 1 & 1 \end{vmatrix}-\begin{vmatrix}1 & 3 & 1 \\ 8 & 7 & -3 \\ 2 & 1 & 3 \end{vmatrix} \\
+&= 3\begin{vmatrix}-3 & -5 \\ 3 & 1 \end{vmatrix}-\begin{vmatrix}7 & -5 \\ 1 & 1 \end{vmatrix}-\begin{vmatrix} 7 & -3 \\ 1 & 3 \e   nd{vmatrix} \rightarrow 3(-3+15)-(-7+5)-(-21+3) \rightarrow 36-2-18 \rightarrow 16 \\
+&= -4\left(\begin{vmatrix}-3 & -5 \\ 3 & 1 \end{vmatrix} -\begin{vmatrix}8 & -5 \\ 2 & 1 \end{vmatrix} - \begin{vmatrix} 8 & -3 \\ 2 & 3 \end{vmatrix}\right) \rightarrow -4((-3+15)-(8+10)-(24+6)) \rightarrow -4(12-18-30) \rightarrow 144 \\
+&= 6\left(\begin{vmatrix}7 & -5 \\ 1 & 1 \end{vmatrix} -3\begin{vmatrix}8 & -5 \\ 2 & 1 \end{vmatrix} - \begin{vmatrix}8 & 7 \\ 2 & 1 \end{vmatrix}\right) \rightarrow 6((7+5)-3(8+10)-(8-14)) \rightarrow 6(12-54+6) \rightarrow -216 \\
+&-\left(\begin{vmatrix}7 & -3 \\ 1 & 3 \end{vmatrix}-3\begin{vmatrix}8 & -3 \\ 2 & 3 \end{vmatrix} + \begin{vmatrix}8 & 7 \\ 2 & 1 \end{vmatrix}\right) \rightarrow -((7+3)-3(24+6)+(8-14)) \rightarrow -(10-90-6) \rightarrow 86 \\
+&= 16+144-216+86 \\
+&= 30 \\
+\therefore \ y &= \frac{30}{424} = \frac{15}{212}
 \end{align*}
-{{< pagebreak >}}
