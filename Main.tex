@@ -43,13 +43,7 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\ifLuaTeX
-  \usepackage{luacolor}
-  \usepackage[soul]{lua-ul}
-\else
-  \usepackage{soul}
-  
-\fi
+\usepackage{soul}
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
@@ -113,6 +107,10 @@
 \; }
 \KOMAoption{captions}{tableheading}
 \makeatletter
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
 \ifdefined\contentsname
@@ -152,6 +150,14 @@
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
 \makeatother
 \makeatletter
+\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
+\makeatother
+\makeatletter
+\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
+\makeatother
+\makeatletter
+\makeatother
+\makeatletter
 \makeatother
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
@@ -174,6 +180,8 @@
 \input{./title.tex}
 \newpage
 
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, boxrule=0pt, breakable, borderline west={3pt}{0pt}{shadecolor}, sharp corners, frame hidden, enhanced]}{\end{tcolorbox}}\fi
+
 \renewcommand*\contentsname{Table of Contents}
 {
 \hypersetup{linkcolor=}
@@ -182,10 +190,12 @@
 }
 \newpage{}
 
+\hypertarget{chapter-1-systems-of-linear-equations-and-matrices}{%
 \section{Chapter 1: Systems of Linear Equations and
-Matrices}\label{chapter-1-systems-of-linear-equations-and-matrices}
+Matrices}\label{chapter-1-systems-of-linear-equations-and-matrices}}
 
-\subsection{Matrix Operations}\label{matrix-operations}
+\hypertarget{matrix-operations}{%
+\subsection{Matrix Operations}\label{matrix-operations}}
 
 \begin{itemize}
 \tightlist
@@ -196,12 +206,14 @@ Matrices}\label{chapter-1-systems-of-linear-equations-and-matrices}
   values
 \end{itemize}
 
-\subsubsection{Addition \& Subtraction}\label{addition-subtraction}
+\hypertarget{addition-subtraction}{%
+\subsubsection{Addition \& Subtraction}\label{addition-subtraction}}
 
 Two matrices can be added/subtracted \(\iff\) they have the same
 dimensions. \includegraphics{img/addition-subtraction.png}
 
-\subsubsection{Scalar Multiplication}\label{scalar-multiplication}
+\hypertarget{scalar-multiplication}{%
+\subsubsection{Scalar Multiplication}\label{scalar-multiplication}}
 
 \begin{itemize}
 \tightlist
@@ -210,7 +222,8 @@ dimensions. \includegraphics{img/addition-subtraction.png}
   matrix by a number \includegraphics{img/scalar.png}
 \end{itemize}
 
-\subsubsection{Matrix Multiplication}\label{matrix-multiplication}
+\hypertarget{matrix-multiplication}{%
+\subsubsection{Matrix Multiplication}\label{matrix-multiplication}}
 
 \begin{itemize}
 \tightlist
@@ -220,8 +233,9 @@ dimensions. \includegraphics{img/addition-subtraction.png}
   The resulting matrix will be (m x p)
 \end{itemize}
 
+\hypertarget{properties-of-matrix-arithmetic}{%
 \subsubsection{Properties of Matrix
-Arithmetic}\label{properties-of-matrix-arithmetic}
+Arithmetic}\label{properties-of-matrix-arithmetic}}
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -254,7 +268,8 @@ Arithmetic}\label{properties-of-matrix-arithmetic}
   a(BC) = (aB)C = B(aC)
 \end{enumerate}
 
-\subsubsection{Examples}\label{examples}
+\hypertarget{examples}{%
+\subsubsection{Examples}\label{examples}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -278,7 +293,8 @@ Arithmetic}\label{properties-of-matrix-arithmetic}
   \end{align*}
 \end{enumerate}
 
-\subsection{Transpose of a Matrix}\label{transpose-of-a-matrix}
+\hypertarget{transpose-of-a-matrix}{%
+\subsection{Transpose of a Matrix}\label{transpose-of-a-matrix}}
 
 The transpose of an (m x n) matrix is the (n x m) matrix where the rows
 and columns are swapped.
@@ -305,8 +321,9 @@ B \cdot B^T &= \begin{bmatrix} 4 & 2 \\ -1 & 0 \\ 3 & 5 \end{bmatrix} \begin{bma
   the elements on the main diagonal: \(\mathrm{tr}(A)\)
 \end{itemize}
 
+\hypertarget{transpose-matrix-properties}{%
 \subsubsection{Transpose Matrix
-Properties}\label{transpose-matrix-properties}
+Properties}\label{transpose-matrix-properties}}
 
 \begin{itemize}
 \tightlist
@@ -322,12 +339,14 @@ Properties}\label{transpose-matrix-properties}
   \((AB)^T = B^T A^T\)
 \end{itemize}
 
+\hypertarget{homework-matrix-stuff-08032023}{%
 \subsection{Homework --- ``Matrix Stuff''
-(08/03/2023)}\label{homework-matrix-stuff-08032023}
+(08/03/2023)}\label{homework-matrix-stuff-08032023}}
 
+\hypertarget{suppose-that-a-b-c-d-and-e-are-matrices-with-the-following-sizes}{%
 \subsubsection{\texorpdfstring{Suppose that \(A, B, C, D\) and \(E\) are
 matrices with the following
-sizes:}{Suppose that A, B, C, D and E are matrices with the following sizes:}}\label{suppose-that-a-b-c-d-and-e-are-matrices-with-the-following-sizes}
+sizes:}{Suppose that A, B, C, D and E are matrices with the following sizes:}}\label{suppose-that-a-b-c-d-and-e-are-matrices-with-the-following-sizes}}
 
 \begin{align*}
 &A& &B& &C& &D& &E& \\
@@ -363,7 +382,8 @@ Defined; (\(5 \times 2\))
 \(AE + B\) & & & \\
 \end{longtable}
 
-\subsubsection{Consider the matrices}\label{consider-the-matrices}
+\hypertarget{consider-the-matrices}{%
+\subsubsection{Consider the matrices}\label{consider-the-matrices}}
 
 \[
 A = \begin{bmatrix}3 & 0 \\ -1 & 2 \\ 1 & 1 \end{bmatrix}, B=\begin{bmatrix}4 & -1 \\ 0 & 2 \end{bmatrix}, C = \begin{bmatrix} 1 & 4 & 2 \\ 3 & 1 & 5 \end{bmatrix}, D = \begin{bmatrix} 1 & 5 & 2 \\ -1 & 0 & 1 \\ 3 & 2 & 4 \end{bmatrix}, E = \begin{bmatrix} 6 & 1 & 3 \\ -1 & 1 & 2 \\ 4 & 1 & 3 \end{bmatrix}
@@ -404,7 +424,8 @@ In each part, compute the given expression (where possible).
   \end{align*}
 \end{enumerate}
 
-\section{Intro to Systems}\label{intro-to-systems}
+\hypertarget{intro-to-systems}{%
+\section{Intro to Systems}\label{intro-to-systems}}
 
 What are we looking for?
 
@@ -446,8 +467,9 @@ What does linear actually mean?
 \includegraphics[width=0.8\textwidth,height=\textheight]{img/linearsystems.png}
 \end{center}
 
+\hypertarget{review-solve-the-following-systems}{%
 \subsection{Review: Solve the following
-systems}\label{review-solve-the-following-systems}
+systems}\label{review-solve-the-following-systems}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -502,13 +524,15 @@ systems}\label{review-solve-the-following-systems}
 
 \newpage{}
 
-\subsection{The Augmented Matrix}\label{the-augmented-matrix}
+\hypertarget{the-augmented-matrix}{%
+\subsection{The Augmented Matrix}\label{the-augmented-matrix}}
 
 \Large\systeme{x-y+2z=5,2x-2y+4z=10,3x-3y+6z=15}
 \(\longrightarrow \left[\begin{array}{ccc|c}1 & -1 & 2 & 5 \\ 2 & -2 & 4 & 10 \\ 3 & -3 & 6 & 15 \end{array}\right]\)
 \normalsize
 
-\subsection{Elementary Row Operations}\label{elementary-row-operations}
+\hypertarget{elementary-row-operations}{%
+\subsection{Elementary Row Operations}\label{elementary-row-operations}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -523,7 +547,8 @@ systems}\label{review-solve-the-following-systems}
 
 Doing these things changes the matrix, but it's the same system!
 
-\subsubsection{Example 1\ldots{} again}\label{example-1-again}
+\hypertarget{example-1-again}{%
+\subsubsection{Example 1\ldots{} again}\label{example-1-again}}
 
 \systeme{2x+y=10, 3x-y=5}
 
@@ -535,7 +560,8 @@ Doing these things changes the matrix, but it's the same system!
 
 And so\ldots{} \(x=3\) and \(y=4\)!
 
-\subsection{Connection to Matrices}\label{connection-to-matrices}
+\hypertarget{connection-to-matrices}{%
+\subsection{Connection to Matrices}\label{connection-to-matrices}}
 
 If we can make a system's matrix look like
 
@@ -544,7 +570,8 @@ If we can make a system's matrix look like
 then the solution to the system will be the ordered triple
 \((c_1, c_2, c_3)\).
 
-\subsubsection{Example 2: again}\label{example-2-again}
+\hypertarget{example-2-again}{%
+\subsubsection{Example 2: again}\label{example-2-again}}
 
 \systeme{2x+y=10, 6x+3y=10}
 
@@ -554,7 +581,8 @@ then the solution to the system will be the ordered triple
 
 This is inconsistent, so there is no solution.
 
-\subsubsection{Example 3: again}\label{example-3-again}
+\hypertarget{example-3-again}{%
+\subsubsection{Example 3: again}\label{example-3-again}}
 
 \systeme{5x-2y=4, 15x-6y=12}
 
@@ -564,8 +592,9 @@ This is inconsistent, so there is no solution.
 
 Since \(0 = 0\), there are infinitely many solutions.
 
+\hypertarget{example-4-solve-the-following-system}{%
 \subsubsection{Example 4: Solve the following
-system}\label{example-4-solve-the-following-system}
+system}\label{example-4-solve-the-following-system}}
 
 \systeme{x_1-2x_2 + x_3 = 0, 2x_2-8x_3=8, -4x_1+5x_2+9x_3=-9}
 
@@ -585,8 +614,9 @@ system}\label{example-4-solve-the-following-system}
 
 Therefore the solution to \((x_1, x_2, x_3)\) is \((29, 16, 3)\).
 
+\hypertarget{elementary-row-operations-ref-homework-problem-08082023}{%
 \subsubsection{Elementary Row Operations \& REF Homework Problem
-(08/08/2023)}\label{elementary-row-operations-ref-homework-problem-08082023}
+(08/08/2023)}\label{elementary-row-operations-ref-homework-problem-08082023}}
 
 \systeme{x + y + 2z = 8, -x - 2y + 3z = 1, 3x - 7y + 4z = 10}
 
@@ -622,7 +652,8 @@ Therefore the solution to \((x_1, x_2, x_3)\) is \((29, 16, 3)\).
 
 Therefore, the solution to \((x, y, z)\) is \((3, 1, 2)\).
 
-\subsection{Gaussian Elimination}\label{gaussian-elimination}
+\hypertarget{gaussian-elimination}{%
+\subsection{Gaussian Elimination}\label{gaussian-elimination}}
 
 \ul{Vocabulary}: A matrix is in \ul{Row Echelon Form (REF)} if:
 
@@ -652,7 +683,8 @@ conditions are met in adition to:
 
 \newpage{}
 
-\subsubsection{Examples}\label{examples-1}
+\hypertarget{examples-1}{%
+\subsubsection{Examples}\label{examples-1}}
 
 \begin{multicols}{2}
 $\begin{bmatrix}1 & 0 & 0 & 0 & 8\\ 0 & 1 & 0 & 6 & -3 \\ 0 & 0 & 1 & 7 & 10\\ 0 & 0 & 0 & 0 & 0 \end{bmatrix}$
@@ -677,10 +709,12 @@ RREF? \times
 
 \end{multicols}
 
+\hypertarget{gaussian-elimination-with-back-substitution}{%
 \subsection{\texorpdfstring{Gaussian Elimination With
-\textbf{Back-Substitution}}{Gaussian Elimination With Back-Substitution}}\label{gaussian-elimination-with-back-substitution}
+\textbf{Back-Substitution}}{Gaussian Elimination With Back-Substitution}}\label{gaussian-elimination-with-back-substitution}}
 
-\subsubsection{Goal:}\label{goal}
+\hypertarget{goal}{%
+\subsubsection{Goal:}\label{goal}}
 
 To get the augmented matrix in REF
 
@@ -699,8 +733,9 @@ z &= 2, y = -1, x = 1
 \end{align*} Therefore, the solution \((x_1, x_2, x_3)\) is
 \((1, -1, 2)\).
 
+\hypertarget{gaussian-elimination-homework-problem-08092023}{%
 \subsubsection{Gaussian Elimination Homework Problem
-(08/09/2023)}\label{gaussian-elimination-homework-problem-08092023}
+(08/09/2023)}\label{gaussian-elimination-homework-problem-08092023}}
 
 \systeme{y+z-2w=-3, x+2y-z=2,2x+4y+z-3w=-2,x-4y-7z-w=-19}
 
@@ -714,9 +749,11 @@ z &= 2, y = -1, x = 1
 
 \newpage{}
 
-\subsection{Gauss-Jordan Elimination}\label{gauss-jordan-elimination}
+\hypertarget{gauss-jordan-elimination}{%
+\subsection{Gauss-Jordan Elimination}\label{gauss-jordan-elimination}}
 
-\subsubsection{Goal:}\label{goal-1}
+\hypertarget{goal-1}{%
+\subsubsection{Goal:}\label{goal-1}}
 
 To get the matrix into RREF
 
@@ -727,10 +764,12 @@ Solve: \systeme{x_1-3x_3=-2, 3x_1+x_2-2x_3=5, 2x_1+2x_2+x_3=4}
 &\rowops{,,\frac{-1}{7}R_3}\left[\begin{array}{ccc|c}1 & 0 & -3 & -2 \\ 0 & 1 & 7 & 11 \\ 0 & 0 & 1 & 2\end{array}\right]\rowops{R_1+3R_3,R_2-7R_3,}\left[\begin{array}{ccc|c}1 & 0 & 0 & 4 \\ 0 & 1 & 0 & -3 \\ 0 & 0 & 1 & 2\end{array}\right] \Longrightarrow \systeme*{x_1=4, x_2=-3, x_3=2}
 \end{align*}
 
+\hypertarget{matrix-properties-equations-and-inverses}{%
 \subsection{Matrix Properties, Equations, and
-Inverses}\label{matrix-properties-equations-and-inverses}
+Inverses}\label{matrix-properties-equations-and-inverses}}
 
-\subsubsection{With Real Numbers}\label{with-real-numbers}
+\hypertarget{with-real-numbers}{%
+\subsubsection{With Real Numbers}\label{with-real-numbers}}
 
 \begin{itemize}
 \tightlist
@@ -740,7 +779,8 @@ Inverses}\label{matrix-properties-equations-and-inverses}
   If \(ab = 0\), then \(a = 0\) or \(b = 0\), or both
 \end{itemize}
 
-\subsubsection{With Matrices}\label{with-matrices}
+\hypertarget{with-matrices}{%
+\subsubsection{With Matrices}\label{with-matrices}}
 
 \begin{itemize}
 \tightlist
@@ -750,7 +790,8 @@ Inverses}\label{matrix-properties-equations-and-inverses}
   If \(AB = [0]\), then \(A = [0]\) or \(B = [0]\), or both
 \end{itemize}
 
-\paragraph{Multiply:}\label{multiply}
+\hypertarget{multiply}{%
+\paragraph{Multiply:}\label{multiply}}
 
 \begin{align*}
 &\begin{bmatrix} 2 & 3 \\ 3 & 5 \end{bmatrix}
@@ -759,7 +800,8 @@ Inverses}\label{matrix-properties-equations-and-inverses}
 &= \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
 \end{align*}
 
-\subsubsection{Matrix Inverses}\label{matrix-inverses}
+\hypertarget{matrix-inverses}{%
+\subsubsection{Matrix Inverses}\label{matrix-inverses}}
 
 \begin{itemize}
 \item
@@ -790,9 +832,11 @@ Find the inverse of \(A = \begin{bmatrix}4 & 3 \\ 1 & 2 \end{bmatrix}\)
 &= \begin{bmatrix}\frac{2}{5} & -\frac{3}{5} \\ -\frac{1}{5} & \frac{4}{5} \end{bmatrix}
 \end{align*}
 
-\section{Chapter 2: Determinants}\label{chapter-2-determinants}
+\hypertarget{chapter-2-determinants}{%
+\section{Chapter 2: Determinants}\label{chapter-2-determinants}}
 
-\subsection{Prior Knowledge:}\label{prior-knowledge}
+\hypertarget{prior-knowledge}{%
+\subsection{Prior Knowledge:}\label{prior-knowledge}}
 
 \(\begin{bmatrix}10 & -4 \\ -3 & -5 \end{bmatrix}=-50-=-62\)
 \begin{align*}
@@ -803,7 +847,8 @@ Find the inverse of \(A = \begin{bmatrix}4 & 3 \\ 1 & 2 \end{bmatrix}\)
 &= 2
 \end{align*}
 
-\subsection{Minors \& Cofactors}\label{minors-cofactors}
+\hypertarget{minors-cofactors}{%
+\subsection{Minors \& Cofactors}\label{minors-cofactors}}
 
 Given a square matrix A, the \ul{minor} of matrix element \(a_{ij}\),
 (\(M_{ij}\)) is the determinant of the matrix formed by removing the
@@ -812,7 +857,8 @@ Given a square matrix A, the \ul{minor} of matrix element \(a_{ij}\),
 The \ul{cofactor} of matrix element
 \(a_{ij}, C_{ij}=(-1)^{i+j}\cdot M_{ij}\)
 
-\subsubsection{Example}\label{example}
+\hypertarget{example}{%
+\subsubsection{Example}\label{example}}
 
 Let \(\det\begin{bmatrix}2&4&3 \\ -1&2&3 \\ 3&0&-2\end{bmatrix}\). What
 is the cofactor of element (1, 1)?
@@ -832,7 +878,8 @@ M_{33} = \begin{vmatrix}2 & 4 \\ -1 & 2 \end{vmatrix} = 8 \\
 C_{33} = 8
 \end{align*}
 
-\subsection{Cofactor Expansion}\label{cofactor-expansion}
+\hypertarget{cofactor-expansion}{%
+\subsection{Cofactor Expansion}\label{cofactor-expansion}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -854,7 +901,8 @@ C_{33} = 8
 &=-80
 \end{align*}
 
-\subsubsection{Example}\label{example-1}
+\hypertarget{example-1}{%
+\subsubsection{Example}\label{example-1}}
 
 \(A = \begin{bmatrix} 6 & 4 & 2 \\ 5 & -6 & 1 \\ 0 & 3 & 0\end{bmatrix}\)
 \begin{align*}
@@ -864,8 +912,9 @@ C_{33} = 8
 &= 12
 \end{align*}
 
+\hypertarget{does-the-method-generalize-to-2x2-matrices}{%
 \subsubsection{Does the method generalize to 2x2
-matrices?}\label{does-the-method-generalize-to-2x2-matrices}
+matrices?}\label{does-the-method-generalize-to-2x2-matrices}}
 
 \begin{align*}
 &\begin{vmatrix}3 & 5 \\ 7 & 2\end{vmatrix} \\
@@ -876,8 +925,9 @@ matrices?}\label{does-the-method-generalize-to-2x2-matrices}
 
 The determinant of a 1x1 matrix is\ldots{} \textbf{itself!}
 
+\hypertarget{find-the-determinant-of-a-4x4}{%
 \subsubsection{Find the determinant of a
-4x4}\label{find-the-determinant-of-a-4x4}
+4x4}\label{find-the-determinant-of-a-4x4}}
 
 \(A=\begin{bmatrix}-3 & 2 & 0 & 8 \\ 2 & 1 & 0 & -4 \\ 5 & -2 & 1 & 5 \\ 2 & 3 & 0 & 6\end{bmatrix}\)
 
@@ -888,7 +938,8 @@ The determinant of a 1x1 matrix is\ldots{} \textbf{itself!}
 &= -62
 \end{align*}
 
-\subsection{Theorem}\label{theorem}
+\hypertarget{theorem}{%
+\subsection{Theorem}\label{theorem}}
 
 If \(A\) is an \(n \times n\) matrix, then regardless of which row or
 column of \(A\) is chosen, the number obtained by multiplying the
@@ -896,7 +947,8 @@ elements in that row or column by their corresponding cofactors is
 \ul{\textbf{always the same}} and is called the \ul{determinant} of
 \(A\).
 
-\subsubsection{Example}\label{example-2}
+\hypertarget{example-2}{%
+\subsubsection{Example}\label{example-2}}
 
 Find the determinant of
 \(A=\begin{bmatrix}1 & 0 & 0 & -1 \\ 3 & 1 & 2 & 2 \\ 1 & 0 & -2 & 1 \\ 2 & 0 & 0 & 1\end{bmatrix}\)
@@ -906,7 +958,8 @@ Find the determinant of
 &= -6
 \end{align*}
 
-\subsection{Triangular Matrices}\label{triangular-matrices}
+\hypertarget{triangular-matrices}{%
+\subsection{Triangular Matrices}\label{triangular-matrices}}
 
 Find the determinant of
 \(A = \begin{bmatrix}1 & 1 & 1 & 1 \\ 0 & 2 & 2 & 2 \\ 0 & 0 & 3 & 3 \\ 0 & 0 & 0 & 4\end{bmatrix}\)
@@ -921,7 +974,8 @@ Find the determinant of
 If \(A\) is an \(n \times n\) triangular matrix, then \(\det(A)\) is
 equal to the product of the elements along the main diagonal.
 
-\subsection{An Important Definition}\label{an-important-definition}
+\hypertarget{an-important-definition}{%
+\subsection{An Important Definition}\label{an-important-definition}}
 
 \ul{Elementary Matrix} a matrix that can be obtanied from the
 \(n \times n\) identity matrix by performing a single row operation.
@@ -931,26 +985,32 @@ Are the following matrices elementary? 1)
 \(\begin{bmatrix}1 & 0 \\ -5 & 1\end{bmatrix}+(R_3+5R_1)\) yes 2)
 \(\begin{bmatrix}-5 & 1 \\ 1 & 0\end{bmatrix}+(R_1+5R_2)...\) no
 
-\subsection{A Pair of Theorems}\label{a-pair-of-theorems}
+\hypertarget{a-pair-of-theorems}{%
+\subsection{A Pair of Theorems}\label{a-pair-of-theorems}}
 
+\hypertarget{theorem-if-a-square-matrix-a-has-a-row-of-column-of-zeros-then-deta-0}{%
 \subsubsection{\texorpdfstring{Theorem: If a square matrix \(A\) has a
 row of column of zeros, then
-\(\det(A) = 0\)}{Theorem: If a square matrix A has a row of column of zeros, then \textbackslash det(A) = 0}}\label{theorem-if-a-square-matrix-a-has-a-row-of-column-of-zeros-then-deta-0}
+\(\det(A) = 0\)}{Theorem: If a square matrix A has a row of column of zeros, then \textbackslash det(A) = 0}}\label{theorem-if-a-square-matrix-a-has-a-row-of-column-of-zeros-then-deta-0}}
 
+\hypertarget{theorem-if-a-is-a-square-matrix-then-deta-detat}{%
 \subsubsection{\texorpdfstring{Theorem: If \(A\) is a square matrix,
 then
-\(\det(A) = \det(A^T)\)}{Theorem: If A is a square matrix, then \textbackslash det(A) = \textbackslash det(A\^{}T)}}\label{theorem-if-a-is-a-square-matrix-then-deta-detat}
+\(\det(A) = \det(A^T)\)}{Theorem: If A is a square matrix, then \textbackslash det(A) = \textbackslash det(A\^{}T)}}\label{theorem-if-a-is-a-square-matrix-then-deta-detat}}
 
 \newpage{}
 
+\hypertarget{unit-1-2-homework-problems}{%
 \subsection{Unit 1 \& 2 Homework
-Problems}\label{unit-1-2-homework-problems}
+Problems}\label{unit-1-2-homework-problems}}
 
+\hypertarget{gaussian-elimination-08112023}{%
 \subsubsection{``Gaussian Elimination''
-(08/11/2023)}\label{gaussian-elimination-08112023}
+(08/11/2023)}\label{gaussian-elimination-08112023}}
 
+\hypertarget{solve-this-system-using-gaussian-elimination}{%
 \paragraph{Solve this system using Gaussian
-Elimination}\label{solve-this-system-using-gaussian-elimination}
+Elimination}\label{solve-this-system-using-gaussian-elimination}}
 
 \systeme{x_1 + x_2 + 2x_3 = 8, -x_1-2x_2+3x_3 = 1, 3x_1 - 7x_2 +4x_3=10}
 
@@ -963,8 +1023,9 @@ Elimination}\label{solve-this-system-using-gaussian-elimination}
 \systeme{x_1+x_2+2x_3=8, x_2-5x_3=-9, x_3=2} \(\Rightarrow\)
 \systeme*{x_1=3, x_2=1, x_3=2}
 
+\hypertarget{solve-this-system-using-gaussian-elimination-1}{%
 \paragraph{Solve this system using Gaussian
-Elimination}\label{solve-this-system-using-gaussian-elimination-1}
+Elimination}\label{solve-this-system-using-gaussian-elimination-1}}
 
 \systeme{x_1-2x_2+3x_3=0,-2x_1-3x_2-4x_3=0,2x_1-4x_2+4x_3=0}
 
@@ -978,11 +1039,13 @@ Elimination}\label{solve-this-system-using-gaussian-elimination-1}
 
 \newpage{}
 
+\hypertarget{inverses-and-determinants-0814}{%
 \subsubsection{``Inverses and Determinants''
-(08/14)}\label{inverses-and-determinants-0814}
+(08/14)}\label{inverses-and-determinants-0814}}
 
+\hypertarget{find-the-determinants-of-the-following}{%
 \paragraph{Find the determinants of the
-following:}\label{find-the-determinants-of-the-following}
+following:}\label{find-the-determinants-of-the-following}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -1013,8 +1076,9 @@ following:}\label{find-the-determinants-of-the-following}
 
 \(\begin{vmatrix}\cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{vmatrix} = \cos^2\theta + \sin^2\theta = 1\)
 
+\hypertarget{find-the-inverses-of-those-matrices}{%
 \paragraph{Find the INVERSES of those
-matrices:}\label{find-the-inverses-of-those-matrices}
+matrices:}\label{find-the-inverses-of-those-matrices}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -1045,11 +1109,13 @@ matrices:}\label{find-the-inverses-of-those-matrices}
 
 \(\begin{bmatrix}\cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix}^{-1} = \begin{bmatrix}\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}\)
 
+\hypertarget{inverses-and-determinants-0815}{%
 \subsubsection{Inverses and Determinants
-(08/15)}\label{inverses-and-determinants-0815}
+(08/15)}\label{inverses-and-determinants-0815}}
 
+\hypertarget{use-a-matrix-equation-to-solve-the-following-problems}{%
 \paragraph{Use a matrix equation to solve the following
-problems:}\label{use-a-matrix-equation-to-solve-the-following-problems}
+problems:}\label{use-a-matrix-equation-to-solve-the-following-problems}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -1082,12 +1148,14 @@ problems:}\label{use-a-matrix-equation-to-solve-the-following-problems}
 
 \newpage{}
 
+\hypertarget{consistent-systems-0821}{%
 \subsubsection{Consistent Systems
-(08/21)}\label{consistent-systems-0821}
+(08/21)}\label{consistent-systems-0821}}
 
+\hypertarget{solve-the-linear-systems-together-by-reducing-the-appropriate-augmented-matrix.}{%
 \paragraph{Solve the linear systems together by reducing the appropriate
 augmented
-matrix.}\label{solve-the-linear-systems-together-by-reducing-the-appropriate-augmented-matrix.}
+matrix.}\label{solve-the-linear-systems-together-by-reducing-the-appropriate-augmented-matrix.}}
 
 \systeme{x_1-5x_2=b_1,3x_1+2x_2=b_2}
 
@@ -1118,9 +1186,10 @@ And so, for the specific cases:
 
 \newpage{}
 
+\hypertarget{determine-the-conditions-on-b-if-any-in-order-to-guarantee-that-the-linear-system-is-consistent.}{%
 \paragraph{\texorpdfstring{Determine the conditions on \(b\), if any, in
 order to guarantee that the linear system is
-consistent.}{Determine the conditions on b, if any, in order to guarantee that the linear system is consistent.}}\label{determine-the-conditions-on-b-if-any-in-order-to-guarantee-that-the-linear-system-is-consistent.}
+consistent.}{Determine the conditions on b, if any, in order to guarantee that the linear system is consistent.}}\label{determine-the-conditions-on-b-if-any-in-order-to-guarantee-that-the-linear-system-is-consistent.}}
 
 \systeme{x_1+3x_2=b_1,-2x_1+x_2=b_2}
 
@@ -1129,8 +1198,9 @@ consistent.}{Determine the conditions on b, if any, in order to guarantee that t
 \end{align*} There are no conditions. The system is consistent for all
 values of \(b_1\) and \(b_2\).
 
+\hypertarget{another-determining-the-conditions-problem}{%
 \subsubsection{Another ``determining the conditions''
-problem:}\label{another-determining-the-conditions-problem}
+problem:}\label{another-determining-the-conditions-problem}}
 
 \systeme{x_1-2x_2-x_3=b_1, -4x_1+5x_2+2x_3=b_2, -4x_1+7x_2+4x_3=b_3}
 
@@ -1144,10 +1214,12 @@ and \(b_3\).
 
 \newpage{}
 
+\hypertarget{triangular-and-diagonal-matrices}{%
 \subsubsection{Triangular and Diagonal
-Matrices}\label{triangular-and-diagonal-matrices}
+Matrices}\label{triangular-and-diagonal-matrices}}
 
-\paragraph{\texorpdfstring{Find \(A^2\)}{Find A\^{}2}}\label{find-a2}
+\hypertarget{find-a2}{%
+\paragraph{\texorpdfstring{Find \(A^2\)}{Find A\^{}2}}\label{find-a2}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -1169,9 +1241,10 @@ Matrices}\label{triangular-and-diagonal-matrices}
 
 \newpage{}
 
+\hypertarget{find-a-k-such-that-k-is-some-nonzero-constant}{%
 \paragraph{\texorpdfstring{Find \(A^{-k}\), such that \(k\) is some
 nonzero
-constant}{Find A\^{}\{-k\}, such that k is some nonzero constant}}\label{find-a-k-such-that-k-is-some-nonzero-constant}
+constant}{Find A\^{}\{-k\}, such that k is some nonzero constant}}\label{find-a-k-such-that-k-is-some-nonzero-constant}}
 
 \(A=\begin{bmatrix}2 & 0 & 0 & 0 \\ 0 & -4 & 0 & 0 \\ 0 & 0 & -3 & 0 \\ 0 & 0 & 0 & 2 \end{bmatrix}\)
 \begin{align*}
@@ -1179,21 +1252,14 @@ A^{-k} &= \begin{bmatrix}2 & 0 & 0 & 0 \\ 0 & -4 & 0 & 0 \\ 0 & 0 & -3 & 0 \\ 0 
 &= \begin{bmatrix}2^{-k} & 0 & 0 & 0 \\ 0 & (-4)^{-k} & 0 & 0 \\ 0 & 0 & (-3)^{-k} & 0 \\ 0 & 0 & 0 & 2^{-k} \end{bmatrix}
 \end{align*}
 
-\begin{figure}
-
-\centering{
-
 \includegraphics{img/symmetric-or-not.png}
-
-}
-
-\end{figure}%
 
 \newpage{}
 
+\hypertarget{find-a-diagonal-matrix-a-that-satisfies-the-given-condition}{%
 \paragraph{\texorpdfstring{Find a diagonal matrix \(A\) that satisfies
 the given
-condition}{Find a diagonal matrix A that satisfies the given condition}}\label{find-a-diagonal-matrix-a-that-satisfies-the-given-condition}
+condition}{Find a diagonal matrix A that satisfies the given condition}}\label{find-a-diagonal-matrix-a-that-satisfies-the-given-condition}}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -1216,11 +1282,13 @@ condition}{Find a diagonal matrix A that satisfies the given condition}}\label{f
 
 \newpage{}
 
+\hypertarget{determinants-and-triangular-matrices-0829}{%
 \subsubsection{Determinants and Triangular Matrices
-(08/29)}\label{determinants-and-triangular-matrices-0829}
+(08/29)}\label{determinants-and-triangular-matrices-0829}}
 
+\hypertarget{what-is-c_32}{%
 \paragraph{\texorpdfstring{What is
-\(C_{32}\)}{What is C\_\{32\}}}\label{what-is-c_32}
+\(C_{32}\)}{What is C\_\{32\}}}\label{what-is-c_32}}
 
 \(A = \begin{bmatrix}2 & 3 & -1 & 1 \\ -3 & 2 & 0 & 3 \\ 3 & -2 & 1 & 0 \\ 3 & -2 & 1 & 4 \end{bmatrix}\)
 \begin{align*}
@@ -1232,9 +1300,10 @@ C_{32} &= (-1)^{3+2}\begin{vmatrix}2 & -1 & 1 \\ -3 & 0 & 3 \\ 3 & 1 & 0\end{vma
 &= 0
 \end{align*}
 
+\hypertarget{find-all-values-of-lambda-such-that-a-0}{%
 \paragraph{\texorpdfstring{Find all values of \(\lambda\) such that
 \textbar{}\(A\)\textbar{} =
-0}{Find all values of \textbackslash lambda such that \textbar A\textbar{} = 0}}\label{find-all-values-of-lambda-such-that-a-0}
+0}{Find all values of \textbackslash lambda such that \textbar A\textbar{} = 0}}\label{find-all-values-of-lambda-such-that-a-0}}
 
 \(A = \begin{bmatrix}\lambda-2 & 1 \\ -5 & \lambda+4\end{bmatrix}\)
 \begin{align*}
@@ -1249,11 +1318,12 @@ Therefore, \(\lambda = -3, 1\)
 
 \newpage{}
 
+\hypertarget{for-the-matrix-beginbmatrix3-0-0-2--1-5-1-9--4endbmatrix-find-the-determinant-3-different-ways-with-cofactor-expansion.-pick-different-rows-and-columns-each-time.}{%
 \paragraph{\texorpdfstring{For the matrix
 \(\begin{bmatrix}3 & 0 & 0 \\2 & -1 & 5 \\ 1 & 9 & -4\end{bmatrix}\)
 find the determinant 3 different ways with cofactor expansion. Pick
 different rows and columns each
-time.}{For the matrix \textbackslash begin\{bmatrix\}3 \& 0 \& 0 \textbackslash\textbackslash2 \& -1 \& 5 \textbackslash\textbackslash{} 1 \& 9 \& -4\textbackslash end\{bmatrix\} find the determinant 3 different ways with cofactor expansion. Pick different rows and columns each time.}}\label{for-the-matrix-beginbmatrix3-0-0-2--1-5-1-9--4endbmatrix-find-the-determinant-3-different-ways-with-cofactor-expansion.-pick-different-rows-and-columns-each-time.}
+time.}{For the matrix \textbackslash begin\{bmatrix\}3 \& 0 \& 0 \textbackslash\textbackslash2 \& -1 \& 5 \textbackslash\textbackslash{} 1 \& 9 \& -4\textbackslash end\{bmatrix\} find the determinant 3 different ways with cofactor expansion. Pick different rows and columns each time.}}\label{for-the-matrix-beginbmatrix3-0-0-2--1-5-1-9--4endbmatrix-find-the-determinant-3-different-ways-with-cofactor-expansion.-pick-different-rows-and-columns-each-time.}}
 
 \begin{align*}
 \det(A) &= 3\begin{vmatrix}-1 & 5 \\ 9 & -4\end{vmatrix}-0\begin{vmatrix}2 & 5 \\ 1 & -4\end{vmatrix}+0\begin{vmatrix}2 & -1 \\ 1 & 9\end{vmatrix} \\
@@ -1282,9 +1352,10 @@ time.}{For the matrix \textbackslash begin\{bmatrix\}3 \& 0 \& 0 \textbackslash\
 
 \newpage{}
 
+\hypertarget{evaluate-deta-by-a-cofactor-expansion-along-a-row-or-column-of-your-choice}{%
 \paragraph{\texorpdfstring{Evaluate \(\det(A)\) by a cofactor expansion
 along a row or column of your
-choice}{Evaluate \textbackslash det(A) by a cofactor expansion along a row or column of your choice}}\label{evaluate-deta-by-a-cofactor-expansion-along-a-row-or-column-of-your-choice}
+choice}{Evaluate \textbackslash det(A) by a cofactor expansion along a row or column of your choice}}\label{evaluate-deta-by-a-cofactor-expansion-along-a-row-or-column-of-your-choice}}
 
 \(A = \begin{bmatrix}1 & k & k^2 \\ 1 & k & k^2 \\ 1 & k & k^2\end{bmatrix}\)
 \begin{align*}
@@ -1293,9 +1364,10 @@ choice}{Evaluate \textbackslash det(A) by a cofactor expansion along a row or co
 &= 0
 \end{align*}
 
+\hypertarget{evaluate-the-determinant-of-the-following-matrices-by-just-looking-at-them.}{%
 \paragraph{Evaluate the determinant of the following matrices by just
 looking at
-them.}\label{evaluate-the-determinant-of-the-following-matrices-by-just-looking-at-them.}
+them.}\label{evaluate-the-determinant-of-the-following-matrices-by-just-looking-at-them.}}
 
 \(A=\begin{bmatrix}1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1 \end{bmatrix}\)
 \begin{align*}
@@ -1306,9 +1378,10 @@ them.}\label{evaluate-the-determinant-of-the-following-matrices-by-just-looking-
 \det(A) &= 1(1)(2)(3) = 6
 \end{align*}
 
+\hypertarget{show-that-the-value-of-the-determinant-is-independent-of-theta}{%
 \paragraph{\texorpdfstring{Show that the value of the determinant is
 independent of
-\(\theta\)}{Show that the value of the determinant is independent of \textbackslash theta}}\label{show-that-the-value-of-the-determinant-is-independent-of-theta}
+\(\theta\)}{Show that the value of the determinant is independent of \textbackslash theta}}\label{show-that-the-value-of-the-determinant-is-independent-of-theta}}
 
 \(A=\begin{vmatrix}\sin\theta & \cos\theta & 0 \\ -\cos\theta & \sin\theta & 0 \\ \sin\theta-\cos\theta & \sin\theta+\cos\theta & 1\end{vmatrix}\)
 \begin{align*}
@@ -1322,13 +1395,15 @@ independent of
 
 \newpage{}
 
+\hypertarget{row-operations-and-determinants-0831}{%
 \subsubsection{Row operations and Determinants
-(08/31)}\label{row-operations-and-determinants-0831}
+(08/31)}\label{row-operations-and-determinants-0831}}
 
+\hypertarget{find-the-determinant-of-beginbmatrix1--3-0--2-4-1-5--2-2-endbmatrix-without-using-cofactor-expansion}{%
 \paragraph{\texorpdfstring{Find the determinant of
 \(\begin{bmatrix}1 & -3 & 0 \\ -2 & 4 & 1 \\ 5 & -2 & 2 \end{bmatrix}\)
 WITHOUT using cofactor
-expansion}{Find the determinant of \textbackslash begin\{bmatrix\}1 \& -3 \& 0 \textbackslash\textbackslash{} -2 \& 4 \& 1 \textbackslash\textbackslash{} 5 \& -2 \& 2 \textbackslash end\{bmatrix\} WITHOUT using cofactor expansion}}\label{find-the-determinant-of-beginbmatrix1--3-0--2-4-1-5--2-2-endbmatrix-without-using-cofactor-expansion}
+expansion}{Find the determinant of \textbackslash begin\{bmatrix\}1 \& -3 \& 0 \textbackslash\textbackslash{} -2 \& 4 \& 1 \textbackslash\textbackslash{} 5 \& -2 \& 2 \textbackslash end\{bmatrix\} WITHOUT using cofactor expansion}}\label{find-the-determinant-of-beginbmatrix1--3-0--2-4-1-5--2-2-endbmatrix-without-using-cofactor-expansion}}
 
 \begin{align*}
 \det(A) &= \begin{vmatrix}1 & -3 & 0 \\ -2 & 4 & 1 \\ 5 & -2 & 2 \end{vmatrix} \\
@@ -1340,8 +1415,9 @@ expansion}{Find the determinant of \textbackslash begin\{bmatrix\}1 \& -3 \& 0 \
 
 \newpage{}
 
+\hypertarget{find-the-determinant-of-beginbmatrix-2-1-3-1-1-0-1-1-0-2-1-0-0-1-2-3endbmatrix}{%
 \paragraph{\texorpdfstring{Find the determinant of
-\(\begin{bmatrix} 2 & 1 & 3 & 1 \\ 1 & 0 & 1 & 1 \\ 0 & 2 & 1 & 0 \\ 0 & 1 & 2 & 3\end{bmatrix}\)}{Find the determinant of \textbackslash begin\{bmatrix\} 2 \& 1 \& 3 \& 1 \textbackslash\textbackslash{} 1 \& 0 \& 1 \& 1 \textbackslash\textbackslash{} 0 \& 2 \& 1 \& 0 \textbackslash\textbackslash{} 0 \& 1 \& 2 \& 3\textbackslash end\{bmatrix\}}}\label{find-the-determinant-of-beginbmatrix-2-1-3-1-1-0-1-1-0-2-1-0-0-1-2-3endbmatrix}
+\(\begin{bmatrix} 2 & 1 & 3 & 1 \\ 1 & 0 & 1 & 1 \\ 0 & 2 & 1 & 0 \\ 0 & 1 & 2 & 3\end{bmatrix}\)}{Find the determinant of \textbackslash begin\{bmatrix\} 2 \& 1 \& 3 \& 1 \textbackslash\textbackslash{} 1 \& 0 \& 1 \& 1 \textbackslash\textbackslash{} 0 \& 2 \& 1 \& 0 \textbackslash\textbackslash{} 0 \& 1 \& 2 \& 3\textbackslash end\{bmatrix\}}}\label{find-the-determinant-of-beginbmatrix-2-1-3-1-1-0-1-1-0-2-1-0-0-1-2-3endbmatrix}}
 
 \begin{align*}
 \det(A) &= \begin{vmatrix} 2 & 1 & 3 & 1 \\ 1 & 0 & 1 & 1 \\ 0 & 2 & 1 & 0 \\ 0 & 1 & 2 & 3\end{vmatrix} \\
@@ -1353,13 +1429,15 @@ expansion}{Find the determinant of \textbackslash begin\{bmatrix\}1 \& -3 \& 0 \
 
 \newpage{}
 
+\hypertarget{adjoints-and-cramers-rule-0905}{%
 \subsubsection{Adjoints and Cramer's Rule
-(09/05)}\label{adjoints-and-cramers-rule-0905}
+(09/05)}\label{adjoints-and-cramers-rule-0905}}
 
+\hypertarget{find-the-inverse-of-abeginbmatrix2-5-5--1--1-0-2-4-3endbmatrix-using-the-adjoint-method}{%
 \paragraph{\texorpdfstring{Find the inverse of
 \(A=\begin{bmatrix}2 & 5 & 5 \\ -1 & -1 & 0 \\ 2 & 4 & 3\end{bmatrix}\)
 using the adjoint
-method}{Find the inverse of A=\textbackslash begin\{bmatrix\}2 \& 5 \& 5 \textbackslash\textbackslash{} -1 \& -1 \& 0 \textbackslash\textbackslash{} 2 \& 4 \& 3\textbackslash end\{bmatrix\} using the adjoint method}}\label{find-the-inverse-of-abeginbmatrix2-5-5--1--1-0-2-4-3endbmatrix-using-the-adjoint-method}
+method}{Find the inverse of A=\textbackslash begin\{bmatrix\}2 \& 5 \& 5 \textbackslash\textbackslash{} -1 \& -1 \& 0 \textbackslash\textbackslash{} 2 \& 4 \& 3\textbackslash end\{bmatrix\} using the adjoint method}}\label{find-the-inverse-of-abeginbmatrix2-5-5--1--1-0-2-4-3endbmatrix-using-the-adjoint-method}}
 
 \begin{align*}
 \det(A) &= 2\begin{vmatrix}-1 & 0 \\ 4 & 3\end{vmatrix}-5\begin{vmatrix}-1 & 0 \\ 2 & 3\end{vmatrix}+5\begin{vmatrix}-1 & -1 \\ 2 & 4\end{vmatrix} \\
@@ -1376,8 +1454,9 @@ method}{Find the inverse of A=\textbackslash begin\{bmatrix\}2 \& 5 \& 5 \textba
 
 \newpage{}
 
+\hypertarget{solve-the-following-system-of-equations-using-cramers-rule}{%
 \paragraph{Solve the following system of equations using Cramer's
-Rule}\label{solve-the-following-system-of-equations-using-cramers-rule}
+Rule}\label{solve-the-following-system-of-equations-using-cramers-rule}}
 
 \systeme{4x+5y=2,11x+y+2z=3,x+5y+2z=1}
 \(\longrightarrow \begin{vmatrix} 4 & 5 & 0 \\ 11 & 1 & 2 \\ 1 & 5 & 2\end{vmatrix} \longrightarrow 4\begin{vmatrix}1 & 2 \\ 5 & 2\end{vmatrix}-5\begin{vmatrix}11 & 2 \\ 1 & 2\end{vmatrix} = -132\)
@@ -1404,29 +1483,72 @@ Therefore, the solution
 
 \newpage{}
 
-\paragraph{\texorpdfstring{Use Cramer's rule to solve for \(y\) without
-solving for the unknowns \(x, z,\) and
-\(w\)}{Use Cramer's rule to solve for y without solving for the unknowns x, z, and w}}\label{use-cramers-rule-to-solve-for-y-without-solving-for-the-unknowns-x-z-and-w}
+\hypertarget{chapter-5-eigenvectors-and-eigenvalues}{%
+\section{Chapter 5: Eigenvectors and
+Eigenvalues}\label{chapter-5-eigenvectors-and-eigenvalues}}
 
-\systeme{4x+y+z+w=6, 3x+7y-z+w=1,7x+3y-5z+8w=-3,x+y+z+2w=3}
+\hypertarget{eigenvalues-and-eigenvectors-1106}{%
+\subsubsection{Eigenvalues and Eigenvectors
+(11/06)}\label{eigenvalues-and-eigenvectors-1106}}
 
-\begin{align*}
-A &= \begin{vmatrix} 1 & 4 & 1 & 1 \\ 1 & 3 & 7 & -1 \\ 8 & 7 & 3 & -5 \\ 2 & 1 & 1 & 1\end{vmatrix} = \begin{vmatrix} 3 & 7 & -1 \\ 7 & 3 & -5 \\ 1 & 1 & 1 \end{vmatrix} -4 \begin{vmatrix} 1 & 7 & -1 \\ 8 & 3 & -5 \\ 2 & 1 & 1 \end{vmatrix} + \begin{vmatrix} 1 & 3 & -1 \\ 8 & 7 & -5 \\ 2 & 1 & 1 \end{vmatrix} - \begin{vmatrix} 1 & 3 & 7 \\ 8 & 7 & 3 \\ 2 & 1 & 1 \end{vmatrix} \\
-&= 3\begin{vmatrix} 3 & -5 \\ 1 & 1 \end{vmatrix} -7\begin{vmatrix} 7 & -5 \\ 1 & 1 \end{vmatrix} - \begin{vmatrix} 7 & 3 \\ 1 & 1 \end{vmatrix} \rightarrow 3(3+5)-7(7+5)-(7-3) \rightarrow 24-84-4 \rightarrow -64\\ 
-&-4\left(\begin{vmatrix}3 & -5 \\ 1 & 1\end{vmatrix} - 7\begin{vmatrix} 8 & -5 \\ 2 & 1 \end{vmatrix} - \begin{vmatrix}8 & 3 \\ 2 & 1 \end{vmatrix}\right) \rightarrow -4\left(8-7(8+10)-(8-6)\right) \rightarrow -4(8-126-2) \rightarrow 480 \\ 
-&+ \begin{vmatrix}7 & -5 \\ 1 & 1 \end{vmatrix} -3\begin{vmatrix}8 & -5 \\ 2 & 1 \end{vmatrix} - \begin{vmatrix} 8 & 7 \\ 2 & 1 \end{vmatrix} \rightarrow (7+5)-3(8+10)-(8-14) \rightarrow 12-54+6 \rightarrow -36\\
-&-\left(\begin{vmatrix}7 & 3 \\ 1 & 1\end{vmatrix}-3\begin{vmatrix} 8 & 3 \\ 2 & 1 \end{vmatrix} +7\begin{vmatrix}8 & 7 \\ 2 & 1 \end{vmatrix}\right) \rightarrow -(7-3)-3(8-6)+7(8-14) \rightarrow -(4-6-42) \rightarrow 44 \\
-&= -64+480-36+44 \\
-&= 424 \\
-\det{(y)} &= \begin{vmatrix}1 & 4 & 6 & 1 \\ 1 & 3 & 1 & -1 \\ 8 & 7 & -3 & -5 \\ 2 & 1 & 3 & 1 \end{vmatrix} = \begin{vmatrix}3 & 1 & -1 \\ 7 & -3 & -5 \\ 1 & 3 & 1 \end{vmatrix}-4\begin{vmatrix}1 & 1 & -1 \\ 8 & -3 & -5 \\ 2 & 3 & 1 \end{vmatrix}+6\begin{vmatrix}1 & 3 & -1 \\ 8 & 7 & -5 \\ 2 & 1 & 1 \end{vmatrix}-\begin{vmatrix}1 & 3 & 1 \\ 8 & 7 & -3 \\ 2 & 1 & 3 \end{vmatrix} \\
-&= 3\begin{vmatrix}-3 & -5 \\ 3 & 1 \end{vmatrix}-\begin{vmatrix}7 & -5 \\ 1 & 1 \end{vmatrix}-\begin{vmatrix} 7 & -3 \\ 1 & 3 \end{vmatrix} \rightarrow 3(-3+15)-(-7+5)-(-21+3) \rightarrow 36-2-18 \rightarrow 16 \\
-&= -4\left(\begin{vmatrix}-3 & -5 \\ 3 & 1 \end{vmatrix} -\begin{vmatrix}8 & -5 \\ 2 & 1 \end{vmatrix} - \begin{vmatrix} 8 & -3 \\ 2 & 3 \end{vmatrix}\right) \rightarrow -4((-3+15)-(8+10)-(24+6)) \rightarrow -4(12-18-30) \rightarrow 144 \\
-&= 6\left(\begin{vmatrix}7 & -5 \\ 1 & 1 \end{vmatrix} -3\begin{vmatrix}8 & -5 \\ 2 & 1 \end{vmatrix} - \begin{vmatrix}8 & 7 \\ 2 & 1 \end{vmatrix}\right) \rightarrow 6((7+5)-3(8+10)-(8-14)) \rightarrow 6(12-54+6) \rightarrow -216 \\
-&-\left(\begin{vmatrix}7 & -3 \\ 1 & 3 \end{vmatrix}-3\begin{vmatrix}8 & -3 \\ 2 & 3 \end{vmatrix} + \begin{vmatrix}8 & 7 \\ 2 & 1 \end{vmatrix}\right) \rightarrow -((7+3)-3(24+6)+(8-14)) \rightarrow -(10-90-6) \rightarrow 86 \\
-&= 16+144-216+86 \\
-&= 30 \\
-\therefore \ y &= \frac{30}{424} = \frac{15}{212}
-\end{align*}
+If \(A\) is an \(n \times n\) matrix, then a non-zero vector
+\(\symbf{x}\), in \(R^n\), is called an \ul{eigenvector} of \(A\) if
+\(A\symbf{x}\) is a scalar multiple of \(\symbf{x}\); that is
+\(A\symbf{x} = \lambda\symbf{x}\) for some scalar \(\lambda\). This
+scalar \(\lambda\) is called an \ul{eigenvalue} of \(A\) and
+\(\symbf{x}\) is said to be an \ul{eigenvector corresponding to}
+\(\lambda\).
+
+See, normally, multiplying a vector by a square matrix changes both the
+magnitude and the direction of the vector. Really screws it up.
+
+Some examples:
+
+\(\begin{bmatrix}1 & 0 \\ 0 & 1\end{bmatrix}\begin{bmatrix}1 \\ 2\end{bmatrix}=\begin{bmatrix}1 \\ 2\end{bmatrix}\)
+
+\(\begin{bmatrix}1 & 0 \\ 0 & 2 \end{bmatrix}\begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix}1 \\ 4\end{bmatrix}\)
+
+\(\begin{bmatrix} 5 & 0 \\ 0 & 2 \end{bmatrix}\begin{bmatrix} 1 \\ 2 \end{bmatrix} = \begin{bmatrix} 5 \\ 4 \end{bmatrix}\)
+
+\(\begin{bmatrix}0 & 1 \\ 1 & 0 \end{bmatrix}\begin{bmatrix}1 \\ 2 \end{bmatrix} = \begin{bmatrix}2 \\ 1 \end{bmatrix}\)
+
+\(\begin{bmatrix}1 & 0 \\ 0 & 2\end{bmatrix}\begin{bmatrix}1 \\ 2\end{bmatrix} = \begin{bmatrix}1 \\ 4\end{bmatrix}\)
+
+\(\begin{bmatrix}7 & 8 \\ -2 & 3 \end{bmatrix}\begin{bmatrix}1 \\ 2\end{bmatrix} = \begin{bmatrix}23 \\ 4\end{bmatrix}\)
+
+However, there are some ways to get consistent results.
+
+\hypertarget{examples-2}{%
+\subsection{Examples}\label{examples-2}}
+
+\hypertarget{vecx-beginbmatrix2-1-endbmatrix-is-an-eigenvector-of-a-beginbmatrix3--2-1-0endbmatrix-because}{%
+\subsubsection{\texorpdfstring{\(\vec{x} = \begin{bmatrix}2 \\ 1 \end{bmatrix}\)
+is an eigenvector of \(A = \begin{bmatrix}3 & -2 \\ 1 & 0\end{bmatrix}\)
+because}{\textbackslash vec\{x\} = \textbackslash begin\{bmatrix\}2 \textbackslash\textbackslash{} 1 \textbackslash end\{bmatrix\} is an eigenvector of A = \textbackslash begin\{bmatrix\}3 \& -2 \textbackslash\textbackslash{} 1 \& 0\textbackslash end\{bmatrix\} because}}\label{vecx-beginbmatrix2-1-endbmatrix-is-an-eigenvector-of-a-beginbmatrix3--2-1-0endbmatrix-because}}
+
+\(A\vec{x} = \begin{bmatrix}3 & -2 \\ 1 & 0\end{bmatrix}\begin{bmatrix}2 \\ 1\end{bmatrix} = \begin{bmatrix}4 \\ 2\end{bmatrix} = 2\begin{bmatrix}2 \\ 1\end{bmatrix} = 2\vec{x} \therefore \lambda = 2\)
+
+\hypertarget{let-a-beginbmatrix-1-6-5-2endbmatrix-vecu-beginbmatrix-6--5endbmatrix-vecv-beginbmatrix3--2-endbmatrix.-are-vecu-and-vecv-eigenvectors-of-a}{%
+\subsubsection{\texorpdfstring{Let
+\(A = \begin{bmatrix} 1 & 6 \\ 5 & 2\end{bmatrix}, \vec{u} = \begin{bmatrix} 6 \\ -5\end{bmatrix}, \vec{v} = \begin{bmatrix}3 \\ -2 \end{bmatrix}\).
+Are \(\vec{u}\) and \(\vec{v}\) eigenvectors of
+\(A\)?}{Let A = \textbackslash begin\{bmatrix\} 1 \& 6 \textbackslash\textbackslash{} 5 \& 2\textbackslash end\{bmatrix\}, \textbackslash vec\{u\} = \textbackslash begin\{bmatrix\} 6 \textbackslash\textbackslash{} -5\textbackslash end\{bmatrix\}, \textbackslash vec\{v\} = \textbackslash begin\{bmatrix\}3 \textbackslash\textbackslash{} -2 \textbackslash end\{bmatrix\}. Are \textbackslash vec\{u\} and \textbackslash vec\{v\} eigenvectors of A?}}\label{let-a-beginbmatrix-1-6-5-2endbmatrix-vecu-beginbmatrix-6--5endbmatrix-vecv-beginbmatrix3--2-endbmatrix.-are-vecu-and-vecv-eigenvectors-of-a}}
+
+\(A\vec{u} = \begin{bmatrix} 1 & 6 \\ 5 & 2\end{bmatrix}\begin{bmatrix} 6 \\ -5\end{bmatrix} = \begin{bmatrix} 1(6)+6(-5) \\ 5(6)+2(-5)\end{bmatrix} = \begin{bmatrix} -24 \\ 20\end{bmatrix} = -4\begin{bmatrix}6 \\ -5\end{bmatrix} \therefore \ \lambda = -4\)
+
+\(A\vec{v} = \begin{bmatrix} 1 & 6 \\ 5 & 2\end{bmatrix}\begin{bmatrix} 3 \\ -2\end{bmatrix} = \begin{bmatrix} 1(3)+6(-2) \\ 5(3)+2(-2)\end{bmatrix} = \begin{bmatrix} -9 \\ 11\end{bmatrix} \neq \lambda\vec{v}\)
+
+\hypertarget{eigenvector-homework-problem-1106}{%
+\subsection{Eigenvector Homework Problem
+(11/06)}\label{eigenvector-homework-problem-1106}}
+
+\textbf{Confirm by multiplication that \(\symbf{x}\) is an eigenvector
+of \(A\), and find the corresponding eigenvalue.}
+
+\hypertarget{a-beginbmatrix4-0-1-2-3-2-1-0-4-endbmatrix-symbfx-beginbmatrix1-2-1endbmatrix}{%
+\subsubsection{\texorpdfstring{\(A = \begin{bmatrix}4 & 0 & 1 \\ 2 & 3 & 2 \\ 1 & 0 & 4 \end{bmatrix}; \symbf{x} = \begin{bmatrix}1 \\ 2 \\ 1\end{bmatrix}\)}{A = \textbackslash begin\{bmatrix\}4 \& 0 \& 1 \textbackslash\textbackslash{} 2 \& 3 \& 2 \textbackslash\textbackslash{} 1 \& 0 \& 4 \textbackslash end\{bmatrix\}; \textbackslash symbf\{x\} = \textbackslash begin\{bmatrix\}1 \textbackslash\textbackslash{} 2 \textbackslash\textbackslash{} 1\textbackslash end\{bmatrix\}}}\label{a-beginbmatrix4-0-1-2-3-2-1-0-4-endbmatrix-symbfx-beginbmatrix1-2-1endbmatrix}}
+
+\(A\symbf{x} = \begin{bmatrix}4 & 0 & 1 \\ 2 & 3 & 2 \\ 1 & 0 & 4 \end{bmatrix}\begin{bmatrix}1 \\ 2 \\ 1\end{bmatrix} = \begin{bmatrix}4(1)+0(2)+1(1) \\ 2(1)+3(2)+2(1) \\ 1(1)+0(2)+4(1)\end{bmatrix} = \begin{bmatrix}5 \\ 10 \\ 5\end{bmatrix} = 5\begin{bmatrix}1 \\ 2 \\ 1\end{bmatrix} \therefore \ \lambda = 5\)
 
 
 
