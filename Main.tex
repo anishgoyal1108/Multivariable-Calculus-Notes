@@ -180,7 +180,7 @@
 \input{./title.tex}
 \newpage
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, boxrule=0pt, breakable, borderline west={3pt}{0pt}{shadecolor}, sharp corners, frame hidden, enhanced]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, frame hidden, boxrule=0pt, interior hidden, breakable, sharp corners, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -1488,7 +1488,7 @@ Therefore, the solution
 Eigenvalues}\label{chapter-5-eigenvectors-and-eigenvalues}}
 
 \hypertarget{eigenvalues-and-eigenvectors-1106}{%
-\subsubsection{Eigenvalues and Eigenvectors
+\subsection{Eigenvalues and Eigenvectors
 (11/06)}\label{eigenvalues-and-eigenvectors-1106}}
 
 If \(A\) is an \(n \times n\) matrix, then a non-zero vector
@@ -1519,17 +1519,17 @@ Some examples:
 However, there are some ways to get consistent results.
 
 \hypertarget{examples-2}{%
-\subsection{Examples}\label{examples-2}}
+\subsubsection{Examples}\label{examples-2}}
 
 \hypertarget{vecx-beginbmatrix2-1-endbmatrix-is-an-eigenvector-of-a-beginbmatrix3--2-1-0endbmatrix-because}{%
-\subsubsection{\texorpdfstring{\(\vec{x} = \begin{bmatrix}2 \\ 1 \end{bmatrix}\)
+\paragraph{\texorpdfstring{\(\vec{x} = \begin{bmatrix}2 \\ 1 \end{bmatrix}\)
 is an eigenvector of \(A = \begin{bmatrix}3 & -2 \\ 1 & 0\end{bmatrix}\)
 because}{\textbackslash vec\{x\} = \textbackslash begin\{bmatrix\}2 \textbackslash\textbackslash{} 1 \textbackslash end\{bmatrix\} is an eigenvector of A = \textbackslash begin\{bmatrix\}3 \& -2 \textbackslash\textbackslash{} 1 \& 0\textbackslash end\{bmatrix\} because}}\label{vecx-beginbmatrix2-1-endbmatrix-is-an-eigenvector-of-a-beginbmatrix3--2-1-0endbmatrix-because}}
 
 \(A\vec{x} = \begin{bmatrix}3 & -2 \\ 1 & 0\end{bmatrix}\begin{bmatrix}2 \\ 1\end{bmatrix} = \begin{bmatrix}4 \\ 2\end{bmatrix} = 2\begin{bmatrix}2 \\ 1\end{bmatrix} = 2\vec{x} \therefore \lambda = 2\)
 
 \hypertarget{let-a-beginbmatrix-1-6-5-2endbmatrix-vecu-beginbmatrix-6--5endbmatrix-vecv-beginbmatrix3--2-endbmatrix.-are-vecu-and-vecv-eigenvectors-of-a}{%
-\subsubsection{\texorpdfstring{Let
+\paragraph{\texorpdfstring{Let
 \(A = \begin{bmatrix} 1 & 6 \\ 5 & 2\end{bmatrix}, \vec{u} = \begin{bmatrix} 6 \\ -5\end{bmatrix}, \vec{v} = \begin{bmatrix}3 \\ -2 \end{bmatrix}\).
 Are \(\vec{u}\) and \(\vec{v}\) eigenvectors of
 \(A\)?}{Let A = \textbackslash begin\{bmatrix\} 1 \& 6 \textbackslash\textbackslash{} 5 \& 2\textbackslash end\{bmatrix\}, \textbackslash vec\{u\} = \textbackslash begin\{bmatrix\} 6 \textbackslash\textbackslash{} -5\textbackslash end\{bmatrix\}, \textbackslash vec\{v\} = \textbackslash begin\{bmatrix\}3 \textbackslash\textbackslash{} -2 \textbackslash end\{bmatrix\}. Are \textbackslash vec\{u\} and \textbackslash vec\{v\} eigenvectors of A?}}\label{let-a-beginbmatrix-1-6-5-2endbmatrix-vecu-beginbmatrix-6--5endbmatrix-vecv-beginbmatrix3--2-endbmatrix.-are-vecu-and-vecv-eigenvectors-of-a}}
@@ -1543,12 +1543,130 @@ Are \(\vec{u}\) and \(\vec{v}\) eigenvectors of
 (11/06)}\label{eigenvector-homework-problem-1106}}
 
 \textbf{Confirm by multiplication that \(\symbf{x}\) is an eigenvector
-of \(A\), and find the corresponding eigenvalue.}
+of \(\symbf{A}\), and find the corresponding eigenvalue.}
 
 \hypertarget{a-beginbmatrix4-0-1-2-3-2-1-0-4-endbmatrix-symbfx-beginbmatrix1-2-1endbmatrix}{%
 \subsubsection{\texorpdfstring{\(A = \begin{bmatrix}4 & 0 & 1 \\ 2 & 3 & 2 \\ 1 & 0 & 4 \end{bmatrix}; \symbf{x} = \begin{bmatrix}1 \\ 2 \\ 1\end{bmatrix}\)}{A = \textbackslash begin\{bmatrix\}4 \& 0 \& 1 \textbackslash\textbackslash{} 2 \& 3 \& 2 \textbackslash\textbackslash{} 1 \& 0 \& 4 \textbackslash end\{bmatrix\}; \textbackslash symbf\{x\} = \textbackslash begin\{bmatrix\}1 \textbackslash\textbackslash{} 2 \textbackslash\textbackslash{} 1\textbackslash end\{bmatrix\}}}\label{a-beginbmatrix4-0-1-2-3-2-1-0-4-endbmatrix-symbfx-beginbmatrix1-2-1endbmatrix}}
 
 \(A\symbf{x} = \begin{bmatrix}4 & 0 & 1 \\ 2 & 3 & 2 \\ 1 & 0 & 4 \end{bmatrix}\begin{bmatrix}1 \\ 2 \\ 1\end{bmatrix} = \begin{bmatrix}4(1)+0(2)+1(1) \\ 2(1)+3(2)+2(1) \\ 1(1)+0(2)+4(1)\end{bmatrix} = \begin{bmatrix}5 \\ 10 \\ 5\end{bmatrix} = 5\begin{bmatrix}1 \\ 2 \\ 1\end{bmatrix} \therefore \ \lambda = 5\)
+
+\hypertarget{finding-eigenvalues-and-eigenvectors-1107}{%
+\subsection{Finding Eigenvalues and Eigenvectors
+(11/07)}\label{finding-eigenvalues-and-eigenvectors-1107}}
+
+Essential question:
+
+\textbf{If we know an \(\symbf{n \times n}\) matrix \(\symbf{A}\), can
+we find its \(\symbf{\lambda}\)?}
+
+If \(A\vec{x} = \lambda\vec{x}\), then: \begin{align*}
+A\vec{x} &= \lambda\vec{x} \\
+A\vec{x} - \lambda\vec{x} &= \vec{0} \\
+(A-\lambda I)\vec{x} &= \vec{0}
+\end{align*} This equation is familiar. It's the homogeneous system of
+equations \(A\vec{x} = \vec{0}\), the solution of which is the nullspace
+of \(A-\lambda I\). Therefore, \(\vec{x}\) is an eigenvector of
+\(A \iff \vec{x}\) is in the nullspace of \(A-\lambda I\).
+
+In this situation, what do we know about that matrix?
+
+Everything in the equivalent statements is false because \(\vec{x}\)
+cannot be the zero vector. Therefore, we can see that
+\(\det(A-\lambda I)\) OR \(\det(\lambda I-A)\) MUST be 0.
+
+Big Idea: If \(A\) is an \(n \times n\) matrix, then \(\lambda\) is an
+eigenvalue of \(A \iff \det(\lambda I-A) = 0\). This is called the
+\ul{characteristic equation} of \(A\).
+
+\hypertarget{find-the-characteristic-equation-and-the-eigenvalues-of-abeginbmatrix3-0-5-frac15--1-0-1-1--2endbmatrix}{%
+\subsubsection{\texorpdfstring{Find the characteristic equation and the
+eigenvalues of
+\(A=\begin{bmatrix}3 & 0 & 5\\ \frac{1}{5} & -1 & 0 \\ 1 & 1 & -2\end{bmatrix}\)}{Find the characteristic equation and the eigenvalues of A=\textbackslash begin\{bmatrix\}3 \& 0 \& 5\textbackslash\textbackslash{} \textbackslash frac\{1\}\{5\} \& -1 \& 0 \textbackslash\textbackslash{} 1 \& 1 \& -2\textbackslash end\{bmatrix\}}}\label{find-the-characteristic-equation-and-the-eigenvalues-of-abeginbmatrix3-0-5-frac15--1-0-1-1--2endbmatrix}}
+
+\begin{align*}
+\det(\lambda I - A) &= 0 \\
+\begin{vmatrix}\lambda-3 & 0 & 5 \\ -\frac{1}{5} & \lambda+1 & 0 \\ -1 & -1 & \lambda+2 \end{vmatrix} &= 0 \\
+0 &= (\lambda-3)((\lambda+1)(\lambda+2))+5(\frac{1}{5} + \lambda+1) \\
+0 &= (\lambda-3)(\lambda^2+3\lambda+2) \\
+0 &= \lambda^3-2\lambda \\
+0 &= \lambda(\lambda^2-2)
+\lambda &= 0, \pm\sqrt{2}
+\end{align*}
+
+\hypertarget{find-the-characteristic-equation-and-the-eigenvalues-of-a-beginbmatrix-1-0-1--1-3-0--4-13--1-endbmatrix}{%
+\subsubsection{\texorpdfstring{Find the characteristic equation and the
+eigenvalues of
+\(A = \begin{bmatrix}-1 & 0 & 1 \\ -1 & 3 & 0 \\ -4 & 13 & -1 \end{bmatrix}\)}{Find the characteristic equation and the eigenvalues of A = \textbackslash begin\{bmatrix\}-1 \& 0 \& 1 \textbackslash\textbackslash{} -1 \& 3 \& 0 \textbackslash\textbackslash{} -4 \& 13 \& -1 \textbackslash end\{bmatrix\}}}\label{find-the-characteristic-equation-and-the-eigenvalues-of-a-beginbmatrix-1-0-1--1-3-0--4-13--1-endbmatrix}}
+
+\begin{align*}
+\begin{vmatrix}-1-\lambda & 0 & 1 \\ -1 & 3-\lambda & 0 \\ -4 & 13 & -\lambda \end{vmatrix} = 0 \\
+(-1-\lambda) \left((3-\lambda)(-\lambda)-0(13)\right)+\left(-1(13)-(3-\lambda)(-4)\right) &= 0 \\
+(-1-\lambda)(\lambda^2-3\lambda)+(-13-4\lambda+12) &= 0 \\
+(-1-\lambda)(\lambda^2-3\lambda)+(-4\lambda-1) &= 0 \\
+-\lambda^3+3\lambda^2+2 &= 0 \\
+(-\lambda+2)(-\lambda^2-\lambda-1) &= 0 \\
+(-\lambda+2)(-\lambda-1)(-\lambda+1) &= 0 \\
+\lambda &= 2
+\end{align*}
+
+\newpage{}
+
+\hypertarget{find-the-eigenvalues-of-a-beginbmatrix2-0-0-6-3-0-1-4-5-endbmatrix}{%
+\subsubsection{\texorpdfstring{Find the eigenvalues of
+\(A = \begin{bmatrix}2 & 0 & 0 \\ 6 & 3 & 0 \\ 1 & 4 & 5 \end{bmatrix}\)}{Find the eigenvalues of A = \textbackslash begin\{bmatrix\}2 \& 0 \& 0 \textbackslash\textbackslash{} 6 \& 3 \& 0 \textbackslash\textbackslash{} 1 \& 4 \& 5 \textbackslash end\{bmatrix\}}}\label{find-the-eigenvalues-of-a-beginbmatrix2-0-0-6-3-0-1-4-5-endbmatrix}}
+
+\begin{align*}
+\begin{vmatrix}\lambda-2 & 0 & 0 \\ 6 & \lambda-3 & 0 \\ 1 & 4 & \lambda-5\end{vmatrix} &= 0 \\
+(\lambda-2)(\lambda-3)(\lambda-5) &= 0 \\
+\lambda &= 2, 3, 5
+\end{align*} Theorem 1: For a triangular matrix, the eigenvalues are the
+elements on the main diagonal.
+
+\hypertarget{find-the-eigenvalues-of-a3-if-abeginbmatrixfrac12-4-5--2-0--1-3--8-0-0-2-6-0-0-0-4endbmatrix}{%
+\subsubsection{\texorpdfstring{Find the eigenvalues of \(A^3\) if
+\(A=\begin{bmatrix}\frac{1}{2} & 4 & 5 & -2 \\ 0 & -1 & 3 & -8 \\ 0 & 0 & 2 & 6 \\ 0 & 0 & 0 & 4\end{bmatrix}\)}{Find the eigenvalues of A\^{}3 if A=\textbackslash begin\{bmatrix\}\textbackslash frac\{1\}\{2\} \& 4 \& 5 \& -2 \textbackslash\textbackslash{} 0 \& -1 \& 3 \& -8 \textbackslash\textbackslash{} 0 \& 0 \& 2 \& 6 \textbackslash\textbackslash{} 0 \& 0 \& 0 \& 4\textbackslash end\{bmatrix\}}}\label{find-the-eigenvalues-of-a3-if-abeginbmatrixfrac12-4-5--2-0--1-3--8-0-0-2-6-0-0-0-4endbmatrix}}
+
+\begin{align*}
+\lambda_A = \frac{1}{2}, -1, 2, 4 \\
+\lambda_{A^3} = \frac{1}{8}, -1, 8, 64
+\end{align*} Theorem 2: The eigenvalues of \(A^k\) are
+\(\lambda_1^k, \lambda_2^k, ...\)
+
+\hypertarget{give-me-a-matrix-with-eigenvalues-lambda-0-2-5}{%
+\subsubsection{\texorpdfstring{Give me a matrix with eigenvalues
+\(\lambda = 0, 2, 5\)}{Give me a matrix with eigenvalues \textbackslash lambda = 0, 2, 5}}\label{give-me-a-matrix-with-eigenvalues-lambda-0-2-5}}
+
+\(A = \begin{bmatrix}0 & 0 & 0 \\ 1 & 2 & 0 \\ 2 & 2 & 5\end{bmatrix}\)
+
+Theorem 3: A square matrix \(A\) is invertible \(\iff \lambda \neq 0\)
+(which also means its determinant is 0).
+
+\hypertarget{finding-eigenvectors}{%
+\subsubsection{Finding eigenvectors!}\label{finding-eigenvectors}}
+
+Find the nontrivial eigenvectors of:
+
+\(A = \begin{bmatrix}1 & 6 \\ 5 & 2\end{bmatrix}\) \begin{align*}
+\begin{vmatrix}\lambda-1 & -6 \\ -5 & \lambda-2\end{vmatrix} &= 0 \\
+(\lambda-1)(\lambda-2)-(-6)(-5) &= 0 \\
+\lambda^2-3\lambda-28=0 \\
+(\lambda-7)(\lambda+4) &= 0 \\
+\lambda &= 7, -4
+\end{align*} Substitute each \(\lambda\), one at a time into the
+\(\lambda I - A\) matrix and find the null space.
+
+For \(\lambda=-4\): \begin{align*}
+\left(\begin{array}{cc|c}-5 & -6 & 0 \\ -5 & -6 & 0\end{array}\right) \\
+\left(\begin{array}{cc|c}-5 & -6 & 0 \\ 0 & 0 & 0\end{array}\right) \\
+\langle-\frac{6}{5}t, t\rangle \\
+\vec{x} = \left\{\langle-6, 5\rangle\right\}
+\end{align*} For \(\lambda=7\): \begin{align*}
+\left(\begin{array}{cc|c}6 & -6 & 0 \\ -5 & 5 & 0\end{array}\right) \\
+\left(\begin{array}{cc|c}6 & -6 & 0 \\ 0 & 0 & 0\end{array}\right) \\
+\langle t, t\rangle \\
+\vec{x} = \left\{\langle6, 6\rangle\right\}
+\end{align*} Therefore, the eigen space is:
+\(\left\{\langle-6, 5\rangle, \langle6, 6\rangle\right\}\)
 
 
 
