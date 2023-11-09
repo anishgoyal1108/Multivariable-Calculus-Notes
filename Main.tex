@@ -180,7 +180,7 @@
 \input{./title.tex}
 \newpage
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, frame hidden, boxrule=0pt, interior hidden, breakable, sharp corners, borderline west={3pt}{0pt}{shadecolor}]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, frame hidden, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden, enhanced, breakable]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -1667,6 +1667,193 @@ For \(\lambda=-4\): \begin{align*}
 \vec{x} = \left\{\langle6, 6\rangle\right\}
 \end{align*} Therefore, the eigen space is:
 \(\left\{\langle-6, 5\rangle, \langle6, 6\rangle\right\}\)
+
+\hypertarget{diagonalization-and-similar-triangles}{%
+\subsection{Diagonalization and Similar
+Triangles}\label{diagonalization-and-similar-triangles}}
+
+Similar matrices: If \(A\) and \(D\) are square matrices, we say that A
+and D are ``similar'' if there exists an invertible matrix \(P\) such
+that:
+
+\(D = P^{-1}AP\).
+
+\hypertarget{properties-of-similar-matricces}{%
+\subsubsection{Properties of Similar
+Matricces}\label{properties-of-similar-matricces}}
+
+\begin{itemize}
+\tightlist
+\item
+  They have the same determinant
+\item
+  If one is invertible, so is the other
+\item
+  They have the same trace
+\item
+  They have the same characteristic polynomial
+\item
+  They have the same eigenvalues
+\end{itemize}
+
+\hypertarget{procedure}{%
+\subsubsection{Procedure}\label{procedure}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  Find the eigenvectors for the \(n \times n\) matrix \(A\).
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  Theorem: If an \(n \times n\) matrix \(A\) has \(n\) distinct
+  eigenvalues, then \(A\) is \textbf{for sure} diagonalizable.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Make matrix \(P\) out of the eigenveectors (\(P\) is the matrix that
+  diagonalizes \(A\))
+\item
+  Check your work to find matrix \(D\) if reasonable
+\end{enumerate}
+
+\hypertarget{example-find-a-matrix-p-that-diagonalizes-a-and-compute-p-1ap}{%
+\subsubsection{\texorpdfstring{Example: Find a matrix \(P\) that
+diagonalizes \(A\) and compute
+\(P^{-1}AP\)}{Example: Find a matrix P that diagonalizes A and compute P\^{}\{-1\}AP}}\label{example-find-a-matrix-p-that-diagonalizes-a-and-compute-p-1ap}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(A = \begin{bmatrix}3 & 7 \\ 5 & 5 \end{bmatrix}\)
+\end{enumerate}
+
+Find the eigenvalues: \begin{align*}
+\begin{bmatrix}\lambda-3 & -7 \\ -5 & \lambda-5\end{bmatrix} &= 0 \\
+(\lambda-3)(\lambda-5)-(-7)(-5) &= 0 \\
+\lambda^2-5\lambda-3\lambda+15-35 &= 0 \\
+\lambda^2-8\lambda-20 &= 0 \\
+\lambda = -2, 10 
+\end{align*}
+
+Find the eigenvectors: \begin{align*}
+\lambda = -2: \left[\begin{array}{cc|c}-5 & -7 & 0 \\ -5 & -7 & 0\end{array}\right] 
+\vec{x} = \left\{\langle-7, 5\rangle\right\} \\
+\lambda = 10: \left[\begin{array}{cc|c}-7 & -7 & 0 \\ -5 & 5 & 0\end{array}\right]
+\vec{x} = \left\{\langle1,     1\rangle\right\}
+\end{align*}
+
+\newpage{}
+
+Create the matrix \(P\):
+
+\(P = \begin{bmatrix}-7 & 1 \\ 5 & 1\end{bmatrix}\)
+
+Find matrix \(D\): \begin{align*}
+D &= P^{-1}AP \\
+&= \begin{bmatrix}7 & 1 \\ 5 & -1\end{bmatrix}^{-1}\begin{bmatrix}3 & 7 \\ 5 & 5\end{bmatrix}\begin{bmatrix}7 & 1 \\ 5 & -1\end{bmatrix} \\
+&= \begin{bmatrix}-2 & 0 \\ 0 & 10\end{bmatrix}
+\end{align*}
+
+\hypertarget{conclusion}{%
+\subsubsection{Conclusion}\label{conclusion}}
+
+\begin{itemize}
+\tightlist
+\item
+  If \(D\) has the same eigenvalues of \(A\) and if \(D\) must be
+  diagonal, then \(D\) is \textbf{THE} diagonal matrix with eigenvalues
+  of \(A\) on the diagonal.
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \(A = \begin{bmatrix}2 & 0 & -2 \\ 0 & 3 & 0 \\ 0 & 0 & 1\end{bmatrix}\)
+\end{enumerate}
+
+First, find \(D\): \begin{align*}
+D = \begin{bmatrix} 2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 1\end{bmatrix} \\
+\end{align*}
+
+Then, find \(P\): \begin{align*}
+\lambda = 2: \left[\begin{array}{ccc|c}0 & 0 & 2 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & 0 & 1 & 0\end{array}\right] \vec{x} = \langle1, 0, 0\rangle \\
+\lambda = 3: \left[\begin{array}{ccc|c}1 & 0 & 2 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 2 & 0\end{array}\right] \vec{x} = \langle0, 1, 0\rangle \\
+\lambda = 1: \left[\begin{array}{ccc|c}-1 & 0 & 2 & 0 \\ 0 & -2 & 0 & 0 \\ 0 & 0 & 0 & 0\end{array}\right] \vec{x} = \langle2, 0, 1\rangle \\
+P = \begin{bmatrix}1 & 0 & 2 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{bmatrix}
+\end{align*}
+
+\hypertarget{more-on-similar-matrices}{%
+\subsection{More on Similar Matrices}\label{more-on-similar-matrices}}
+
+There are a few more properties of similar matrices:
+
+\begin{itemize}
+\tightlist
+\item
+  They have the same rank (non-zero eigenvalues)
+\item
+  They have the same nullity
+\item
+  They have the same column space
+\item
+  They have the same row space
+\end{itemize}
+
+\hypertarget{example-3}{%
+\subsubsection{Example}\label{example-3}}
+
+**Matrix \(A\) is similar to the following matrix:
+
+\(D = \begin{bmatrix}3 & -1 & 1 & 4 & 5 & 2 \\ 0 & -3 & 5 & -10 & -16 & 1 \\ 0 & 0 & 5 & 7 & -8 & 2 \\ 0 & 0 & 0 & 2 & 2 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0\end{bmatrix}\)
+
+Rank of \(A\): 4
+
+Nullity of \(A\): 2
+
+Eigenvalues: 3, -3, 5, 2, 0, 0
+
+Characteristic Polynomial: \begin{align*}
+\det(\lambda I - A) = 0 \\
+\begin{vmatrix}\lambda-3 & 1 & -1 & -4 & -5 & -2 \\ 0 & \lambda+3 & -5 & 10 & 16 & -1 \\ 0 & 0 & \lambda-5 & -7 & 8 & -2 \\ 0 & 0 & 0 & \lambda-2 & -2 & 0 \\ 0 & 0 & 0 & 0 & \lambda & 0 \\ 0 & 0 & 0 & 0 & 0 & \lambda\end{vmatrix} = 0 \\
+(\lambda-3)(\lambda+3)(\lambda-5)(\lambda-2)\lambda^2 = 0
+\end{align*}
+
+\newpage{}
+
+\hypertarget{some-review}{%
+\subsubsection{Some review}\label{some-review}}
+
+\begin{itemize}
+\tightlist
+\item
+  \ul{Eigenspace} of \(\lambda\): The nullspace of \(\lambda I - A\).
+  Each eigenvalue will have its own eigenspace.
+\item
+  \ul{Algebraic multiplicty}: The number of times a given \(\lambda\)
+  appears as a root of the characteristic equation.
+\item
+  \ul{Geometric multiplicity}: The number of eigenvectors it maps to.
+\end{itemize}
+
+\hypertarget{theorem-geometric-and-algebraic-multiplicity}{%
+\paragraph{Theorem: Geometric and Algebraic
+Multiplicity}\label{theorem-geometric-and-algebraic-multiplicity}}
+
+If \(A\) is a square matrix, then: a. For every eigenvalue of \(A\), the
+geometric multiplicity is less than or equal to the algebraic
+multiplicity. b. \(A\) is diagonalizable \(\iff\) the geometric
+multiplicity of each eigenvalue is equal to the algebraic multiplicity.
 
 
 

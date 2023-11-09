@@ -1051,3 +1051,111 @@ For $\lambda=7$:
 \vec{x} = \left\{\langle6, 6\rangle\right\}
 \end{align*}
 Therefore, the eigen space is: $\left\{\langle-6, 5\rangle, \langle6, 6\rangle\right\}$
+
+## Diagonalization and Similar Triangles
+Similar matrices: If $A$ and $D$ are square matrices, we say that A and D are "similar" if there exists an invertible matrix $P$ such that:
+
+$D = P^{-1}AP$.
+
+### Properties of Similar Matricces
+- They have the same determinant
+- If one is invertible, so is the other
+- They have the same trace
+- They have the same characteristic polynomial
+- They have the same eigenvalues
+
+### Procedure 
+1. Find the eigenvectors for the $n \times n$ matrix $A$.
+  - Theorem: If an $n \times n$ matrix $A$ has $n$ distinct eigenvalues, then $A$ is **for sure** diagonalizable.
+2. Make matrix $P$ out of the eigenveectors ($P$ is the matrix that diagonalizes $A$)
+3. Check your work to find matrix $D$ if reasonable
+
+### Example: Find a matrix $P$ that diagonalizes $A$ and compute $P^{-1}AP$
+
+1. $A = \begin{bmatrix}3 & 7 \\ 5 & 5 \end{bmatrix}$
+
+Find the eigenvalues:
+\begin{align*}
+\begin{bmatrix}\lambda-3 & -7 \\ -5 & \lambda-5\end{bmatrix} &= 0 \\
+(\lambda-3)(\lambda-5)-(-7)(-5) &= 0 \\
+\lambda^2-5\lambda-3\lambda+15-35 &= 0 \\
+\lambda^2-8\lambda-20 &= 0 \\
+\lambda = -2, 10 
+\end{align*}
+
+Find the eigenvectors:
+\begin{align*}
+\lambda = -2: \left[\begin{array}{cc|c}-5 & -7 & 0 \\ -5 & -7 & 0\end{array}\right] 
+\vec{x} = \left\{\langle-7, 5\rangle\right\} \\
+\lambda = 10: \left[\begin{array}{cc|c}-7 & -7 & 0 \\ -5 & 5 & 0\end{array}\right]
+\vec{x} = \left\{\langle1,     1\rangle\right\}
+\end{align*}
+
+{{< pagebreak >}}
+
+Create the matrix $P$:
+
+$P = \begin{bmatrix}-7 & 1 \\ 5 & 1\end{bmatrix}$
+
+Find matrix $D$:
+\begin{align*}
+D &= P^{-1}AP \\
+&= \begin{bmatrix}7 & 1 \\ 5 & -1\end{bmatrix}^{-1}\begin{bmatrix}3 & 7 \\ 5 & 5\end{bmatrix}\begin{bmatrix}7 & 1 \\ 5 & -1\end{bmatrix} \\
+&= \begin{bmatrix}-2 & 0 \\ 0 & 10\end{bmatrix}
+\end{align*}
+
+### Conclusion
+- If $D$ has the same eigenvalues of $A$ and if $D$ must be diagonal, then $D$ is **THE** diagonal matrix with eigenvalues of $A$ on the diagonal.
+
+2. $A = \begin{bmatrix}2 & 0 & -2 \\ 0 & 3 & 0 \\ 0 & 0 & 1\end{bmatrix}$
+
+First, find $D$:
+\begin{align*}
+D = \begin{bmatrix} 2 & 0 & 0 \\ 0 & 3 & 0 \\ 0 & 0 & 1\end{bmatrix} \\
+\end{align*}
+
+Then, find $P$:
+\begin{align*}
+\lambda = 2: \left[\begin{array}{ccc|c}0 & 0 & 2 & 0 \\ 0 & -1 & 0 & 0 \\ 0 & 0 & 1 & 0\end{array}\right] \vec{x} = \langle1, 0, 0\rangle \\
+\lambda = 3: \left[\begin{array}{ccc|c}1 & 0 & 2 & 0 \\ 0 & 0 & 0 & 0 \\ 0 & 0 & 2 & 0\end{array}\right] \vec{x} = \langle0, 1, 0\rangle \\
+\lambda = 1: \left[\begin{array}{ccc|c}-1 & 0 & 2 & 0 \\ 0 & -2 & 0 & 0 \\ 0 & 0 & 0 & 0\end{array}\right] \vec{x} = \langle2, 0, 1\rangle \\
+P = \begin{bmatrix}1 & 0 & 2 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{bmatrix}
+\end{align*}
+
+## More on Similar Matrices
+There are a few more properties of similar matrices:
+
+- They have the same rank (non-zero eigenvalues)
+- They have the same nullity
+- They have the same column space
+- They have the same row space
+
+### Example
+**Matrix $A$ is similar to the following matrix:
+
+$D = \begin{bmatrix}3 & -1 & 1 & 4 & 5 & 2 \\ 0 & -3 & 5 & -10 & -16 & 1 \\ 0 & 0 & 5 & 7 & -8 & 2 \\ 0 & 0 & 0 & 2 & 2 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0 \\ 0 & 0 & 0 & 0 & 0 & 0\end{bmatrix}$
+
+Rank of $A$: 4
+
+Nullity of $A$: 2
+
+Eigenvalues: 3, -3, 5, 2, 0, 0
+
+Characteristic Polynomial:
+\begin{align*}
+\det(\lambda I - A) = 0 \\
+\begin{vmatrix}\lambda-3 & 1 & -1 & -4 & -5 & -2 \\ 0 & \lambda+3 & -5 & 10 & 16 & -1 \\ 0 & 0 & \lambda-5 & -7 & 8 & -2 \\ 0 & 0 & 0 & \lambda-2 & -2 & 0 \\ 0 & 0 & 0 & 0 & \lambda & 0 \\ 0 & 0 & 0 & 0 & 0 & \lambda\end{vmatrix} = 0 \\
+(\lambda-3)(\lambda+3)(\lambda-5)(\lambda-2)\lambda^2 = 0
+\end{align*}
+
+{{< pagebreak >}}
+
+### Some review
+- [Eigenspace]{.underline} of $\lambda$: The nullspace of $\lambda I - A$. Each eigenvalue will have its own eigenspace.
+- [Algebraic multiplicty]{.underline}: The number of times a given $\lambda$ appears as a root of the characteristic equation.
+- [Geometric multiplicity]{.underline}: The number of eigenvectors it maps to.
+
+#### Theorem: Geometric and Algebraic Multiplicity
+If $A$ is a square matrix, then:
+a. For every eigenvalue of $A$, the geometric multiplicity is less than or equal to the algebraic multiplicity.
+b. $A$ is diagonalizable $\iff$ the geometric multiplicity of each eigenvalue is equal to the algebraic multiplicity.
