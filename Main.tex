@@ -180,7 +180,7 @@
 \input{./title.tex}
 \newpage
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, frame hidden, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden, enhanced, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, enhanced, interior hidden, frame hidden, boxrule=0pt, sharp corners, breakable]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -1854,6 +1854,80 @@ If \(A\) is a square matrix, then: a. For every eigenvalue of \(A\), the
 geometric multiplicity is less than or equal to the algebraic
 multiplicity. b. \(A\) is diagonalizable \(\iff\) the geometric
 multiplicity of each eigenvalue is equal to the algebraic multiplicity.
+
+\hypertarget{similar-matrices-continued-11132023}{%
+\subsection{Similar Matrices Continued
+(11/13/2023)}\label{similar-matrices-continued-11132023}}
+
+\hypertarget{warm-up}{%
+\subsubsection{Warm-Up}\label{warm-up}}
+
+Can you write a new statement involving eigenvalues to add to the list
+of equivalent statements?
+
+\(\lambda = 0\) is not an eigenvalue of \(A\)
+
+\hypertarget{homework-review}{%
+\subsubsection{Homework Review}\label{homework-review}}
+
+\(A = \begin{bmatrix} 19 & -9 & -6 \\ 25 & -11 & -9 \\ 17 & -9 & -4 \end{bmatrix}\)
+\begin{align*}
+\begin{bmatrix}\lambda-19 & 9 & 6 \\ -25 & \lambda+11 & 9 \\ 17 & 9 & \lambda + 4\end{bmatrix}
+&= (\lambda-19)((\lambda+11)(\lambda+4)-81) + 25(9\lambda+36-54) - 17(81-6\lambda-66) \\
+&= (\lambda-1)^2(\lambda-2)
+\end{align*}
+
+\(\lambda=1\) has an algebraic multiplicity of 2 and \(\lambda=2\) has
+an algebraic multiplicity of 1.
+
+\hypertarget{suppose-that-a-characteristic-polynomial-of-some-matrix-a-is-found-to-be}{%
+\subsubsection{\texorpdfstring{Suppose that a characteristic polynomial
+of some matrix \(A\) is found to
+be:}{Suppose that a characteristic polynomial of some matrix A is found to be:}}\label{suppose-that-a-characteristic-polynomial-of-some-matrix-a-is-found-to-be}}
+
+\(p(\lambda) = (\lambda-1)(\lambda-3)^2(\lambda=4)^3\)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  What are the dimensions of \(A\)?
+\end{enumerate}
+
+\(6\times6\)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  What are the algebraic multiplicities of each eigenvalue?
+\end{enumerate}
+
+\(\lambda=1: 1, \lambda=3:2, \lambda=4:3\)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  What are the possible dimensions of the eigenspace associated with
+  each of the eigenvalues?
+\end{enumerate}
+
+\(\lambda=1:1, \lambda=3:1 \text{ or } 2, \lambda=4:1 \text{ or } 2 \text{ or } 3\)
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  If \(\{v_1, v_2\}\) is a linearly independent set of eigenvectors of
+  \(A\), all of which correspond to the same eigenvalue of \(A\), what
+  can you say about the eigenvalue?
+\end{enumerate}
+
+The eigenvalue must be 3 or 4.
 
 
 
