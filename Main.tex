@@ -90,6 +90,7 @@
 \usepackage{listings}
 \usepackage{systeme}
 \usepackage{xifthen}
+\usepackage{bm}
 \DefineVerbatimEnvironment{Highlighting}{Verbatim}{breaklines,commandchars=\\\{\}}
 \lstset{basicstyle=\ttfamily\footnotesize,breaklines=true}
 \newcommand\rowop[1]{\scriptstyle\smash{\xrightarrow[\vphantom{#1}]{\mkern-4mu#1\mkern-4mu}}}
@@ -180,7 +181,7 @@
 \input{./title.tex}
 \newpage
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, interior hidden, boxrule=0pt, breakable, borderline west={3pt}{0pt}{shadecolor}, frame hidden, sharp corners]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, borderline west={3pt}{0pt}{shadecolor}, sharp corners, breakable, enhanced, frame hidden, boxrule=0pt]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -1984,6 +1985,141 @@ In 3-D:
 \(\lim_{(x, y) \rightarrow (x_0, y_0)} f(x, y)\) exists iff
 \(\lim_{(x, y) \rightarrow (x_0, y_0)^-} f(x, y) = L \in \mathbb{R}\)
 from \ul{all} directions.
+
+\hypertarget{examples-3}{%
+\subsubsection{Examples}\label{examples-3}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\item
+  \(\lim_{(x, y) \rightarrow (1, 2)} \cfrac{5x^2y}{x^2+y^2} = \cfrac{5 \cdot 1 \cdot 2}{1 + 4} = \cfrac{10}{5} = 2\)
+\item
+  \(\lim_{(x, y) \rightarrow (1, 1)} \cfrac{x-y}{x^2-y^2} = \cfrac{0}{0}\)
+\end{enumerate}
+
+Since this is indeterminate, you need to switch to traditional limit
+solving methods. There is no \emph{L'Hopital's Rule} for multivariable
+functions. Instead, factor the numerator and denominator and cancel out
+common factors.
+
+\(\lim_{(x, y) \rightarrow (1, 1)} \cfrac{x-y}{(x-y)(x+y)} = \cfrac{1}{2}\)
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \(\lim_{(x, y) \rightarrow (4, 3)} \cfrac{\sqrt{x}-\sqrt{y+1}}{x-y-1}\)
+\end{enumerate}
+
+\hypertarget{homework}{%
+\subsubsection{Homework}\label{homework}}
+
+\hypertarget{evaluate-the-limit-lim_x-y-rightarrow-0-0-cfrac3x2-y25x2y22}{%
+\paragraph{\texorpdfstring{Evaluate the limit
+\(\lim_{(x, y) \rightarrow (0, 0)} \cfrac{3x^2-y^2+5}{x^2+y^2+2}\)}{Evaluate the limit \textbackslash lim\_\{(x, y) \textbackslash rightarrow (0, 0)\} \textbackslash cfrac\{3x\^{}2-y\^{}2+5\}\{x\^{}2+y\^{}2+2\}}}\label{evaluate-the-limit-lim_x-y-rightarrow-0-0-cfrac3x2-y25x2y22}}
+
+\(\left.\lim_{(x, y) \rightarrow (0, 0)} \cfrac{3x^2-y^2+5}{x^2+y^2+2}\right\vert_{(0,0)} = \cfrac{5}{2}\)
+
+\hypertarget{evaluate-the-limit-lim_x-y-rightarrow-1-1-cossqrt3xy-1}{%
+\paragraph{\texorpdfstring{Evaluate the limit
+\(\lim_{(x, y) \rightarrow (1, 1)} \cos\sqrt[3]{|xy|-1}\)}{Evaluate the limit \textbackslash lim\_\{(x, y) \textbackslash rightarrow (1, 1)\} \textbackslash cos\textbackslash sqrt{[}3{]}\{\textbar xy\textbar-1\}}}\label{evaluate-the-limit-lim_x-y-rightarrow-1-1-cossqrt3xy-1}}
+
+\(\left.\lim_{(x, y) \rightarrow (1, 1)} \cos\sqrt[3]{|xy|-1}\right\vert_{(1, 1} = \cos0 = 1\)
+
+\hypertarget{evaluate-the-limit-lim_x-y-rightarrow-1-1-cfracxy-y-2x2x-1}{%
+\paragraph{\texorpdfstring{Evaluate the limit
+\(\lim_{(x, y) \rightarrow (1, 1)} \cfrac{xy-y-2x+2}{x-1}\)}{Evaluate the limit \textbackslash lim\_\{(x, y) \textbackslash rightarrow (1, 1)\} \textbackslash cfrac\{xy-y-2x+2\}\{x-1\}}}\label{evaluate-the-limit-lim_x-y-rightarrow-1-1-cfracxy-y-2x2x-1}}
+
+\(\lim_{(x, y) \rightarrow (1, 1)} \cfrac{xy-y-2x+2}{x-1}=\cfrac{(x-1)(y-2)}{x-1}=\left.y-2\right\vert_{(1,1)} = -1\)
+
+\hypertarget{on-what-interval-is-the-function-fx-y-sinxy-continuous}{%
+\paragraph{\texorpdfstring{On what interval is the function
+\(f(x, y) = \sin(x+y)\)
+continuous?}{On what interval is the function f(x, y) = \textbackslash sin(x+y) continuous?}}\label{on-what-interval-is-the-function-fx-y-sinxy-continuous}}
+
+The \(\sin\) function is continuous everywhere, so
+\((x, y) \in \mathbb{R}^2\)
+
+\hypertarget{on-what-interval-is-the-function-fx-y-z-x2y2-2z2-continuous}{%
+\paragraph{\texorpdfstring{On what interval is the function
+\(f(x, y, z) = x^2+y^2-2z^2\)
+continuous?}{On what interval is the function f(x, y, z) = x\^{}2+y\^{}2-2z\^{}2 continuous?}}\label{on-what-interval-is-the-function-fx-y-z-x2y2-2z2-continuous}}
+
+\((x, y, z) \in \mathbb{R}^3\)
+
+\hypertarget{on-what-interval-is-the-function-fx-y-z-xysinleftfrac1zright-continuous}{%
+\paragraph{\texorpdfstring{On what interval is the function
+\(f(x, y, z) = xy\sin\left(\frac{1}{z}\right)\)
+continuous?}{On what interval is the function f(x, y, z) = xy\textbackslash sin\textbackslash left(\textbackslash frac\{1\}\{z\}\textbackslash right) continuous?}}\label{on-what-interval-is-the-function-fx-y-z-xysinleftfrac1zright-continuous}}
+
+Can't divide by zero, so \((x, y, z) \in \mathbb{R}^3 | z \ne 0\)
+
+\hypertarget{limits-that-do-not-exist-in-3-space-0108}{%
+\subsection{Limits that DO NOT EXIST in 3-Space
+(01/08)}\label{limits-that-do-not-exist-in-3-space-0108}}
+
+\hypertarget{question-does-the-function-fxy-cfrac2x2yx4y2-have-a-limit-as-xy-approaches-00}{%
+\subsubsection{\texorpdfstring{Question: Does the function
+\(f(x,y) = \cfrac{2x^2y}{x^4+y^2}\) have a limit as (x,y) approaches
+(0,0)?}{Question: Does the function f(x,y) = \textbackslash cfrac\{2x\^{}2y\}\{x\^{}4+y\^{}2\} have a limit as (x,y) approaches (0,0)?}}\label{question-does-the-function-fxy-cfrac2x2yx4y2-have-a-limit-as-xy-approaches-00}}
+
+Nope, it approaches the point differently.
+
+\hypertarget{find-left.fx-yrightvert_yx2-and-compute-lim_x-y-rightarrow-0-0-fx-y-along-yx2}{%
+\subsubsection{\texorpdfstring{Find \(\left.f(x, y)\right\vert_{y=x^2}\)
+and compute \(\lim_{(x, y) \rightarrow (0, 0)} f(x, y)\) along
+\(y=x^2\)}{Find \textbackslash left.f(x, y)\textbackslash right\textbackslash vert\_\{y=x\^{}2\} and compute \textbackslash lim\_\{(x, y) \textbackslash rightarrow (0, 0)\} f(x, y) along y=x\^{}2}}\label{find-left.fx-yrightvert_yx2-and-compute-lim_x-y-rightarrow-0-0-fx-y-along-yx2}}
+
+\(\left.f(x,y) = \cfrac{2x^2y}{x^4 +y^2}\right\vert_{y=x^2} = \cfrac{2x^4}{2x^4} = 1\)
+
+\hypertarget{find-left.fx-yrightvert_y-x2-and-compute-lim_x-y-rightarrow-0-0-fx-y-along-y-x2}{%
+\subsubsection{\texorpdfstring{Find
+\(\left.f(x, y)\right\vert_{y=-x^2}\) and compute
+\(\lim_{(x, y) \rightarrow (0, 0)} f(x, y)\) along
+\(y=-x^2\)}{Find \textbackslash left.f(x, y)\textbackslash right\textbackslash vert\_\{y=-x\^{}2\} and compute \textbackslash lim\_\{(x, y) \textbackslash rightarrow (0, 0)\} f(x, y) along y=-x\^{}2}}\label{find-left.fx-yrightvert_y-x2-and-compute-lim_x-y-rightarrow-0-0-fx-y-along-y-x2}}
+
+\(\left.f(x,y) = \cfrac{2x^2y}{x^4 +y^2}\right\vert_{y=x^2} = \cfrac{-2x^4}{2x^4} = 1\)
+
+\hypertarget{explain-why-we-can-conclude-that-lim_x-y-rightarrow-0-0-fxy-does-not-exist}{%
+\subsubsection{\texorpdfstring{Explain why we can conclude that
+\(\lim_{(x, y) \rightarrow (0, 0)} f(x,y)\) does not
+exist}{Explain why we can conclude that \textbackslash lim\_\{(x, y) \textbackslash rightarrow (0, 0)\} f(x,y) does not exist}}\label{explain-why-we-can-conclude-that-lim_x-y-rightarrow-0-0-fxy-does-not-exist}}
+
+\(\lim_{(x,y) \rightarrow(0,0)}f(x,y)\) along \(y=x^2\)
+\(\ne \lim_{(x, y)\rightarrow(0, 0)}f(x, y)\) along \(y=-x^2\)
+
+\hypertarget{how-did-we-know-to-choose-yx2-and-y-x2-to-evaluate-the-limit}{%
+\subsubsection{\texorpdfstring{How did we know to choose \(y=x^2\) and
+\(y=-x^2\) to evaluate the
+limit?}{How did we know to choose y=x\^{}2 and y=-x\^{}2 to evaluate the limit?}}\label{how-did-we-know-to-choose-yx2-and-y-x2-to-evaluate-the-limit}}
+
+You want to try to choose things that, as you plug them in, you get a
+nice expression that you can simplify. For this prblem in particular, we
+chose paths towards \((0, 0)\) that, when substituted, would be easy to
+solve and yield different answers upon simplification. We could've also
+used the equation of the x-axis (\(y=0\)).
+
+\hypertarget{show-that-these-functions-have-no-limit-as-x-y-approaches-0-0-by-considering-different-paths-of-approach.}{%
+\subsubsection{\texorpdfstring{Show that these functions have no limit
+as \((x, y)\) approaches \((0, 0)\) by considering different paths of
+approach.}{Show that these functions have no limit as (x, y) approaches (0, 0) by considering different paths of approach.}}\label{show-that-these-functions-have-no-limit-as-x-y-approaches-0-0-by-considering-different-paths-of-approach.}}
+
+\hypertarget{fxy-cfracx4x4y2}{%
+\paragraph{\texorpdfstring{\(f(x,y) = \cfrac{x^4}{x^4+y^2}\)}{f(x,y) = \textbackslash cfrac\{x\^{}4\}\{x\^{}4+y\^{}2\}}}\label{fxy-cfracx4x4y2}}
+
+\(\lim_{(x, y)\rightarrow(0, 0)} f(x, y)\) along
+\(y=2x^2 = \cfrac{x^4}{5x^4}=\cfrac{1}{5}\)
+\(\ne \lim_{(x, y)\rightarrow(0, 0)} f(x, y)\) along
+\(y=x^2 = \cfrac{x^4}{2x^4} = \cfrac{1}{2}\)
+
+\hypertarget{fx-y-cfracx2yy}{%
+\paragraph{\texorpdfstring{\(f(x, y) = \cfrac{x^2+y}{y}\)}{f(x, y) = \textbackslash cfrac\{x\^{}2+y\}\{y\}}}\label{fx-y-cfracx2yy}}
+
+\(\lim_{(x, y)\rightarrow(0,0)} f(x, y)\) along
+\(y=x^2 = \cfrac{2y}{y} = 2\)
+\(\ne \lim_{(x, y)\rightarrow(0,0)} f(x, y)\) along
+\(y=2x^2 = \cfrac{3x^2}{2x^2} = \cfrac{3}{2}\)
 
 
 
