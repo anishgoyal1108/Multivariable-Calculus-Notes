@@ -180,7 +180,7 @@
 \input{./title.tex}
 \newpage
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[borderline west={3pt}{0pt}{shadecolor}, enhanced, interior hidden, frame hidden, boxrule=0pt, sharp corners, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, interior hidden, boxrule=0pt, breakable, borderline west={3pt}{0pt}{shadecolor}, frame hidden, sharp corners]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -1928,6 +1928,62 @@ be:}{Suppose that a characteristic polynomial of some matrix A is found to be:}}
 \end{enumerate}
 
 The eigenvalue must be 3 or 4.
+
+\hypertarget{semester-ii}{%
+\section{Semester II}\label{semester-ii}}
+
+\hypertarget{introduction-to-multivariable-functions-0104}{%
+\subsection{Introduction to Multivariable functions
+(01/04)}\label{introduction-to-multivariable-functions-0104}}
+
+\hypertarget{definition-of-a-multivariable-function}{%
+\subsubsection{Definition of a Multivariable
+Function}\label{definition-of-a-multivariable-function}}
+
+Suppose \(D\) is a set of \(n\)-tuples of real numbers
+(\(x_1, x_2, ..., x_n\)). A function \(f\) on \(D\) is a rule that
+assigns a real number
+
+\(w = f(x_1, x_2, ..., x_n)\)
+
+to each element in \(D\). The set \(D\) is the function's
+\textbf{domain}. The set of \(w\)-values taken on by \(f\) is the
+function's \textbf{range}. The symbol \(w\) is the \textbf{dependent
+variable} of \(f\), and \(f\) is a function of the \(n\)
+\textbf{independent variables} \(x_1\) to \(x_n\). The \(x\)'s are the
+function's \textbf{input variables}; \(w\) is the function's
+\textbf{output variable}.
+
+\hypertarget{limits-and-continuity-0105}{%
+\subsection{Limits and Continuity
+(01/05)}\label{limits-and-continuity-0105}}
+
+\hypertarget{level-curve-graph-surface}{%
+\subsubsection{Level Curve, Graph,
+Surface}\label{level-curve-graph-surface}}
+
+The set of points in the plane where a function \(f(x, y)\) has a
+constant value \(k\) is called a \textbf{level curve} of \(f\). The
+graph of \(f\) is the set of all points \((x, y, z)\) in space, where
+\(z = f(x, y)\). The graph of \(f\) is a surface in space.
+
+\hypertarget{limits-with-multivariable-functions}{%
+\subsubsection{Limits With Multivariable
+Functions}\label{limits-with-multivariable-functions}}
+
+\emph{Limits}: Let \(f\) be a function of two variables defined on an
+open region, except possibly at \$(x\_0, \(y_0\)).
+
+In 2-D:
+
+\(\lim_{x\rightarrow c} f(x)\) exists iff
+\(\lim_{x\rightarrow c^-} f(x) = \lim_{x\rightarrow c^+} f(x) = L \in \mathbb{R}\)
+
+In 3-D:
+
+\(\lim_{(x, y) \rightarrow (x_0, y_0)} f(x, y)\) exists iff
+\(\lim_{(x, y) \rightarrow (x_0, y_0)^-} f(x, y) = L \in \mathbb{R}\)
+from \ul{all} directions.
 
 
 

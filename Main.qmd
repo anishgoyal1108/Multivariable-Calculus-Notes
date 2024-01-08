@@ -1194,3 +1194,41 @@ $\lambda=1:1, \lambda=3:1 \text{ or } 2, \lambda=4:1 \text{ or } 2 \text{ or } 3
 d. If $\{v_1, v_2\}$ is a linearly independent set of eigenvectors of $A$, all of which correspond to the same eigenvalue of $A$, what can you say about the eigenvalue?
 
 The eigenvalue must be 3 or 4.
+
+# Semester II 
+
+## Introduction to Multivariable functions (01/04)
+
+### Definition of a Multivariable Function 
+Suppose $D$ is a set of $n$-tuples of real numbers ($x_1, x_2, ..., x_n$). A function $f$ on $D$ is a rule that assigns a real number
+
+$w = f(x_1, x_2, ..., x_n)$
+
+to each element in $D$. The set $D$ is the function's **domain**. The set of $w$-values taken on by $f$ is the function's **range**. The symbol $w$ is the **dependent variable** of $f$, and $f$ is a function of the $n$ **independent variables** $x_1$ to $x_n$. The $x$'s are the function's **input variables**; $w$ is the function's **output variable**.
+
+## Limits and Continuity (01/05)
+
+### Level Curve, Graph, Surface
+The set of points in the plane where a function $f(x, y)$ has a constant value $k$ is called a **level curve** of $f$. The graph of $f$ is the set of all points $(x, y, z)$ in space, where $z = f(x, y)$. The graph of $f$ is a surface in space.
+
+### Limits With Multivariable Functions
+*Limits*: Let $f$ be a function of two variables defined on an open region, except possibly at $(x_0, $y_0$).
+
+In 2-D:
+
+$\lim_{x\rightarrow c} f(x)$ exists iff $\lim_{x\rightarrow c^-} f(x) = \lim_{x\rightarrow c^+} f(x) = L \in \mathbb{R}$
+
+In 3-D:
+
+$\lim_{(x, y) \rightarrow (x_0, y_0)} f(x, y)$ exists iff $\lim_{(x, y) \rightarrow (x_0, y_0)^-} f(x, y) = L \in \mathbb{R}$ from [all]{.underline} directions.
+
+### Examples
+1. $\lim_{(x, y) \rightarrow (1, 2)} \cfrac{5x^2y}{x^2+y^2} = $\cfrac{5 \cdot 1 \cdot 2}{1 + 4} = \cfrac{10}{5} = 2$
+
+2. $\lim_{(x, y) \rightarrow (1, 1)} \cfrac{x-y}{x^2-y^2} = \cfrac{0}{0}$
+
+Since this is indeterminate, you need to switch to traditional limit solving methods. There is no *L'Hopital's Rule* for multivariable functions. Instead, factor the numerator and denominator and cancel out common factors.
+
+$\lim_{(x, y) \rightarrow (1, 1)} \cfrac{x-y}{(x-y)(x+y)} = \cfrac{1}{2}$
+
+3. $\lim_{(x, y) \rightarrow (4, 3)} \cfrac{\sqrt{x}-\sqrt{y+1}}{x-y-1}$
