@@ -1270,7 +1270,7 @@ $\left.f(x,y) = \cfrac{2x^2y}{x^4 +y^2}\right\vert_{y=x^2} = \cfrac{-2x^4}{2x^4}
 $\lim_{(x,y) \rightarrow(0,0)}f(x,y)$ along $y=x^2$ $\ne \lim_{(x, y)\rightarrow(0, 0)}f(x, y)$ along $y=-x^2$
 
 ### How did we know to choose $y=x^2$ and $y=-x^2$ to evaluate the limit?
-You want to try to choose things that, as  you plug them in, you get a nice expression that you can simplify. For this prblem in particular, we chose paths towards $(0, 0)$ that, when substituted, would be easy to solve and yield different answers upon simplification. We could've also used the equation of the x-axis ($y=0$).
+You want to try to choose things that, as  you plug them in, you get a nice expression that you can simplify. For this problem in particular, we chose paths towards $(0, 0)$ that would be easy to solve and yield different answers upon simplification. We could've also used the equation of the x-axis ($y=0$).
 
 ### Show that these functions have no limit as $(x, y)$ approaches $(0, 0)$ by considering different paths of approach.
 
