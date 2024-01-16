@@ -224,7 +224,7 @@
 \input{./title.tex}
 \newpage
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[interior hidden, enhanced, borderline west={3pt}{0pt}{shadecolor}, breakable, sharp corners, boxrule=0pt, frame hidden]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, interior hidden, frame hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced, breakable, boxrule=0pt]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -2160,9 +2160,62 @@ approach.}{Show that these functions have no limit as (x, y) approaches (0, 0) b
 \(\ne \lim_{(x, y)\rightarrow(0,0)} f(x, y)\) along
 \(y=2x^2 = \cfrac{3x^2}{2x^2} = \cfrac{3}{2}\)
 
-\hypertarget{partial-derivatives-homework-011123}{%
-\subsubsection{Partial Derivatives Homework
-(01/11/23)}\label{partial-derivatives-homework-011123}}
+\hypertarget{partial-derivatives-0110}{%
+\subsection{Partial Derivatives
+(01/10)}\label{partial-derivatives-0110}}
+
+\hypertarget{first-order-partial-derivatives}{%
+\subsubsection{First Order Partial
+Derivatives}\label{first-order-partial-derivatives}}
+
+A \textbf{partial derivative} is obtained by holding all but one of the
+independent variables constant and differentiating with respect to that
+variable.
+
+\hypertarget{notation}{%
+\paragraph{Notation}\label{notation}}
+
+\(\frac{\partial f}{\partial x} = f_x = \frac{\partial}{\partial x}f(x, y)\)
+is the partial derivative of \(f\) with respect to \(x\)
+
+\hypertarget{examples-4}{%
+\subsubsection{Examples}\label{examples-4}}
+
+\hypertarget{fx-y-2x3y-4x2y35x4}{%
+\paragraph{\texorpdfstring{\(f(x, y) = 2x^3y-4x^2y^3+5x^4\)}{f(x, y) = 2x\^{}3y-4x\^{}2y\^{}3+5x\^{}4}}\label{fx-y-2x3y-4x2y35x4}}
+
+\(f_x = 6x^2y-8xy^3+20x^3\)\\
+\(f_y = 2x^3-12x^2y^2\)
+
+\hypertarget{fx-y-4x2y-8x3y42xy7}{%
+\paragraph{\texorpdfstring{\(f(x, y) = 4x^2y-8x^3y^4+2xy^7\)}{f(x, y) = 4x\^{}2y-8x\^{}3y\^{}4+2xy\^{}7}}\label{fx-y-4x2y-8x3y42xy7}}
+
+\(f_x = 8xy-24x^2y^4+2y^7\)\\
+\(f_y = 4x^2-32x^3y^3+14xy^6\)
+
+\hypertarget{fxytan2x-y}{%
+\paragraph{\texorpdfstring{\(f(x,y)=\tan(2x-y)\)}{f(x,y)=\textbackslash tan(2x-y)}}\label{fxytan2x-y}}
+
+\(f_x = 2\sec^2(2x-y)\)\\
+\(f_y = -\sec^2(2x-y)\)
+
+\hypertarget{the-second-fundamental-theorem-of-multivariable-calculus}{%
+\subsubsection{The Second Fundamental Theorem of (Multivariable)
+Calculus}\label{the-second-fundamental-theorem-of-multivariable-calculus}}
+
+\begin{itemize}
+\tightlist
+\item
+  \(\frac{\mathrm{d}}{\mathrm{d}x}\int_5^x f(t) \mathrm{d}t = f(x)\)
+\item
+  \(\frac{\mathrm{d}}{\mathrm{d}x}\int_5^{x^2} f(t) \mathrm{d}t = 2x \cdot f(x^2)\)
+\end{itemize}
+
+\hypertarget{examples-5}{%
+\subsubsection{Examples}\label{examples-5}}
+
+\hypertarget{fxy-int_3x2yt2-1mathrmdt}{%
+\paragraph{\texorpdfstring{\(f(x,y) = \int_{3x}^{2y}(t^2-1)\mathrm{d}t\)}{f(x,y) = \textbackslash int\_\{3x\}\^{}\{2y\}(t\^{}2-1)\textbackslash mathrm\{d\}t}}\label{fxy-int_3x2yt2-1mathrmdt}}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
@@ -2172,26 +2225,149 @@ approach.}{Show that these functions have no limit as (x, y) approaches (0, 0) b
 \end{Highlighting}
 \end{Shaded}
 
-\hypertarget{find-fracpartial-fpartial-x-and-fracpartial-fpartial-y-for-fx-y}{%
-\subsubsection{\texorpdfstring{Find \(\frac{\partial f}{\partial x}\)
-and \(\frac{\partial f}{\partial y}\) for
-\(f(x, y)\)}{Find \textbackslash frac\{\textbackslash partial f\}\{\textbackslash partial x\} and \textbackslash frac\{\textbackslash partial f\}\{\textbackslash partial y\} for f(x, y)}}\label{find-fracpartial-fpartial-x-and-fracpartial-fpartial-y-for-fx-y}}
-
-\hypertarget{fx-y-xy-1}{%
-\paragraph{\texorpdfstring{\(f(x, y) = x(y-1)\)}{f(x, y) = x(y-1)}}\label{fx-y-xy-1}}
-
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{x, y, z }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}x y z\textquotesingle{}}\NormalTok{)}
-\NormalTok{f }\OperatorTok{=}\NormalTok{ x}\OperatorTok{*}\NormalTok{(y}\OperatorTok{{-}}\DecValTok{1}\NormalTok{)}
+\NormalTok{x, y }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}x y\textquotesingle{}}\NormalTok{)}
+\NormalTok{t }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}t\textquotesingle{}}\NormalTok{)}
+\NormalTok{f }\OperatorTok{=}\NormalTok{ sp.integrate(t}\OperatorTok{**}\DecValTok{2}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, (t, }\DecValTok{3}\OperatorTok{*}\NormalTok{x, }\DecValTok{2}\OperatorTok{*}\NormalTok{y))}
 \NormalTok{display(sp.diff(f, x))}
 \NormalTok{display(sp.diff(f, y))}
 \end{Highlighting}
 \end{Shaded}
 
+$\displaystyle 3 - 27 x^{2}$
+
+$\displaystyle 8 y^{2} - 2$
+
+\hypertarget{find-both-partial-derivatives-and-evaluate-each-at-the-point-1-ln-2}{%
+\paragraph{\texorpdfstring{Find both partial derivatives and evaluate
+each at the point
+\((1, \ln 2)\)}{Find both partial derivatives and evaluate each at the point (1, \textbackslash ln 2)}}\label{find-both-partial-derivatives-and-evaluate-each-at-the-point-1-ln-2}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi}.}
+\tightlist
+\item
+  \(f(x, y) = xe^{x^2y}\)
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{f }\OperatorTok{=}\NormalTok{ x}\OperatorTok{*}\NormalTok{sp.exp(x}\OperatorTok{**}\DecValTok{2}\OperatorTok{*}\NormalTok{y)}
+\NormalTok{display(sp.diff(f, x))}
+\NormalTok{display(sp.diff(f, y))}
+\NormalTok{display(sp.diff(f, x).subs(\{x:}\DecValTok{1}\NormalTok{, y:sp.ln(}\DecValTok{2}\NormalTok{)\}))}
+\NormalTok{display(sp.diff(f, y).subs(\{x:}\DecValTok{1}\NormalTok{, y:sp.ln(}\DecValTok{2}\NormalTok{)\}))}
+\end{Highlighting}
+\end{Shaded}
+
+$\displaystyle 2 x^{2} y e^{x^{2} y} + e^{x^{2} y}$
+
+$\displaystyle x^{3} e^{x^{2} y}$
+
+$\displaystyle 2 + 4 \log{\left(2 \right)}$
+
+$\displaystyle 2$
+
+\hypertarget{nd-partial-derivatives-0111}{%
+\subsection{2nd Partial Derivatives
+(01/11)}\label{nd-partial-derivatives-0111}}
+
+\hypertarget{first-lets-see-this-one.-if-fx-y-z-xsiny3z-find-f_x-f_y-f_z.}{%
+\subsubsection{\texorpdfstring{First, let's see this one. If
+\(f(x, y, z) = x\sin(y+3z)\), find
+\(f_x, f_y, f_z\).}{First, let's see this one. If f(x, y, z) = x\textbackslash sin(y+3z), find f\_x, f\_y, f\_z.}}\label{first-lets-see-this-one.-if-fx-y-z-xsiny3z-find-f_x-f_y-f_z.}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{x, y, z }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}x y z\textquotesingle{}}\NormalTok{)}
+\NormalTok{f }\OperatorTok{=}\NormalTok{ x}\OperatorTok{*}\NormalTok{sp.sin(y}\OperatorTok{+}\DecValTok{3}\OperatorTok{*}\NormalTok{z)}
+\NormalTok{display(sp.diff(f, x))}
+\NormalTok{display(sp.diff(f, y))}
+\NormalTok{display(sp.diff(f, z))}
+\end{Highlighting}
+\end{Shaded}
+
+$\displaystyle \sin{\left(y + 3 z \right)}$
+
+$\displaystyle x \cos{\left(y + 3 z \right)}$
+
+$\displaystyle 3 x \cos{\left(y + 3 z \right)}$
+
+\hypertarget{nd-order-partial-derivatives}{%
+\subsubsection{2nd-Order Partial
+Derivatives}\label{nd-order-partial-derivatives}}
+
+The \textbf{second-order partial derivatives} of \(f\) are the partial
+derivatives of the partial derivatives of \(f\).
+
+\hypertarget{notation-1}{%
+\paragraph{Notation}\label{notation-1}}
+
+\(f_{xx} = \frac{\partial^2 f}{\partial x^2} = \frac{\partial}{\partial x}\left(\frac{\partial f}{\partial x}\right)\)
+
+\hypertarget{mixed-partial-derivatives}{%
+\subsubsection{Mixed Partial
+Derivatives}\label{mixed-partial-derivatives}}
+
+The \textbf{mixed partial derivatives} of \(f\) are the partial
+derivatives of \(f\) with respect to many other different variables.
+
+\hypertarget{notation-2}{%
+\paragraph{Notation}\label{notation-2}}
+
+\(f_{xy} = \frac{\partial^2 f}{\partial x \partial y} = \frac{\partial}{\partial x}\left(\frac{\partial f}{\partial y}\right)\)
+
+To compute a mixed partial derivative, you must evaluate the order from
+right to left. For example, \(f_{xy}\) is the partial derivative of
+\(f_x\) with respect to \(y\), which is notated as
+\(\frac{\partial^2 f}{\partial x \partial y}\).
+
+\hypertarget{theorem-clairauts-theorem}{%
+\subsubsection{Theorem (Clairaut's
+Theorem)}\label{theorem-clairauts-theorem}}
+
+If \(f_{xy}\) and \(f_{yx}\) are continuous on an open region \(D\),
+then \(f_{xy}(a, b) = f_{yx}(a, b)\) on \(D\).
+
+\hypertarget{examples-6}{%
+\subsubsection{Examples}\label{examples-6}}
+
+\hypertarget{given-that-fx-y-x2y-y3ln-x-find-all-2nd-order-partial-derivatives}{%
+\paragraph{\texorpdfstring{Given that \(f(x, y) = x^2y-y^3+\ln x\), find
+\textbf{all} 2nd order partial
+derivatives}{Given that f(x, y) = x\^{}2y-y\^{}3+\textbackslash ln x, find all 2nd order partial derivatives}}\label{given-that-fx-y-x2y-y3ln-x-find-all-2nd-order-partial-derivatives}}
+
+f = x**2*y - y**3 + sp.ln(x) display(sp.diff(f, y, x))
+display(sp.diff(f, x, y)) display(sp.diff(f, x, x)) display(sp.diff(f,
+y, y))
+
+\begin{verbatim}
+
+
+#### Given that $w = xy+\frac{e^y}{y^2+1}$, find $\frac{\partial^2 w}{\partial x \partial y}$ and $\frac{\partial^2 w}{\partial y \partial x}$
+
+For this problem, you need to "choose wisely." Knowing that the function and it's partial derivatives are continuous on the open region $\mathbb{R}^2$, we can choose $w_{xy} = 1$.
+
+### Partial Derivatives Homework (01/11)
+
+### Find $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$ for $f(x, y)$
+
+#### $f(x, y) = x(y-1)$
+
+::: {.cell execution_count=5}
+``` {.python .cell-code}
+x, y, z = sp.symbols('x y z')
+f = x*(y-1)
+display(sp.diff(f, x))
+display(sp.diff(f, y))
+\end{verbatim}
+
 $\displaystyle y - 1$
 
 $\displaystyle x$
+
+:::
 
 \hypertarget{fx-y-5xy---7x2---y2-3x---6y-2}{%
 \subsubsection{\texorpdfstring{\(f(x, y) = 5xy - 7x^2 - y^2 + 3x - 6y +2\)}{f(x, y) = 5xy - 7x\^{}2 - y\^{}2 + 3x - 6y +2}}\label{fx-y-5xy---7x2---y2-3x---6y-2}}
