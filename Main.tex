@@ -224,7 +224,7 @@
 \input{./title.tex}
 \newpage
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[sharp corners, interior hidden, frame hidden, borderline west={3pt}{0pt}{shadecolor}, enhanced, breakable, boxrule=0pt]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, interior hidden, borderline west={3pt}{0pt}{shadecolor}, sharp corners, boxrule=0pt, frame hidden, breakable]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -2221,14 +2221,13 @@ Calculus}\label{the-second-fundamental-theorem-of-multivariable-calculus}}
 \begin{Highlighting}[numbers=left,,]
 \CommentTok{\# import libraries}
 \ImportTok{import}\NormalTok{ sympy }\ImportTok{as}\NormalTok{ sp}
-\ImportTok{from}\NormalTok{ IPython.display }\ImportTok{import}\NormalTok{ display}
+\ImportTok{from}\NormalTok{ IPython.display }\ImportTok{import}\NormalTok{ display, Math, Latex}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{x, y }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}x y\textquotesingle{}}\NormalTok{)}
-\NormalTok{t }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}t\textquotesingle{}}\NormalTok{)}
+\NormalTok{x, y, t, z, r, θ, p, q }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}x y t z r θ p q\textquotesingle{}}\NormalTok{, real}\OperatorTok{=}\VariableTok{True}\NormalTok{, positive}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
 \NormalTok{f }\OperatorTok{=}\NormalTok{ sp.integrate(t}\OperatorTok{**}\DecValTok{2}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, (t, }\DecValTok{3}\OperatorTok{*}\NormalTok{x, }\DecValTok{2}\OperatorTok{*}\NormalTok{y))}
 \NormalTok{display(sp.diff(f, x))}
 \NormalTok{display(sp.diff(f, y))}
@@ -2280,7 +2279,6 @@ $\displaystyle 2$
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{x, y, z }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}x y z\textquotesingle{}}\NormalTok{)}
 \NormalTok{f }\OperatorTok{=}\NormalTok{ x}\OperatorTok{*}\NormalTok{sp.sin(y}\OperatorTok{+}\DecValTok{3}\OperatorTok{*}\NormalTok{z)}
 \NormalTok{display(sp.diff(f, x))}
 \NormalTok{display(sp.diff(f, y))}
@@ -2357,7 +2355,6 @@ For this problem, you need to "choose wisely." Knowing that the function and it'
 
 ::: {.cell execution_count=5}
 ``` {.python .cell-code}
-x, y, z = sp.symbols('x y z')
 f = x*(y-1)
 display(sp.diff(f, x))
 display(sp.diff(f, y))
@@ -2420,7 +2417,6 @@ $\displaystyle e^{x + y + 1}$
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
 \NormalTok{g }\OperatorTok{=}\NormalTok{ sp.Function(}\StringTok{\textquotesingle{}g\textquotesingle{}}\NormalTok{)}
-\NormalTok{t }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}t\textquotesingle{}}\NormalTok{)}
 \NormalTok{f }\OperatorTok{=}\NormalTok{ sp.integrate(g(t), (t, x, y))}
 \NormalTok{display(sp.diff(f, x))}
 \NormalTok{display(sp.diff(f, y))}
@@ -2490,6 +2486,294 @@ $\displaystyle - x \cos{\left(y \right)}$
 $\displaystyle e^{x} - \sin{\left(y \right)}$
 
 $\displaystyle e^{x} - \sin{\left(y \right)}$
+
+\hypertarget{definition-of-differentiability-0116}{%
+\subsection{Definition of Differentiability
+(01/16)}\label{definition-of-differentiability-0116}}
+
+So, how do we solve the apparent contradiction?
+
+Defintion of differentiability in multivaraible calculus:
+
+The function \(f(x, y)\) is said to be differentiable if there exists a
+\emph{linear function} at the point (a, b):\\
+\(L(x, y) = f(a, b) + p(x-a) + q(y-b)\)
+
+\hypertarget{remember-local-linearization}{%
+\subsubsection{Remember local
+linearization?}\label{remember-local-linearization}}
+
+\ldots what it means for a function to be ``locally linear?''
+
+Consider the following:
+
+Is this function differentiable at \(x=0\)?
+
+\(f(x) = |x| + 1\)
+
+What about this one?
+
+\(g(x) = \sqrt{x^2+0.0001} + 0.99\)
+
+The linearization of a function \(f(x,y)\) at a point \((x_0, y_0)\)
+where \(f\) is differentiable is given by the function:
+
+\begin{align*}
+L(x, y) = f(x_0,y_0)+f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0) \
+z = z_0 + m_x(x-x_0)+m_y(y-y_0) \ 
+0 = m_x(x-x_0)+m_y(y-y_0)+(z-z_0) \
+0 = A(x-x_0) + B(y-y) + C(z-z_0)
+\end{align*}x(x-x\_0)+m\_y(y-y\_0) ~ 0 =
+m\_x(x-x\_0)+m\_y(y-y\_0)+(z-z\_0)\\
+0 = A(x-x\_0) + B(y-y) + C(z-z\_0) \textbackslash end\{align*\}
+\ldots where \(\vec{n} = \langle A, B, C \rangle\) and
+\(p = (x_0, y_0, z_0)\)
+
+\hypertarget{examples-7}{%
+\subsubsection{Examples}\label{examples-7}}
+
+\hypertarget{find-the-linearization-of-fx-y-y2-2xy---frac12x2-at-the-point-2-3.}{%
+\paragraph{\texorpdfstring{Find the linearization of
+\(f(x, y) = y^2 + 2xy - \frac{1}{2}x^2\) at the point
+\((2, 3)\).}{Find the linearization of f(x, y) = y\^{}2 + 2xy - \textbackslash frac\{1\}\{2\}x\^{}2 at the point (2, 3).}}\label{find-the-linearization-of-fx-y-y2-2xy---frac12x2-at-the-point-2-3.}}
+
+\hypertarget{homework-1}{%
+\subsubsection{Homework}\label{homework-1}}
+
+\hypertarget{find-the-linearization-of-fx-y-x2-y2-1-at-1-1}{%
+\paragraph{\texorpdfstring{Find the linearization of
+\(f(x, y) = x^2 + y^2 + 1\) at
+\((1, 1)\)}{Find the linearization of f(x, y) = x\^{}2 + y\^{}2 + 1 at (1, 1)}}\label{find-the-linearization-of-fx-y-x2-y2-1-at-1-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{f }\OperatorTok{=}\NormalTok{ x}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\NormalTok{ y}\OperatorTok{**}\DecValTok{2} \OperatorTok{+} \DecValTok{1}
+\NormalTok{x\_0 }\OperatorTok{=} \DecValTok{1}
+\NormalTok{y\_0 }\OperatorTok{=} \DecValTok{1}
+\NormalTok{z\_0 }\OperatorTok{=}\NormalTok{ f.subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_x }\OperatorTok{=}\NormalTok{ sp.diff(f, x).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_y }\OperatorTok{=}\NormalTok{ sp.diff(f, y).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{display(z\_0 }\OperatorTok{+}\NormalTok{ f\_x}\OperatorTok{*}\NormalTok{(x}\OperatorTok{{-}}\NormalTok{x\_0) }\OperatorTok{+}\NormalTok{ f\_y}\OperatorTok{*}\NormalTok{(y}\OperatorTok{{-}}\NormalTok{y\_0))}
+\end{Highlighting}
+\end{Shaded}
+
+$\displaystyle 2 x + 2 y - 1$
+
+\hypertarget{find-the-linearization-of-fx-y-3x-4y5-at-1-1}{%
+\paragraph{\texorpdfstring{Find the linearization of
+\(f(x, y) = 3x-4y+5\) at
+\((1, 1)\)}{Find the linearization of f(x, y) = 3x-4y+5 at (1, 1)}}\label{find-the-linearization-of-fx-y-3x-4y5-at-1-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{f }\OperatorTok{=} \DecValTok{3}\OperatorTok{*}\NormalTok{x }\OperatorTok{{-}} \DecValTok{4}\OperatorTok{*}\NormalTok{y }\OperatorTok{+} \DecValTok{5}
+\NormalTok{x\_0 }\OperatorTok{=} \DecValTok{1}
+\NormalTok{y\_0 }\OperatorTok{=} \DecValTok{1}
+\NormalTok{z\_0 }\OperatorTok{=}\NormalTok{ f.subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_x }\OperatorTok{=}\NormalTok{ sp.diff(f, x).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_y }\OperatorTok{=}\NormalTok{ sp.diff(f, y).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{display(z\_0 }\OperatorTok{+}\NormalTok{ f\_x}\OperatorTok{*}\NormalTok{(x}\OperatorTok{{-}}\NormalTok{x\_0) }\OperatorTok{+}\NormalTok{ f\_y}\OperatorTok{*}\NormalTok{(y}\OperatorTok{{-}}\NormalTok{y\_0))}
+\end{Highlighting}
+\end{Shaded}
+
+$\displaystyle 3 x - 4 y + 5$
+
+\hypertarget{find-the-linearization-of-fx-y-ex-cos-y-at-0-fracpi2}{%
+\paragraph{\texorpdfstring{Find the linearization of
+\(f(x, y) = e^x \cos y\) at
+\((0, \frac{\pi}{2})\)}{Find the linearization of f(x, y) = e\^{}x \textbackslash cos y at (0, \textbackslash frac\{\textbackslash pi\}\{2\})}}\label{find-the-linearization-of-fx-y-ex-cos-y-at-0-fracpi2}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{f }\OperatorTok{=}\NormalTok{ sp.exp(x)}\OperatorTok{*}\NormalTok{sp.cos(y)}
+\NormalTok{x\_0 }\OperatorTok{=} \DecValTok{0}
+\NormalTok{y\_0 }\OperatorTok{=}\NormalTok{ sp.pi}\OperatorTok{/}\DecValTok{2}
+\NormalTok{z\_0 }\OperatorTok{=}\NormalTok{ f.subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_x }\OperatorTok{=}\NormalTok{ sp.diff(f, x).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_y }\OperatorTok{=}\NormalTok{ sp.diff(f, y).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{display(z\_0 }\OperatorTok{+}\NormalTok{ f\_x}\OperatorTok{*}\NormalTok{(x}\OperatorTok{{-}}\NormalTok{x\_0) }\OperatorTok{+}\NormalTok{ f\_y}\OperatorTok{*}\NormalTok{(y}\OperatorTok{{-}}\NormalTok{y\_0))}
+\end{Highlighting}
+\end{Shaded}
+
+$\displaystyle - y + \frac{\pi}{2}$
+
+\hypertarget{chain-rule-0118}{%
+\subsection{Chain Rule (01/18)}\label{chain-rule-0118}}
+
+\hypertarget{warmup-find-the-linearization-of-fx-y-x3y4-at-the-point-1-1}{%
+\subsubsection{\texorpdfstring{Warmup: Find the linearization of
+\(f(x, y) = x^3y^4\) at the point \$(1,
+1)}{Warmup: Find the linearization of f(x, y) = x\^{}3y\^{}4 at the point \$(1, 1)}}\label{warmup-find-the-linearization-of-fx-y-x3y4-at-the-point-1-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{f }\OperatorTok{=}\NormalTok{ x}\OperatorTok{**}\DecValTok{3}\OperatorTok{*}\NormalTok{y}\OperatorTok{**}\DecValTok{4}
+\NormalTok{x\_0 }\OperatorTok{=} \DecValTok{1}
+\NormalTok{y\_0 }\OperatorTok{=} \DecValTok{1}
+\NormalTok{z\_0 }\OperatorTok{=}\NormalTok{ f.subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_x }\OperatorTok{=}\NormalTok{ sp.diff(f, x).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_y }\OperatorTok{=}\NormalTok{ sp.diff(f, y).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{display(z\_0 }\OperatorTok{+}\NormalTok{ f\_x}\OperatorTok{*}\NormalTok{(x}\OperatorTok{{-}}\NormalTok{x\_0) }\OperatorTok{+}\NormalTok{ f\_y}\OperatorTok{*}\NormalTok{(y}\OperatorTok{{-}}\NormalTok{y\_0))}
+\end{Highlighting}
+\end{Shaded}
+
+$\displaystyle 3 x + 4 y - 6$
+
+\hypertarget{chain-rule-1-variable}{%
+\subsubsection{Chain Rule (1-Variable)}\label{chain-rule-1-variable}}
+
+The ``normal'' chain rule formula:
+
+\[
+\frac{d}{dt}f(g(t))=f'(g(t))\cdot g'(t)
+ = \frac{df}{dt}\cdot \frac{dg}{dt} = \frac{df}{dt}
+\]
+
+\hypertarget{chain-rule-multi-variable}{%
+\subsubsection{Chain Rule (Multi
+Variable)}\label{chain-rule-multi-variable}}
+
+Let \(w = f(x, y)\) where \(f\) is a differentiable function of \(x\)
+and \(y\). If \(x = g(t)\) and \(y = h(t)\) where \(g\) and \(h\) are
+differentiable functions of \(t\), then \(w\) is also a differentiable
+function of \(t\) and
+\(\frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\partial w}{\partial x}\cdot \frac{\mathrm{d}x}{\mathrm{d}t} + \frac{\partial w}{\partial y}\cdot \frac{\mathrm{d}y}{\mathrm{d}t}\)
+
+\hypertarget{examples-8}{%
+\subsubsection{Examples}\label{examples-8}}
+
+\hypertarget{if-w-x2y-y2-where-xsin-t-and-yet-find-fracmathrmdwmathrmdt-at-t0}{%
+\paragraph{\texorpdfstring{If \(w= x^2y-y^2\) where \(x\sin t\) and
+\(y=e^t\), find \(\frac{\mathrm{d}w}{\mathrm{d}t}\) at
+\(t=0\)}{If w= x\^{}2y-y\^{}2 where x\textbackslash sin t and y=e\^{}t, find \textbackslash frac\{\textbackslash mathrm\{d\}w\}\{\textbackslash mathrm\{d\}t\} at t=0}}\label{if-w-x2y-y2-where-xsin-t-and-yet-find-fracmathrmdwmathrmdt-at-t0}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{w }\OperatorTok{=}\NormalTok{ x}\OperatorTok{**}\DecValTok{2}\OperatorTok{*}\NormalTok{y }\OperatorTok{{-}}\NormalTok{ y}\OperatorTok{**}\DecValTok{2}
+\NormalTok{w\_t }\OperatorTok{=}\NormalTok{ w.subs(\{x: sp.sin(t), y: sp.exp(t)\})}
+\NormalTok{dw\_dt }\OperatorTok{=}\NormalTok{ sp.diff(w\_t, t)}
+\NormalTok{display(dw\_dt.subs(t, }\DecValTok{0}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+$\displaystyle -2$
+
+\hypertarget{if-w-xy-xz-yz-and-x-t-1-yt2-1-zt-find-fracmathrmdwmathrmdt}{%
+\paragraph{\texorpdfstring{If \(w = xy + xz + yz\) and
+\(x = t-1, y=t^2-1, z=t\), find
+\(\frac{\mathrm{d}w}{\mathrm{d}t}\)}{If w = xy + xz + yz and x = t-1, y=t\^{}2-1, z=t, find \textbackslash frac\{\textbackslash mathrm\{d\}w\}\{\textbackslash mathrm\{d\}t\}}}\label{if-w-xy-xz-yz-and-x-t-1-yt2-1-zt-find-fracmathrmdwmathrmdt}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{w }\OperatorTok{=}\NormalTok{ x}\OperatorTok{*}\NormalTok{y }\OperatorTok{+}\NormalTok{ x}\OperatorTok{*}\NormalTok{z }\OperatorTok{+}\NormalTok{ y}\OperatorTok{*}\NormalTok{z}
+\NormalTok{w\_t }\OperatorTok{=}\NormalTok{ w.subs(\{x: t}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, y: t}\OperatorTok{**}\DecValTok{2}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, z: t\})}
+\NormalTok{display(sp.diff(w\_t, t))}
+\end{Highlighting}
+\end{Shaded}
+
+$\displaystyle 4 t^{2} + 2 t \left(t - 1\right) + 2 t - 3$
+
+\hypertarget{homework-2}{%
+\subsubsection{Homework}\label{homework-2}}
+
+\hypertarget{w-x2y2-xcos-t-ysin-t-at-tpi}{%
+\paragraph{\texorpdfstring{\(w = x^2+y^2, x=\cos t, y=\sin t\) at
+\(t=\pi\)}{w = x\^{}2+y\^{}2, x=\textbackslash cos t, y=\textbackslash sin t at t=\textbackslash pi}}\label{w-x2y2-xcos-t-ysin-t-at-tpi}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{w }\OperatorTok{=}\NormalTok{ x}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\NormalTok{ y}\OperatorTok{**}\DecValTok{2}
+\NormalTok{w\_t }\OperatorTok{=}\NormalTok{ w.subs(\{x: sp.cos(t), y: sp.sin(t)\})}
+\NormalTok{display(sp.diff(w\_t, t))}
+\NormalTok{display(sp.diff(w\_t, t).subs(t, sp.pi))}
+\end{Highlighting}
+\end{Shaded}
+
+$\displaystyle 0$
+
+$\displaystyle 0$
+
+\hypertarget{w-2yex---ln-z-x-lnt2-1-y-arctan-t-zet-at-t1}{%
+\paragraph{\texorpdfstring{\(w = 2ye^x - \ln z, x = \ln(t^2 + 1), y = \arctan t, z=e^t\)
+at
+\(t=1\)}{w = 2ye\^{}x - \textbackslash ln z, x = \textbackslash ln(t\^{}2 + 1), y = \textbackslash arctan t, z=e\^{}t at t=1}}\label{w-2yex---ln-z-x-lnt2-1-y-arctan-t-zet-at-t1}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{w }\OperatorTok{=} \DecValTok{2}\OperatorTok{*}\NormalTok{y}\OperatorTok{*}\NormalTok{sp.exp(x) }\OperatorTok{{-}}\NormalTok{ sp.ln(z)}
+\NormalTok{part\_wx }\OperatorTok{=}\NormalTok{ sp.diff(w, x)}
+\NormalTok{part\_wy }\OperatorTok{=}\NormalTok{ sp.diff(w, y)}
+\NormalTok{part\_wz }\OperatorTok{=}\NormalTok{ sp.diff(w, z)}
+\NormalTok{dx\_dt }\OperatorTok{=}\NormalTok{ sp.diff(sp.ln(t}\OperatorTok{**}\DecValTok{2} \OperatorTok{+} \DecValTok{1}\NormalTok{), t)}
+\NormalTok{dy\_dt }\OperatorTok{=}\NormalTok{ sp.diff(sp.atan(t), t)}
+\NormalTok{dz\_dt }\OperatorTok{=}\NormalTok{ sp.diff(sp.exp(t), t)}
+\NormalTok{dw\_dt }\OperatorTok{=}\NormalTok{ part\_wx }\OperatorTok{*}\NormalTok{ dx\_dt }\OperatorTok{+}\NormalTok{ part\_wy }\OperatorTok{*}\NormalTok{ dy\_dt }\OperatorTok{+}\NormalTok{ part\_wz }\OperatorTok{*}\NormalTok{ dz\_dt}
+\NormalTok{display(dw\_dt)}
+\NormalTok{display(dw\_dt.subs(t, }\DecValTok{1}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+$\displaystyle \frac{4 t y e^{x}}{t^{2} + 1} + \frac{2 e^{x}}{t^{2} + 1} - \frac{e^{t}}{z}$
+
+$\displaystyle 2 y e^{x} + e^{x} - \frac{e}{z}$
+
+\hypertarget{z-4exln-y-xln-rcostheta-yrsintheta-r-theta-left2-fracpi4right}{%
+\paragraph{\texorpdfstring{\(z = 4e^x\ln y, x=\ln (r\cos\theta), y=r\sin\theta; (r, \theta) = \left(2, \frac{\pi}{4}\right)\)}{z = 4e\^{}x\textbackslash ln y, x=\textbackslash ln (r\textbackslash cos\textbackslash theta), y=r\textbackslash sin\textbackslash theta; (r, \textbackslash theta) = \textbackslash left(2, \textbackslash frac\{\textbackslash pi\}\{4\}\textbackslash right)}}\label{z-4exln-y-xln-rcostheta-yrsintheta-r-theta-left2-fracpi4right}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{z }\OperatorTok{=} \DecValTok{4}\OperatorTok{*}\NormalTok{sp.exp(x)}\OperatorTok{*}\NormalTok{sp.ln(y)}
+\NormalTok{part\_zx }\OperatorTok{=}\NormalTok{ sp.diff(z, x)}
+\NormalTok{part\_zy }\OperatorTok{=}\NormalTok{ sp.diff(z, y)}
+\NormalTok{dx\_dr }\OperatorTok{=}\NormalTok{ sp.diff(sp.ln(r}\OperatorTok{*}\NormalTok{sp.cos(θ)), r)}
+\NormalTok{dx\_dθ }\OperatorTok{=}\NormalTok{ sp.diff(sp.ln(r}\OperatorTok{*}\NormalTok{sp.cos(θ)), θ)}
+\NormalTok{dy\_dr }\OperatorTok{=}\NormalTok{ sp.diff(r}\OperatorTok{*}\NormalTok{sp.sin(θ), r)}
+\NormalTok{dy\_dθ }\OperatorTok{=}\NormalTok{ sp.diff(r}\OperatorTok{*}\NormalTok{sp.sin(θ), θ)}
+\NormalTok{dz\_dr }\OperatorTok{=}\NormalTok{ part\_zx }\OperatorTok{*}\NormalTok{ dx\_dr }\OperatorTok{+}\NormalTok{ part\_zy }\OperatorTok{*}\NormalTok{ dy\_dr}
+\NormalTok{dz\_dθ }\OperatorTok{=}\NormalTok{ part\_zx }\OperatorTok{*}\NormalTok{ dx\_dθ }\OperatorTok{+}\NormalTok{ part\_zy }\OperatorTok{*}\NormalTok{ dy\_dθ}
+\NormalTok{display(Latex(}\VerbatimStringTok{r"$\textbackslash{}frac\{\textbackslash{}partial z\}\{\textbackslash{}partial r\} = "} \OperatorTok{+}\NormalTok{ sp.latex(dz\_dr) }\OperatorTok{+} \StringTok{"$"}\NormalTok{))}
+\NormalTok{display(Latex(}\VerbatimStringTok{r"$\textbackslash{}frac\{\textbackslash{}partial z\}\{\textbackslash{}partial\textbackslash{}theta\} = "} \OperatorTok{+}\NormalTok{ sp.latex(dz\_dθ) }\OperatorTok{+} \StringTok{"$"}\NormalTok{))}
+\NormalTok{display(dz\_dr.subs(\{r:}\DecValTok{2}\NormalTok{, θ:sp.pi}\OperatorTok{/}\DecValTok{4}\NormalTok{\}))}
+\NormalTok{display(dz\_dθ.subs(\{r:}\DecValTok{2}\NormalTok{, θ:sp.pi}\OperatorTok{/}\DecValTok{4}\NormalTok{\}))}
+\end{Highlighting}
+\end{Shaded}
+
+$\frac{\partial z}{\partial r} = \frac{4 e^{x} \sin{\left(θ \right)}}{y} + \frac{4 e^{x} \log{\left(y \right)}}{r}$
+
+$\frac{\partial z}{\partial\theta} = \frac{4 r e^{x} \cos{\left(θ \right)}}{y} - \frac{4 e^{x} \log{\left(y \right)} \sin{\left(θ \right)}}{\cos{\left(θ \right)}}$
+
+$\displaystyle 2 e^{x} \log{\left(y \right)} + \frac{2 \sqrt{2} e^{x}}{y}$
+
+$\displaystyle - 4 e^{x} \log{\left(y \right)} + \frac{4 \sqrt{2} e^{x}}{y}$
+
+\hypertarget{u-fracp-qq-r-p-xyz-q-x---y-z-r-xy-z-x-y-z-sqrt3-2-1}{%
+\paragraph{\texorpdfstring{\(u = \frac{p-q}{q-r}, p = x+y+z, q = x - y +z, r = x+y-z; (x, y, z) = (\sqrt{3}, 2, 1)\)}{u = \textbackslash frac\{p-q\}\{q-r\}, p = x+y+z, q = x - y +z, r = x+y-z; (x, y, z) = (\textbackslash sqrt\{3\}, 2, 1)}}\label{u-fracp-qq-r-p-xyz-q-x---y-z-r-xy-z-x-y-z-sqrt3-2-1}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{u }\OperatorTok{=}\NormalTok{ (p}\OperatorTok{{-}}\NormalTok{q)}\OperatorTok{/}\NormalTok{(q}\OperatorTok{{-}}\NormalTok{r)}
+\NormalTok{part\_ux }\OperatorTok{=}\NormalTok{ sp.diff(u.subs(\{p: x}\OperatorTok{+}\NormalTok{y}\OperatorTok{+}\NormalTok{z, q: x}\OperatorTok{{-}}\NormalTok{y}\OperatorTok{+}\NormalTok{z, r: x}\OperatorTok{+}\NormalTok{y}\OperatorTok{{-}}\NormalTok{z\}), x)}
+\NormalTok{part\_uy }\OperatorTok{=}\NormalTok{ sp.diff(u.subs(\{p: x}\OperatorTok{+}\NormalTok{y}\OperatorTok{+}\NormalTok{z, q: x}\OperatorTok{{-}}\NormalTok{y}\OperatorTok{+}\NormalTok{z, r: x}\OperatorTok{+}\NormalTok{y}\OperatorTok{{-}}\NormalTok{z\}), y)}
+\NormalTok{display(Latex(}\VerbatimStringTok{r"$\textbackslash{}frac\{\textbackslash{}partial u\}\{\textbackslash{}partial x\} = "} \OperatorTok{+}\NormalTok{ sp.latex(part\_ux) }\OperatorTok{+} \StringTok{"$"}\NormalTok{))}
+\NormalTok{display(Latex(}\VerbatimStringTok{r"$\textbackslash{}frac\{\textbackslash{}partial u\}\{\textbackslash{}partial y\} = "} \OperatorTok{+}\NormalTok{ sp.latex(part\_uy) }\OperatorTok{+} \StringTok{"$"}\NormalTok{))}
+\NormalTok{display(Latex(}\VerbatimStringTok{r"$\textbackslash{}frac\{\textbackslash{}partial u\}\{\textbackslash{}partial z\} = \textbackslash{}frac}\SpecialCharTok{\{4y\}}\VerbatimStringTok{\{({-}2y+2z)\^{}2\}$"}\NormalTok{))}
+\NormalTok{display(part\_ux.subs(\{x:sp.sqrt(}\DecValTok{3}\NormalTok{), y:}\DecValTok{2}\NormalTok{, z:}\DecValTok{1}\NormalTok{\}))}
+\NormalTok{display(part\_uy.subs(\{x:sp.sqrt(}\DecValTok{3}\NormalTok{), y:}\DecValTok{2}\NormalTok{, z:}\DecValTok{1}\NormalTok{\}))}
+\NormalTok{display(Latex(}\VerbatimStringTok{r"${-}2$"}\NormalTok{))}
+\end{Highlighting}
+\end{Shaded}
+
+$\frac{\partial u}{\partial x} = - \frac{16 y e^{x} \log{\left(y \right)}}{\left(- 2 y + 8 e^{x} \log{\left(y \right)}\right)^{2}}$
+
+$\frac{\partial u}{\partial y} = \frac{2 y \left(2 - \frac{8 e^{x}}{y}\right)}{\left(- 2 y + 8 e^{x} \log{\left(y \right)}\right)^{2}} + \frac{2}{- 2 y + 8 e^{x} \log{\left(y \right)}}$
+
+$\frac{\partial u}{\partial z} = \frac{4y}{(-2y+2z)^2}$
+
+$\displaystyle -2$
+
+$\displaystyle 1 - 4 e^{\sqrt{3}}$
+
+$-2$
 
 
 

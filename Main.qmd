@@ -1312,12 +1312,11 @@ $f_y = -\sec^2(2x-y)$
 ```{python}
 # import libraries
 import sympy as sp
-from IPython.display import display
+from IPython.display import display, Math, Latex
 ```
 
 ```{python}
-x, y = sp.symbols('x y')
-t = sp.symbols('t')
+x, y, t, z, r, θ, p, q = sp.symbols('x y t z r θ p q', real=True, positive=True)
 f = sp.integrate(t**2-1, (t, 3*x, 2*y))
 display(sp.diff(f, x))
 display(sp.diff(f, y))
@@ -1340,7 +1339,6 @@ display(sp.diff(f, y).subs({x:1, y:sp.ln(2)}))
 ### First, let's see this one. If $f(x, y, z) = x\sin(y+3z)$, find $f_x, f_y, f_z$.
 
 ```{python}
-x, y, z = sp.symbols('x y z')
 f = x*sp.sin(y+3*z)
 display(sp.diff(f, x))
 display(sp.diff(f, y))
@@ -1386,7 +1384,6 @@ For this problem, you need to "choose wisely." Knowing that the function and it'
 
 #### $f(x, y) = x(y-1)$
 ```{python}
-x, y, z = sp.symbols('x y z')
 f = x*(y-1)
 display(sp.diff(f, x))
 display(sp.diff(f, y))
@@ -1416,7 +1413,6 @@ display(sp.diff(f, y))
 ### $f(x, y) = \int_x^y g(t) \mathrm{d}t$
 ```{python}
 g = sp.Function('g')
-t = sp.symbols('t')
 f = sp.integrate(g(t), (t, x, y))
 display(sp.diff(f, x))
 display(sp.diff(f, y))
@@ -1446,4 +1442,172 @@ display(sp.diff(f, x, x))
 display(sp.diff(f, y, y))
 display(sp.diff(f, x, y))
 display(sp.diff(f, y, x))
+```
+
+## Definition of Differentiability (01/16)
+
+So, how do we solve the apparent contradiction?
+
+Defintion of differentiability in multivaraible calculus:
+
+The function $f(x, y)$ is said to be differentiable if there exists a *linear function* at the point (a, b): \
+$L(x, y) = f(a, b) + p(x-a) + q(y-b)$
+
+### Remember local linearization?
+
+...what it means for a function to be "locally linear?"
+
+Consider the following:
+
+Is this function differentiable at $x=0$?
+
+$f(x) = |x| + 1$
+
+What about this one?
+
+$g(x) = \sqrt{x^2+0.0001} + 0.99$
+
+The linearization of a function $f(x,y)$ at a point $(x_0, y_0)$ where $f$ is differentiable is given by the function: 
+
+\begin{align*}
+L(x, y) = f(x_0,y_0)+f_x(x_0,y_0)(x-x_0)+f_y(x_0,y_0)(y-y_0) \
+z = z_0 + m_x(x-x_0)+m_y(y-y_0) \ 
+0 = m_x(x-x_0)+m_y(y-y_0)+(z-z_0) \
+0 = A(x-x_0) + B(y-y) + C(z-z_0)
+\end{align*}
+...where $\vec{n} = \langle A, B, C \rangle$ and $p = (x_0, y_0, z_0)$
+
+### Examples
+
+#### Find the linearization of $f(x, y) = y^2 + 2xy - \frac{1}{2}x^2$ at the point $(2, 3)$.
+
+### Homework 
+
+#### Find the linearization of $f(x, y) = x^2 + y^2 + 1$ at $(1, 1)$
+```{python}
+f = x**2 + y**2 + 1
+x_0 = 1
+y_0 = 1
+z_0 = f.subs({x:x_0, y:y_0})
+f_x = sp.diff(f, x).subs({x:x_0, y:y_0})
+f_y = sp.diff(f, y).subs({x:x_0, y:y_0})
+display(z_0 + f_x*(x-x_0) + f_y*(y-y_0))
+```
+
+#### Find the linearization of $f(x, y) = 3x-4y+5$ at $(1, 1)$
+```{python}
+f = 3*x - 4*y + 5
+x_0 = 1
+y_0 = 1
+z_0 = f.subs({x:x_0, y:y_0})
+f_x = sp.diff(f, x).subs({x:x_0, y:y_0})
+f_y = sp.diff(f, y).subs({x:x_0, y:y_0})
+display(z_0 + f_x*(x-x_0) + f_y*(y-y_0))
+```
+
+#### Find the linearization of $f(x, y) = e^x \cos y$ at $(0, \frac{\pi}{2})$
+```{python}
+f = sp.exp(x)*sp.cos(y)
+x_0 = 0
+y_0 = sp.pi/2
+z_0 = f.subs({x:x_0, y:y_0})
+f_x = sp.diff(f, x).subs({x:x_0, y:y_0})
+f_y = sp.diff(f, y).subs({x:x_0, y:y_0})
+display(z_0 + f_x*(x-x_0) + f_y*(y-y_0))
+```
+
+## Chain Rule (01/18)
+
+### Warmup: Find the linearization of $f(x, y) = x^3y^4$ at the point $(1, 1)
+
+```{python}
+f = x**3*y**4
+x_0 = 1
+y_0 = 1
+z_0 = f.subs({x:x_0, y:y_0})
+f_x = sp.diff(f, x).subs({x:x_0, y:y_0})
+f_y = sp.diff(f, y).subs({x:x_0, y:y_0})
+display(z_0 + f_x*(x-x_0) + f_y*(y-y_0))
+```
+
+### Chain Rule (1-Variable)
+The "normal" chain rule formula:
+
+$$
+\frac{d}{dt}f(g(t))=f'(g(t))\cdot g'(t)
+ = \frac{df}{dt}\cdot \frac{dg}{dt} = \frac{df}{dt}
+$$
+
+### Chain Rule (Multi Variable)
+Let $w = f(x, y)$ where $f$ is a differentiable function of $x$ and $y$. If $x = g(t)$ and $y = h(t)$ where $g$ and $h$ are differentiable functions of $t$, then $w$ is also a differentiable function of $t$ and $\frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\partial w}{\partial x}\cdot \frac{\mathrm{d}x}{\mathrm{d}t} + \frac{\partial w}{\partial y}\cdot \frac{\mathrm{d}y}{\mathrm{d}t}$
+
+### Examples
+
+#### If $w=  x^2y-y^2$ where $x\sin t$ and $y=e^t$, find $\frac{\mathrm{d}w}{\mathrm{d}t}$ at $t=0$
+```{python}
+w = x**2*y - y**2
+w_t = w.subs({x: sp.sin(t), y: sp.exp(t)})
+dw_dt = sp.diff(w_t, t)
+display(dw_dt.subs(t, 0))
+```
+
+#### If $w = xy + xz + yz$ and $x = t-1, y=t^2-1, z=t$, find $\frac{\mathrm{d}w}{\mathrm{d}t}$
+```{python}
+w = x*y + x*z + y*z
+w_t = w.subs({x: t-1, y: t**2-1, z: t})
+display(sp.diff(w_t, t))
+```
+
+### Homework
+
+#### $w = x^2+y^2, x=\cos t, y=\sin t$ at $t=\pi$
+```{python}
+w = x**2 + y**2
+w_t = w.subs({x: sp.cos(t), y: sp.sin(t)})
+display(sp.diff(w_t, t))
+display(sp.diff(w_t, t).subs(t, sp.pi))
+```
+
+#### $w = 2ye^x - \ln z, x = \ln(t^2 + 1), y = \arctan t, z=e^t$ at $t=1$
+```{python}
+w = 2*y*sp.exp(x) - sp.ln(z)
+part_wx = sp.diff(w, x)
+part_wy = sp.diff(w, y)
+part_wz = sp.diff(w, z)
+dx_dt = sp.diff(sp.ln(t**2 + 1), t)
+dy_dt = sp.diff(sp.atan(t), t)
+dz_dt = sp.diff(sp.exp(t), t)
+dw_dt = part_wx * dx_dt + part_wy * dy_dt + part_wz * dz_dt
+display(dw_dt)
+display(dw_dt.subs(t, 1))
+```
+
+#### $z = 4e^x\ln y, x=\ln (r\cos\theta), y=r\sin\theta; (r, \theta) = \left(2, \frac{\pi}{4}\right)$
+```{python}
+z = 4*sp.exp(x)*sp.ln(y)
+part_zx = sp.diff(z, x)
+part_zy = sp.diff(z, y)
+dx_dr = sp.diff(sp.ln(r*sp.cos(θ)), r)
+dx_dθ = sp.diff(sp.ln(r*sp.cos(θ)), θ)
+dy_dr = sp.diff(r*sp.sin(θ), r)
+dy_dθ = sp.diff(r*sp.sin(θ), θ)
+dz_dr = part_zx * dx_dr + part_zy * dy_dr
+dz_dθ = part_zx * dx_dθ + part_zy * dy_dθ
+display(Latex(r"$\frac{\partial z}{\partial r} = " + sp.latex(dz_dr) + "$"))
+display(Latex(r"$\frac{\partial z}{\partial\theta} = " + sp.latex(dz_dθ) + "$"))
+display(dz_dr.subs({r:2, θ:sp.pi/4}))
+display(dz_dθ.subs({r:2, θ:sp.pi/4}))
+```
+
+#### $u = \frac{p-q}{q-r}, p = x+y+z, q = x - y +z, r = x+y-z; (x, y, z) = (\sqrt{3}, 2, 1)$
+```{python}
+u = (p-q)/(q-r)
+part_ux = sp.diff(u.subs({p: x+y+z, q: x-y+z, r: x+y-z}), x)
+part_uy = sp.diff(u.subs({p: x+y+z, q: x-y+z, r: x+y-z}), y)
+display(Latex(r"$\frac{\partial u}{\partial x} = " + sp.latex(part_ux) + "$"))
+display(Latex(r"$\frac{\partial u}{\partial y} = " + sp.latex(part_uy) + "$"))
+display(Latex(r"$\frac{\partial u}{\partial z} = \frac{4y}{(-2y+2z)^2}$"))
+display(part_ux.subs({x:sp.sqrt(3), y:2, z:1}))
+display(part_uy.subs({x:sp.sqrt(3), y:2, z:1}))
+display(Latex(r"$-2$"))
 ```
