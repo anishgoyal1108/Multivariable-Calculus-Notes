@@ -1611,3 +1611,45 @@ display(part_ux.subs({x:sp.sqrt(3), y:2, z:1}))
 display(part_uy.subs({x:sp.sqrt(3), y:2, z:1}))
 display(Latex(r"$-2$"))
 ```
+
+## Related Rates and Implicit Differentiation (01/22)
+
+### Related rates in Calc I
+1) Come up with a formula (usually volume or something)
+2) Pray to the math gods that you can somehow put the formula in terms of one variable
+3) Take the derivatives, plug in tons of values and rates, and solve for the missing one
+
+In Calc III, you can remove step 2 and just use chain rule for step 3.
+
+### Examples
+
+#### A right circular cylinder with a n open top has height $h$, radius $r$, and surface area $A$. If $\frac{\mathrm{d}h}{\mathrm{d}t} = 3$ and $\frac{\mathrm{d}r}{\mathrm{d}t} = -2$, find $\frac{\mathrm{d}A}{\mathrm{d}t}$ when $h=10$ and $r=5$.
+
+```{python}
+h, r, t = sp.symbols('h r t')
+A = sp.pi*r**2 + 2*sp.pi*r*h
+dhdt = 3
+drdt = -2
+dAdt = sp.diff(A, r)*drdt + sp.diff(A, h)*dhdt
+display(dAdt.subs({h:10, r:5}))
+```
+
+### Implicit Differentiation From Calc I
+
+#### Find $\frac{\mathrm{d}y}{\mathrm{d}x}$ given that $y^3 + 4x^2 - 2xy +3x =  19$
+$y' = \frac{8x+2y-3}{3y^2-2x}$
+
+#### Now suppose that $f(x,y) = y^3 + 4x^2 - 2xy +3x - 19$. Find $\frac{\partial f}{\partial x}$ and $\frac{\partial f}{\partial y}$.
+```{python}
+display(sp.diff(f, x))
+display(sp.diff(f, y))
+```
+
+If $f(x,y) = 0$ defines $y$ implicitly as a differentiable fnuction of $x$, then $\frac{\mathrm{d}y}{\mathrm{d}x} = -\frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial y}}$
+
+Similarly, if $f(x, y, z) = 0$ defines $z$ implicitly as a differentiable function of $x$ and $y$, then
+
+$$
+\frac{\mathrm{d}z}{\mathrm{d}x} = -\frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial z}} \text{ and } \frac{\mathrm{d}z}{\mathrm{d}y} = -\frac{\frac{\partial f}{\partial y}}{\frac{\partial f}{\partial z}}
+$$
+01/2

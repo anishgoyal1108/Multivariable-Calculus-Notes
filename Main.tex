@@ -224,7 +224,7 @@
 \input{./title.tex}
 \newpage
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, interior hidden, borderline west={3pt}{0pt}{shadecolor}, sharp corners, boxrule=0pt, frame hidden, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden, sharp corners, frame hidden, breakable]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -2774,6 +2774,91 @@ $\displaystyle -2$
 $\displaystyle 1 - 4 e^{\sqrt{3}}$
 
 $-2$
+
+\hypertarget{related-rates-and-implicit-differentiation-0122}{%
+\subsection{Related Rates and Implicit Differentiation
+(01/22)}\label{related-rates-and-implicit-differentiation-0122}}
+
+\hypertarget{related-rates-in-calc-i}{%
+\subsubsection{Related rates in Calc I}\label{related-rates-in-calc-i}}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Come up with a formula (usually volume or something)
+\item
+  Pray to the math gods that you can somehow put the formula in terms of
+  one variable
+\item
+  Take the derivatives, plug in tons of values and rates, and solve for
+  the missing one
+\end{enumerate}
+
+In Calc III, you can remove step 2 and just use chain rule for step 3.
+
+\hypertarget{examples-9}{%
+\subsubsection{Examples}\label{examples-9}}
+
+\hypertarget{a-right-circular-cylinder-with-a-n-open-top-has-height-h-radius-r-and-surface-area-a.-if-fracmathrmdhmathrmdt-3-and-fracmathrmdrmathrmdt--2-find-fracmathrmdamathrmdt-when-h10-and-r5.}{%
+\paragraph{\texorpdfstring{A right circular cylinder with a n open top
+has height \(h\), radius \(r\), and surface area \(A\). If
+\(\frac{\mathrm{d}h}{\mathrm{d}t} = 3\) and
+\(\frac{\mathrm{d}r}{\mathrm{d}t} = -2\), find
+\(\frac{\mathrm{d}A}{\mathrm{d}t}\) when \(h=10\) and
+\(r=5\).}{A right circular cylinder with a n open top has height h, radius r, and surface area A. If \textbackslash frac\{\textbackslash mathrm\{d\}h\}\{\textbackslash mathrm\{d\}t\} = 3 and \textbackslash frac\{\textbackslash mathrm\{d\}r\}\{\textbackslash mathrm\{d\}t\} = -2, find \textbackslash frac\{\textbackslash mathrm\{d\}A\}\{\textbackslash mathrm\{d\}t\} when h=10 and r=5.}}\label{a-right-circular-cylinder-with-a-n-open-top-has-height-h-radius-r-and-surface-area-a.-if-fracmathrmdhmathrmdt-3-and-fracmathrmdrmathrmdt--2-find-fracmathrmdamathrmdt-when-h10-and-r5.}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{h, r, t }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}h r t\textquotesingle{}}\NormalTok{)}
+\NormalTok{A }\OperatorTok{=}\NormalTok{ sp.pi}\OperatorTok{*}\NormalTok{r}\OperatorTok{**}\DecValTok{2} \OperatorTok{+} \DecValTok{2}\OperatorTok{*}\NormalTok{sp.pi}\OperatorTok{*}\NormalTok{r}\OperatorTok{*}\NormalTok{h}
+\NormalTok{dhdt }\OperatorTok{=} \DecValTok{3}
+\NormalTok{drdt }\OperatorTok{=} \OperatorTok{{-}}\DecValTok{2}
+\NormalTok{dAdt }\OperatorTok{=}\NormalTok{ sp.diff(A, r)}\OperatorTok{*}\NormalTok{drdt }\OperatorTok{+}\NormalTok{ sp.diff(A, h)}\OperatorTok{*}\NormalTok{dhdt}
+\NormalTok{display(dAdt.subs(\{h:}\DecValTok{10}\NormalTok{, r:}\DecValTok{5}\NormalTok{\}))}
+\end{Highlighting}
+\end{Shaded}
+
+$\displaystyle - 30 \pi$
+
+\hypertarget{implicit-differentiation-from-calc-i}{%
+\subsubsection{Implicit Differentiation From Calc
+I}\label{implicit-differentiation-from-calc-i}}
+
+\hypertarget{find-fracmathrmdymathrmdx-given-that-y3-4x2---2xy-3x-19}{%
+\paragraph{\texorpdfstring{Find \(\frac{\mathrm{d}y}{\mathrm{d}x}\)
+given that
+\(y^3 + 4x^2 - 2xy +3x = 19\)}{Find \textbackslash frac\{\textbackslash mathrm\{d\}y\}\{\textbackslash mathrm\{d\}x\} given that y\^{}3 + 4x\^{}2 - 2xy +3x = 19}}\label{find-fracmathrmdymathrmdx-given-that-y3-4x2---2xy-3x-19}}
+
+\(y' = \frac{8x+2y-3}{3y^2-2x}\)
+
+\hypertarget{now-suppose-that-fxy-y3-4x2---2xy-3x---19.-find-fracpartial-fpartial-x-and-fracpartial-fpartial-y.}{%
+\paragraph{\texorpdfstring{Now suppose that
+\(f(x,y) = y^3 + 4x^2 - 2xy +3x - 19\). Find
+\(\frac{\partial f}{\partial x}\) and
+\(\frac{\partial f}{\partial y}\).}{Now suppose that f(x,y) = y\^{}3 + 4x\^{}2 - 2xy +3x - 19. Find \textbackslash frac\{\textbackslash partial f\}\{\textbackslash partial x\} and \textbackslash frac\{\textbackslash partial f\}\{\textbackslash partial y\}.}}\label{now-suppose-that-fxy-y3-4x2---2xy-3x---19.-find-fracpartial-fpartial-x-and-fracpartial-fpartial-y.}}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{display(sp.diff(f, x))}
+\NormalTok{display(sp.diff(f, y))}
+\end{Highlighting}
+\end{Shaded}
+
+$\displaystyle 3 x^{2} y^{4}$
+
+$\displaystyle 4 x^{3} y^{3}$
+
+If \(f(x,y) = 0\) defines \(y\) implicitly as a differentiable fnuction
+of \(x\), then
+\(\frac{\mathrm{d}y}{\mathrm{d}x} = -\frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial y}}\)
+
+Similarly, if \(f(x, y, z) = 0\) defines \(z\) implicitly as a
+differentiable function of \(x\) and \(y\), then
+
+\[
+\frac{\mathrm{d}z}{\mathrm{d}x} = -\frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial z}} \text{ and } \frac{\mathrm{d}z}{\mathrm{d}y} = -\frac{\frac{\partial f}{\partial y}}{\frac{\partial f}{\partial z}}
+\]
 
 
 
