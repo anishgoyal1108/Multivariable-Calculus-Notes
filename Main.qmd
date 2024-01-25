@@ -1313,7 +1313,7 @@ $f_y = -\sec^2(2x-y)$
 # import libraries
 import sympy as sp
 from IPython.display import display, Math, Latex
-x, y, t, z, r, θ, p, q = sp.symbols('x y t z r θ p q', real=True, positive=True)
+x, y, t, z, r, θ, p, q = sp.symbols('x y t z r θ p q', real=True)
 ```
 
 ```{python}
