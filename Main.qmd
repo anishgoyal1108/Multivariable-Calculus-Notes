@@ -1313,10 +1313,10 @@ $f_y = -\sec^2(2x-y)$
 # import libraries
 import sympy as sp
 from IPython.display import display, Math, Latex
+x, y, t, z, r, θ, p, q = sp.symbols('x y t z r θ p q', real=True, positive=True)
 ```
 
 ```{python}
-x, y, t, z, r, θ, p, q = sp.symbols('x y t z r θ p q', real=True, positive=True)
 f = sp.integrate(t**2-1, (t, 3*x, 2*y))
 display(sp.diff(f, x))
 display(sp.diff(f, y))
@@ -1652,4 +1652,120 @@ Similarly, if $f(x, y, z) = 0$ defines $z$ implicitly as a differentiable functi
 $$
 \frac{\mathrm{d}z}{\mathrm{d}x} = -\frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial z}} \text{ and } \frac{\mathrm{d}z}{\mathrm{d}y} = -\frac{\frac{\partial f}{\partial y}}{\frac{\partial f}{\partial z}}
 $$
-01/2
+
+## Directional Derivatives and Gradient Vectors (01/25)
+Suppose that $f$ is differentiable at $(x_0, y_0)$ and $\vec{u} = \langle u_1, u_2 \rangle$ is any [unit]{.underline} vector. Then the directional derivative of $f$ at $(x_0, y_0)$ in the direction of $\vec{u}$ is given by: $D_{\vec{u}}f(x_0, y_0) = f_x(x_0, y_0)u_1 + f_y(x_0, y_0)u_2$
+
+In other words, this is partial x times the x component of the unit vector plus partial y times the y component of the unit vector.
+
+The directional derivative is also denoted by:
+
+$(D_uf)_{p_0}$; "The derivative of $f$ at $P_0$ in the direction of $u$"
+
+### Find the directional derivative of $f(x,y) = x^2\sin 2y$ at $\left(1, \frac{\pi}{2}\right)$ in the direction of $\vec{v} = 3\vec{i} - 4\vec{j}$.
+
+\begin{align*}
+f_x &= 2x\sin 2y \\
+f_y &= 2x^2\cos 2y \\
+f_x(1, \frac{\pi}{2}) &= 0 \\
+f_y(1, \frac{\pi}{2}) &= -2 \\
+\vec{u_1} &= \frac{3}{5} \\
+\vec{u_2} &= -\frac{4}{5} \\ 
+D_{\vec{u}}f(1, \frac{\pi}{2}) &= 0 \cdot \frac{3}{5} - 2 \cdot -\frac{4}{5} \\
+&= \frac{8}{5}
+\end{align*}
+
+### Thinking questions
+Not too bad, right?
+
+What if I wanted the directional derivative of $f(x, y)$ in the direction of $v = i$? What can you tell me about that derivative?
+
+$f_x$
+
+What if I just wanted it in the direction of $v = j $ ?
+
+$f_u$
+
+So, all of this time, when you've been findign $f_x$ and $f_y$ at a point $(x_0, y_0)$, you've really just been finding the components to a (not unit) vector that contains both derivatives
+
+### The Gradient
+
+Let $z = f(x, y)$ be a function of $x$ and $y$ such that $f_x$ and $f_y$ exist. Then the gradient of $f$ denoted by $\nabla f(x, y)$ is the vector:
+
+$\nabla f(x, y) = f_x(x, y)\vec{i} + f_y(x, y)\vec{j}$
+
+### Find the gradient of $f(x, y) = y\ln x + xy^2$ at the point $(e^3, 2)$
+
+\begin{align*}
+f_x &= \frac{y}{x} + y^2 \\
+f_y &= \ln x + 2xy \\
+\nabla f(x, y) &= \langle \frac{2}{e^3} + 4 , 3+4e^3 \rangle
+\end{align*}
+
+Wait a second... go back to how we calculate a directional derivative...
+
+$D_{\vec{u}}f(x_0, y_0) = f_x(x_0, y_0)u_1 + f_y(x_0, y_0)u_2$
+
+This is the same as the dot product of the gradient and the unit vector!
+
+$D_{\vec{u}}f(x_0, y_0) = \nabla f(x_0, y_0) \cdot \vec{u}$
+
+### Homework
+Find the gradient of the following:
+
+#### $g(x, y) = y-x^2, (-1, 0)$
+```{python}
+g = y - x**2
+g_x = sp.diff(g, x)
+g_y = sp.diff(g, y)
+display(g_x.subs({x:-1, y:0}))
+display(g_y.subs({x:-1, y:0}))
+```
+
+#### $g(x, y) = x^2 + y^2 - 2z^2 + z\ln x, (1, 1, 1)$
+```{python}
+g = x**2 + y**2 - 2*z**2 + z*sp.ln(x)
+g_x = sp.diff(g, x)
+g_y = sp.diff(g, y)
+g_z = sp.diff(g, z)
+display(g_x.subs({x:1, y:1, z:1}))
+display(g_y.subs({x:1, y:1, z:1}))
+display(g_z.subs({x:1, y:1, z:1}))
+```
+
+Find the directional derivative of $f$ at $P_0$ in the direction of $A$.
+
+#### $f(x, y) = 2xy - 3y^2, P_0 = (5, 5), A = \langle 4, 3 \rangle$
+```{python}
+f = 2*x*y - 3*y**2
+f_x = sp.diff(f, x).subs({x:5, y:5})
+f_y = sp.diff(f, y).subs({x:5, y:5})
+A = sp.sqrt(4**2 + 3**2)
+u_1 = 4/A
+u_2 = 3/A
+display(f_x*u_1 + f_y*u_2)
+```
+
+#### $f(x, y) = x- \left(\frac{y^2}{x}\right) + \sqrt{3}\sec^{-1}(2xy), P_0 = (1, 1), A = \langle 12, 5 \rangle$
+```{python}
+f = x - y**2/x + sp.sqrt(3)*sp.asec(2*x*y)
+f_x = sp.diff(f, x).subs({x:1, y:1})
+f_y = sp.diff(f, y).subs({x:1, y:1})
+A = sp.sqrt(12**2 + 5**2)
+u_1 = 12/A
+u_2 = 5/A
+display(f_x*u_1 + f_y*u_2)
+```
+
+#### $f(x, y) = xy + yz + zx, P_0 = (1, -1, 2), A = \angle 3, 6, -2 \rangle$
+```{python}
+f = x*y + y*z + z*x
+f_x = sp.diff(f, x).subs({x:1, y:-1, z:2})
+f_y = sp.diff(f, y).subs({x:1, y:-1, z:2})
+f_z = sp.diff(f, z).subs({x:1, y:-1, z:2})
+A = sp.sqrt(3**2 + 6**2 + (-2)**2)
+u_1 = 3/A
+u_2 = 6/A
+u_3 = -2/A
+display(f_x*u_1 + f_y*u_2 + f_z*u_3)
+```

@@ -224,7 +224,7 @@
 \input{./title.tex}
 \newpage
 
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[enhanced, boxrule=0pt, borderline west={3pt}{0pt}{shadecolor}, interior hidden, sharp corners, frame hidden, breakable]}{\end{tcolorbox}}\fi
+\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, breakable, enhanced, borderline west={3pt}{0pt}{shadecolor}, sharp corners, boxrule=0pt, interior hidden]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -2859,6 +2859,79 @@ differentiable function of \(x\) and \(y\), then
 \[
 \frac{\mathrm{d}z}{\mathrm{d}x} = -\frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial z}} \text{ and } \frac{\mathrm{d}z}{\mathrm{d}y} = -\frac{\frac{\partial f}{\partial y}}{\frac{\partial f}{\partial z}}
 \]
+
+\hypertarget{directional-derivatives-and-gradient-vectors-0125}{%
+\subsection{Directional Derivatives and Gradient Vectors
+(01/25)}\label{directional-derivatives-and-gradient-vectors-0125}}
+
+Suppose that \(f\) is differentiable at \((x_0, y_0)\) and
+\(\vec{u} = \langle u_1, u_2 \rangle\) is any \ul{unit} vector. Then the
+directional derivative of \(f\) at \((x_0, y_0)\) in the direction of
+\(\vec{u}\) is given by:
+\(D_{\vec{u}}f(x_0, y_0) = f_x(x_0, y_0)u_1 + f_y(x_0, y_0)u_2\)
+
+In other words, this is partial x times the x component of the unit
+vector plus partial y times the y component of the unit vector.
+
+The directional derivative is also denoted by:
+
+\((D_uf)_{p_0}\); ``The derivative of \(f\) at \(P_0\) in the direction
+of \(u\)''
+
+\hypertarget{find-the-directional-derivative-of-fxy-x2sin-2y-at-left1-fracpi2right-in-the-direction-of-vecv-3veci---4vecj.}{%
+\subsubsection{\texorpdfstring{Find the directional derivative of
+\(f(x,y) = x^2\sin 2y\) at \(\left(1, \frac{\pi}{2}\right)\) in the
+direction of
+\(\vec{v} = 3\vec{i} - 4\vec{j}\).}{Find the directional derivative of f(x,y) = x\^{}2\textbackslash sin 2y at \textbackslash left(1, \textbackslash frac\{\textbackslash pi\}\{2\}\textbackslash right) in the direction of \textbackslash vec\{v\} = 3\textbackslash vec\{i\} - 4\textbackslash vec\{j\}.}}\label{find-the-directional-derivative-of-fxy-x2sin-2y-at-left1-fracpi2right-in-the-direction-of-vecv-3veci---4vecj.}}
+
+\begin{align*}
+f_x &= 2x\sin 2y \\
+f_y &= 2x^2\cos 2y \\
+f_x(1, \frac{\pi}{2}) &= 0 \\
+f_y(1, \frac{\pi}{2}) &= -2 \\
+\vec{u_1} &= \frac{3}{5} \\
+\vec{u_2} &= -\frac{4}{5} \\ 
+D_{\vec{u}}f(1, \frac{\pi}{2}) &= 0 \cdot \frac{3}{5} - 2 \cdot -\frac{4}{5} \\
+&= \frac{8}{5}
+\end{align*}
+
+\hypertarget{thinking-questions}{%
+\subsubsection{Thinking questions}\label{thinking-questions}}
+
+Not too bad, right?
+
+What if I wanted the directional derivative of \(f(x, y)\) in the
+direction of \(v = i\)? What can you tell me about that derivative?
+
+\(f_x\)
+
+What if I just wanted it in the direction of \$v = j \$ ?
+
+\(f_u\)
+
+So, all of this time, when you've been findign \(f_x\) and \(f_y\) at a
+point \((x_0, y_0)\), you've really just been finding the components to
+a (not unit) vector that contains both derivatives
+
+\hypertarget{the-gradient}{%
+\subsubsection{The Gradient}\label{the-gradient}}
+
+Let \(z = f(x, y)\) be a function of \(x\) and \(y\) such that \(f_x\)
+and \(f_y\) exist. Then the gradient of \(f\) denoted by
+\(\nabla f(x, y)\) is the vector:
+
+\(\nabla f(x, y) = f_x(x, y)\vec{i} + f_y(x, y)\vec{j}\)
+
+\hypertarget{find-the-gradient-of-fx-y-yln-x-xy2-at-the-point-e3-2}{%
+\subsubsection{\texorpdfstring{Find the gradient of
+\(f(x, y) = y\ln x + xy^2\) at the point
+\((e^3, 2)\)}{Find the gradient of f(x, y) = y\textbackslash ln x + xy\^{}2 at the point (e\^{}3, 2)}}\label{find-the-gradient-of-fx-y-yln-x-xy2-at-the-point-e3-2}}
+
+\begin{align*}
+f_x &= \frac{y}{x} + y^2 \\
+f_y &= \ln x + 2xy \\
+\nabla f(x, y) &= \langle \frac{2}{e^3} + 4 , 3+4e^3 \rangle
+\end{align*}
 
 
 
