@@ -43,7 +43,13 @@
   \KOMAoptions{parskip=half}}
 \makeatother
 \usepackage{xcolor}
-\usepackage{soul}
+\ifLuaTeX
+  \usepackage{luacolor}
+  \usepackage[soul]{lua-ul}
+\else
+  \usepackage{soul}
+  
+\fi
 \setlength{\emergencystretch}{3em} % prevent overfull lines
 \setcounter{secnumdepth}{5}
 % Make \paragraph and \subparagraph free-standing
@@ -148,10 +154,6 @@
 \; }
 \KOMAoption{captions}{tableheading}
 \makeatletter
-\makeatother
-\makeatletter
-\makeatother
-\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \AtBeginDocument{%
 \ifdefined\contentsname
@@ -187,27 +189,19 @@
 \newcommand*\listoflistings{\listof{codelisting}{List of Listings}}
 \makeatother
 \makeatletter
+\makeatother
+\makeatletter
 \@ifpackageloaded{caption}{}{\usepackage{caption}}
 \@ifpackageloaded{subcaption}{}{\usepackage{subcaption}}
-\makeatother
-\makeatletter
-\@ifpackageloaded{tcolorbox}{}{\usepackage[skins,breakable]{tcolorbox}}
-\makeatother
-\makeatletter
-\@ifundefined{shadecolor}{\definecolor{shadecolor}{rgb}{.97, .97, .97}}
-\makeatother
-\makeatletter
-\makeatother
-\makeatletter
 \makeatother
 \ifLuaTeX
   \usepackage{selnolig}  % disable illegal ligatures
 \fi
-\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\usepackage{bookmark}
+
 \IfFileExists{xurl.sty}{\usepackage{xurl}}{} % add URL line breaks if available
 \urlstyle{same} % disable monospaced font for URLs
 \hypersetup{
-  pdftitle={Chapter 1: Systems of Linear Equations and Matrices},
   colorlinks=true,
   linkcolor={blue},
   filecolor={Maroon},
@@ -215,16 +209,13 @@
   urlcolor={Blue},
   pdfcreator={LaTeX via pandoc}}
 
-\title{Chapter 1: Systems of Linear Equations and Matrices}
 \author{}
 \date{}
 
 \begin{document}
-\maketitle
+
 \input{./title.tex}
 \newpage
-
-\ifdefined\Shaded\renewenvironment{Shaded}{\begin{tcolorbox}[frame hidden, breakable, enhanced, borderline west={3pt}{0pt}{shadecolor}, sharp corners, boxrule=0pt, interior hidden]}{\end{tcolorbox}}\fi
 
 \renewcommand*\contentsname{Table of Contents}
 {
@@ -234,8 +225,10 @@
 }
 \newpage{}
 
-\hypertarget{matrix-operations}{%
-\subsection{Matrix Operations}\label{matrix-operations}}
+\section{Chapter 1: Systems of Linear Equations and
+Matrices}\label{chapter-1-systems-of-linear-equations-and-matrices}
+
+\subsection{Matrix Operations}\label{matrix-operations}
 
 \begin{itemize}
 \tightlist
@@ -246,14 +239,12 @@
   values
 \end{itemize}
 
-\hypertarget{addition-subtraction}{%
-\subsubsection{Addition \& Subtraction}\label{addition-subtraction}}
+\subsubsection{Addition \& Subtraction}\label{addition-subtraction}
 
 Two matrices can be added/subtracted \(\iff\) they have the same
 dimensions. \includegraphics{img/addition-subtraction.png}
 
-\hypertarget{scalar-multiplication}{%
-\subsubsection{Scalar Multiplication}\label{scalar-multiplication}}
+\subsubsection{Scalar Multiplication}\label{scalar-multiplication}
 
 \begin{itemize}
 \tightlist
@@ -262,8 +253,7 @@ dimensions. \includegraphics{img/addition-subtraction.png}
   matrix by a number \includegraphics{img/scalar.png}
 \end{itemize}
 
-\hypertarget{matrix-multiplication}{%
-\subsubsection{Matrix Multiplication}\label{matrix-multiplication}}
+\subsubsection{Matrix Multiplication}\label{matrix-multiplication}
 
 \begin{itemize}
 \tightlist
@@ -273,9 +263,8 @@ dimensions. \includegraphics{img/addition-subtraction.png}
   The resulting matrix will be (m x p)
 \end{itemize}
 
-\hypertarget{properties-of-matrix-arithmetic}{%
 \subsubsection{Properties of Matrix
-Arithmetic}\label{properties-of-matrix-arithmetic}}
+Arithmetic}\label{properties-of-matrix-arithmetic}
 
 \begin{enumerate}
 \def\labelenumi{(\alph{enumi})}
@@ -308,8 +297,7 @@ Arithmetic}\label{properties-of-matrix-arithmetic}}
   a(BC) = (aB)C = B(aC)
 \end{enumerate}
 
-\hypertarget{examples}{%
-\subsubsection{Examples}\label{examples}}
+\subsubsection{Examples}\label{examples}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -333,8 +321,7 @@ Arithmetic}\label{properties-of-matrix-arithmetic}}
   \end{align*}
 \end{enumerate}
 
-\hypertarget{transpose-of-a-matrix}{%
-\subsection{Transpose of a Matrix}\label{transpose-of-a-matrix}}
+\subsection{Transpose of a Matrix}\label{transpose-of-a-matrix}
 
 The transpose of an (m x n) matrix is the (n x m) matrix where the rows
 and columns are swapped.
@@ -361,9 +348,8 @@ B \cdot B^T &= \begin{bmatrix} 4 & 2 \\ -1 & 0 \\ 3 & 5 \end{bmatrix} \begin{bma
   the elements on the main diagonal: \(\mathrm{tr}(A)\)
 \end{itemize}
 
-\hypertarget{transpose-matrix-properties}{%
 \subsubsection{Transpose Matrix
-Properties}\label{transpose-matrix-properties}}
+Properties}\label{transpose-matrix-properties}
 
 \begin{itemize}
 \tightlist
@@ -379,14 +365,12 @@ Properties}\label{transpose-matrix-properties}}
   \((AB)^T = B^T A^T\)
 \end{itemize}
 
-\hypertarget{homework-matrix-stuff-08032023}{%
 \subsection{Homework --- ``Matrix Stuff''
-(08/03/2023)}\label{homework-matrix-stuff-08032023}}
+(08/03/2023)}\label{homework-matrix-stuff-08032023}
 
-\hypertarget{suppose-that-a-b-c-d-and-e-are-matrices-with-the-following-sizes}{%
 \subsubsection{\texorpdfstring{Suppose that \(A, B, C, D\) and \(E\) are
 matrices with the following
-sizes:}{Suppose that A, B, C, D and E are matrices with the following sizes:}}\label{suppose-that-a-b-c-d-and-e-are-matrices-with-the-following-sizes}}
+sizes:}{Suppose that A, B, C, D and E are matrices with the following sizes:}}\label{suppose-that-a-b-c-d-and-e-are-matrices-with-the-following-sizes}
 
 \begin{align*}
 &A& &B& &C& &D& &E& \\
@@ -422,8 +406,7 @@ Defined; (\(5 \times 2\))
 \(AE + B\) & & & \\
 \end{longtable}
 
-\hypertarget{consider-the-matrices}{%
-\subsubsection{Consider the matrices}\label{consider-the-matrices}}
+\subsubsection{Consider the matrices}\label{consider-the-matrices}
 
 \[
 A = \begin{bmatrix}3 & 0 \\ -1 & 2 \\ 1 & 1 \end{bmatrix}, B=\begin{bmatrix}4 & -1 \\ 0 & 2 \end{bmatrix}, C = \begin{bmatrix} 1 & 4 & 2 \\ 3 & 1 & 5 \end{bmatrix}, D = \begin{bmatrix} 1 & 5 & 2 \\ -1 & 0 & 1 \\ 3 & 2 & 4 \end{bmatrix}, E = \begin{bmatrix} 6 & 1 & 3 \\ -1 & 1 & 2 \\ 4 & 1 & 3 \end{bmatrix}
@@ -464,8 +447,7 @@ In each part, compute the given expression (where possible).
   \end{align*}
 \end{enumerate}
 
-\hypertarget{intro-to-systems}{%
-\section{Intro to Systems}\label{intro-to-systems}}
+\section{Intro to Systems}\label{intro-to-systems}
 
 What are we looking for?
 
@@ -507,9 +489,8 @@ What does linear actually mean?
 \includegraphics[width=0.8\textwidth,height=\textheight]{img/linearsystems.png}
 \end{center}
 
-\hypertarget{review-solve-the-following-systems}{%
 \subsection{Review: Solve the following
-systems}\label{review-solve-the-following-systems}}
+systems}\label{review-solve-the-following-systems}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -564,15 +545,13 @@ systems}\label{review-solve-the-following-systems}}
 
 \newpage{}
 
-\hypertarget{the-augmented-matrix}{%
-\subsection{The Augmented Matrix}\label{the-augmented-matrix}}
+\subsection{The Augmented Matrix}\label{the-augmented-matrix}
 
 \Large\systeme{x-y+2z=5,2x-2y+4z=10,3x-3y+6z=15}
 \(\longrightarrow \left[\begin{array}{ccc|c}1 & -1 & 2 & 5 \\ 2 & -2 & 4 & 10 \\ 3 & -3 & 6 & 15 \end{array}\right]\)
 \normalsize
 
-\hypertarget{elementary-row-operations}{%
-\subsection{Elementary Row Operations}\label{elementary-row-operations}}
+\subsection{Elementary Row Operations}\label{elementary-row-operations}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -587,8 +566,7 @@ systems}\label{review-solve-the-following-systems}}
 
 Doing these things changes the matrix, but it's the same system!
 
-\hypertarget{example-1-again}{%
-\subsubsection{Example 1\ldots{} again}\label{example-1-again}}
+\subsubsection{Example 1\ldots{} again}\label{example-1-again}
 
 \systeme{2x+y=10, 3x-y=5}
 
@@ -600,8 +578,7 @@ Doing these things changes the matrix, but it's the same system!
 
 And so\ldots{} \(x=3\) and \(y=4\)!
 
-\hypertarget{connection-to-matrices}{%
-\subsection{Connection to Matrices}\label{connection-to-matrices}}
+\subsection{Connection to Matrices}\label{connection-to-matrices}
 
 If we can make a system's matrix look like
 
@@ -610,8 +587,7 @@ If we can make a system's matrix look like
 then the solution to the system will be the ordered triple
 \((c_1, c_2, c_3)\).
 
-\hypertarget{example-2-again}{%
-\subsubsection{Example 2: again}\label{example-2-again}}
+\subsubsection{Example 2: again}\label{example-2-again}
 
 \systeme{2x+y=10, 6x+3y=10}
 
@@ -621,8 +597,7 @@ then the solution to the system will be the ordered triple
 
 This is inconsistent, so there is no solution.
 
-\hypertarget{example-3-again}{%
-\subsubsection{Example 3: again}\label{example-3-again}}
+\subsubsection{Example 3: again}\label{example-3-again}
 
 \systeme{5x-2y=4, 15x-6y=12}
 
@@ -632,9 +607,8 @@ This is inconsistent, so there is no solution.
 
 Since \(0 = 0\), there are infinitely many solutions.
 
-\hypertarget{example-4-solve-the-following-system}{%
 \subsubsection{Example 4: Solve the following
-system}\label{example-4-solve-the-following-system}}
+system}\label{example-4-solve-the-following-system}
 
 \systeme{x_1-2x_2 + x_3 = 0, 2x_2-8x_3=8, -4x_1+5x_2+9x_3=-9}
 
@@ -654,9 +628,8 @@ system}\label{example-4-solve-the-following-system}}
 
 Therefore the solution to \((x_1, x_2, x_3)\) is \((29, 16, 3)\).
 
-\hypertarget{elementary-row-operations-ref-homework-problem-08082023}{%
 \subsubsection{Elementary Row Operations \& REF Homework Problem
-(08/08/2023)}\label{elementary-row-operations-ref-homework-problem-08082023}}
+(08/08/2023)}\label{elementary-row-operations-ref-homework-problem-08082023}
 
 \systeme{x + y + 2z = 8, -x - 2y + 3z = 1, 3x - 7y + 4z = 10}
 
@@ -692,8 +665,7 @@ Therefore the solution to \((x_1, x_2, x_3)\) is \((29, 16, 3)\).
 
 Therefore, the solution to \((x, y, z)\) is \((3, 1, 2)\).
 
-\hypertarget{gaussian-elimination}{%
-\subsection{Gaussian Elimination}\label{gaussian-elimination}}
+\subsection{Gaussian Elimination}\label{gaussian-elimination}
 
 \ul{Vocabulary}: A matrix is in \ul{Row Echelon Form (REF)} if:
 
@@ -723,8 +695,7 @@ conditions are met in adition to:
 
 \newpage{}
 
-\hypertarget{examples-1}{%
-\subsubsection{Examples}\label{examples-1}}
+\subsubsection{Examples}\label{examples-1}
 
 \begin{multicols}{2}
 $\begin{bmatrix}1 & 0 & 0 & 0 & 8\\ 0 & 1 & 0 & 6 & -3 \\ 0 & 0 & 1 & 7 & 10\\ 0 & 0 & 0 & 0 & 0 \end{bmatrix}$
@@ -749,12 +720,10 @@ RREF? \times
 
 \end{multicols}
 
-\hypertarget{gaussian-elimination-with-back-substitution}{%
 \subsection{\texorpdfstring{Gaussian Elimination With
-\textbf{Back-Substitution}}{Gaussian Elimination With Back-Substitution}}\label{gaussian-elimination-with-back-substitution}}
+\textbf{Back-Substitution}}{Gaussian Elimination With Back-Substitution}}\label{gaussian-elimination-with-back-substitution}
 
-\hypertarget{goal}{%
-\subsubsection{Goal:}\label{goal}}
+\subsubsection{Goal:}\label{goal}
 
 To get the augmented matrix in REF
 
@@ -773,9 +742,8 @@ z &= 2, y = -1, x = 1
 \end{align*} Therefore, the solution \((x_1, x_2, x_3)\) is
 \((1, -1, 2)\).
 
-\hypertarget{gaussian-elimination-homework-problem-08092023}{%
 \subsubsection{Gaussian Elimination Homework Problem
-(08/09/2023)}\label{gaussian-elimination-homework-problem-08092023}}
+(08/09/2023)}\label{gaussian-elimination-homework-problem-08092023}
 
 \systeme{y+z-2w=-3, x+2y-z=2,2x+4y+z-3w=-2,x-4y-7z-w=-19}
 
@@ -789,11 +757,9 @@ z &= 2, y = -1, x = 1
 
 \newpage{}
 
-\hypertarget{gauss-jordan-elimination}{%
-\subsection{Gauss-Jordan Elimination}\label{gauss-jordan-elimination}}
+\subsection{Gauss-Jordan Elimination}\label{gauss-jordan-elimination}
 
-\hypertarget{goal-1}{%
-\subsubsection{Goal:}\label{goal-1}}
+\subsubsection{Goal:}\label{goal-1}
 
 To get the matrix into RREF
 
@@ -804,12 +770,10 @@ Solve: \systeme{x_1-3x_3=-2, 3x_1+x_2-2x_3=5, 2x_1+2x_2+x_3=4}
 &\rowops{,,\frac{-1}{7}R_3}\left[\begin{array}{ccc|c}1 & 0 & -3 & -2 \\ 0 & 1 & 7 & 11 \\ 0 & 0 & 1 & 2\end{array}\right]\rowops{R_1+3R_3,R_2-7R_3,}\left[\begin{array}{ccc|c}1 & 0 & 0 & 4 \\ 0 & 1 & 0 & -3 \\ 0 & 0 & 1 & 2\end{array}\right] \Longrightarrow \systeme*{x_1=4, x_2=-3, x_3=2}
 \end{align*}
 
-\hypertarget{matrix-properties-equations-and-inverses}{%
 \subsection{Matrix Properties, Equations, and
-Inverses}\label{matrix-properties-equations-and-inverses}}
+Inverses}\label{matrix-properties-equations-and-inverses}
 
-\hypertarget{with-real-numbers}{%
-\subsubsection{With Real Numbers}\label{with-real-numbers}}
+\subsubsection{With Real Numbers}\label{with-real-numbers}
 
 \begin{itemize}
 \tightlist
@@ -819,8 +783,7 @@ Inverses}\label{matrix-properties-equations-and-inverses}}
   If \(ab = 0\), then \(a = 0\) or \(b = 0\), or both
 \end{itemize}
 
-\hypertarget{with-matrices}{%
-\subsubsection{With Matrices}\label{with-matrices}}
+\subsubsection{With Matrices}\label{with-matrices}
 
 \begin{itemize}
 \tightlist
@@ -830,8 +793,7 @@ Inverses}\label{matrix-properties-equations-and-inverses}}
   If \(AB = [0]\), then \(A = [0]\) or \(B = [0]\), or both
 \end{itemize}
 
-\hypertarget{multiply}{%
-\paragraph{Multiply:}\label{multiply}}
+\paragraph{Multiply:}\label{multiply}
 
 \begin{align*}
 &\begin{bmatrix} 2 & 3 \\ 3 & 5 \end{bmatrix}
@@ -840,8 +802,7 @@ Inverses}\label{matrix-properties-equations-and-inverses}}
 &= \begin{bmatrix} 1 & 0 \\ 0 & 1 \end{bmatrix}
 \end{align*}
 
-\hypertarget{matrix-inverses}{%
-\subsubsection{Matrix Inverses}\label{matrix-inverses}}
+\subsubsection{Matrix Inverses}\label{matrix-inverses}
 
 \begin{itemize}
 \item
@@ -872,11 +833,9 @@ Find the inverse of \(A = \begin{bmatrix}4 & 3 \\ 1 & 2 \end{bmatrix}\)
 &= \begin{bmatrix}\frac{2}{5} & -\frac{3}{5} \\ -\frac{1}{5} & \frac{4}{5} \end{bmatrix}
 \end{align*}
 
-\hypertarget{chapter-2-determinants}{%
-\section{Chapter 2: Determinants}\label{chapter-2-determinants}}
+\section{Chapter 2: Determinants}\label{chapter-2-determinants}
 
-\hypertarget{prior-knowledge}{%
-\subsection{Prior Knowledge:}\label{prior-knowledge}}
+\subsection{Prior Knowledge:}\label{prior-knowledge}
 
 \(\begin{bmatrix}10 & -4 \\ -3 & -5 \end{bmatrix}=-50-=-62\)
 \begin{align*}
@@ -887,8 +846,7 @@ Find the inverse of \(A = \begin{bmatrix}4 & 3 \\ 1 & 2 \end{bmatrix}\)
 &= 2
 \end{align*}
 
-\hypertarget{minors-cofactors}{%
-\subsection{Minors \& Cofactors}\label{minors-cofactors}}
+\subsection{Minors \& Cofactors}\label{minors-cofactors}
 
 Given a square matrix A, the \ul{minor} of matrix element \(a_{ij}\),
 (\(M_{ij}\)) is the determinant of the matrix formed by removing the
@@ -897,8 +855,7 @@ Given a square matrix A, the \ul{minor} of matrix element \(a_{ij}\),
 The \ul{cofactor} of matrix element
 \(a_{ij}, C_{ij}=(-1)^{i+j}\cdot M_{ij}\)
 
-\hypertarget{example}{%
-\subsubsection{Example}\label{example}}
+\subsubsection{Example}\label{example}
 
 Let \(\det\begin{bmatrix}2&4&3 \\ -1&2&3 \\ 3&0&-2\end{bmatrix}\). What
 is the cofactor of element (1, 1)?
@@ -918,8 +875,7 @@ M_{33} = \begin{vmatrix}2 & 4 \\ -1 & 2 \end{vmatrix} = 8 \\
 C_{33} = 8
 \end{align*}
 
-\hypertarget{cofactor-expansion}{%
-\subsection{Cofactor Expansion}\label{cofactor-expansion}}
+\subsection{Cofactor Expansion}\label{cofactor-expansion}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -941,8 +897,7 @@ C_{33} = 8
 &=-80
 \end{align*}
 
-\hypertarget{example-1}{%
-\subsubsection{Example}\label{example-1}}
+\subsubsection{Example}\label{example-1}
 
 \(A = \begin{bmatrix} 6 & 4 & 2 \\ 5 & -6 & 1 \\ 0 & 3 & 0\end{bmatrix}\)
 \begin{align*}
@@ -952,9 +907,8 @@ C_{33} = 8
 &= 12
 \end{align*}
 
-\hypertarget{does-the-method-generalize-to-2x2-matrices}{%
 \subsubsection{Does the method generalize to 2x2
-matrices?}\label{does-the-method-generalize-to-2x2-matrices}}
+matrices?}\label{does-the-method-generalize-to-2x2-matrices}
 
 \begin{align*}
 &\begin{vmatrix}3 & 5 \\ 7 & 2\end{vmatrix} \\
@@ -965,9 +919,8 @@ matrices?}\label{does-the-method-generalize-to-2x2-matrices}}
 
 The determinant of a 1x1 matrix is\ldots{} \textbf{itself!}
 
-\hypertarget{find-the-determinant-of-a-4x4}{%
 \subsubsection{Find the determinant of a
-4x4}\label{find-the-determinant-of-a-4x4}}
+4x4}\label{find-the-determinant-of-a-4x4}
 
 \(A=\begin{bmatrix}-3 & 2 & 0 & 8 \\ 2 & 1 & 0 & -4 \\ 5 & -2 & 1 & 5 \\ 2 & 3 & 0 & 6\end{bmatrix}\)
 
@@ -978,8 +931,7 @@ The determinant of a 1x1 matrix is\ldots{} \textbf{itself!}
 &= -62
 \end{align*}
 
-\hypertarget{theorem}{%
-\subsection{Theorem}\label{theorem}}
+\subsection{Theorem}\label{theorem}
 
 If \(A\) is an \(n \times n\) matrix, then regardless of which row or
 column of \(A\) is chosen, the number obtained by multiplying the
@@ -987,8 +939,7 @@ elements in that row or column by their corresponding cofactors is
 \ul{\textbf{always the same}} and is called the \ul{determinant} of
 \(A\).
 
-\hypertarget{example-2}{%
-\subsubsection{Example}\label{example-2}}
+\subsubsection{Example}\label{example-2}
 
 Find the determinant of
 \(A=\begin{bmatrix}1 & 0 & 0 & -1 \\ 3 & 1 & 2 & 2 \\ 1 & 0 & -2 & 1 \\ 2 & 0 & 0 & 1\end{bmatrix}\)
@@ -998,8 +949,7 @@ Find the determinant of
 &= -6
 \end{align*}
 
-\hypertarget{triangular-matrices}{%
-\subsection{Triangular Matrices}\label{triangular-matrices}}
+\subsection{Triangular Matrices}\label{triangular-matrices}
 
 Find the determinant of
 \(A = \begin{bmatrix}1 & 1 & 1 & 1 \\ 0 & 2 & 2 & 2 \\ 0 & 0 & 3 & 3 \\ 0 & 0 & 0 & 4\end{bmatrix}\)
@@ -1014,8 +964,7 @@ Find the determinant of
 If \(A\) is an \(n \times n\) triangular matrix, then \(\det(A)\) is
 equal to the product of the elements along the main diagonal.
 
-\hypertarget{an-important-definition}{%
-\subsection{An Important Definition}\label{an-important-definition}}
+\subsection{An Important Definition}\label{an-important-definition}
 
 \ul{Elementary Matrix} a matrix that can be obtanied from the
 \(n \times n\) identity matrix by performing a single row operation.
@@ -1025,32 +974,26 @@ Are the following matrices elementary? 1)
 \(\begin{bmatrix}1 & 0 \\ -5 & 1\end{bmatrix}+(R_3+5R_1)\) yes 2)
 \(\begin{bmatrix}-5 & 1 \\ 1 & 0\end{bmatrix}+(R_1+5R_2)...\) no
 
-\hypertarget{a-pair-of-theorems}{%
-\subsection{A Pair of Theorems}\label{a-pair-of-theorems}}
+\subsection{A Pair of Theorems}\label{a-pair-of-theorems}
 
-\hypertarget{theorem-if-a-square-matrix-a-has-a-row-of-column-of-zeros-then-deta-0}{%
 \subsubsection{\texorpdfstring{Theorem: If a square matrix \(A\) has a
 row of column of zeros, then
-\(\det(A) = 0\)}{Theorem: If a square matrix A has a row of column of zeros, then \textbackslash det(A) = 0}}\label{theorem-if-a-square-matrix-a-has-a-row-of-column-of-zeros-then-deta-0}}
+\(\det(A) = 0\)}{Theorem: If a square matrix A has a row of column of zeros, then \textbackslash det(A) = 0}}\label{theorem-if-a-square-matrix-a-has-a-row-of-column-of-zeros-then-deta-0}
 
-\hypertarget{theorem-if-a-is-a-square-matrix-then-deta-detat}{%
 \subsubsection{\texorpdfstring{Theorem: If \(A\) is a square matrix,
 then
-\(\det(A) = \det(A^T)\)}{Theorem: If A is a square matrix, then \textbackslash det(A) = \textbackslash det(A\^{}T)}}\label{theorem-if-a-is-a-square-matrix-then-deta-detat}}
+\(\det(A) = \det(A^T)\)}{Theorem: If A is a square matrix, then \textbackslash det(A) = \textbackslash det(A\^{}T)}}\label{theorem-if-a-is-a-square-matrix-then-deta-detat}
 
 \newpage{}
 
-\hypertarget{unit-1-2-homework-problems}{%
 \subsection{Unit 1 \& 2 Homework
-Problems}\label{unit-1-2-homework-problems}}
+Problems}\label{unit-1-2-homework-problems}
 
-\hypertarget{gaussian-elimination-08112023}{%
 \subsubsection{``Gaussian Elimination''
-(08/11/2023)}\label{gaussian-elimination-08112023}}
+(08/11/2023)}\label{gaussian-elimination-08112023}
 
-\hypertarget{solve-this-system-using-gaussian-elimination}{%
 \paragraph{Solve this system using Gaussian
-Elimination}\label{solve-this-system-using-gaussian-elimination}}
+Elimination}\label{solve-this-system-using-gaussian-elimination}
 
 \systeme{x_1 + x_2 + 2x_3 = 8, -x_1-2x_2+3x_3 = 1, 3x_1 - 7x_2 +4x_3=10}
 
@@ -1063,9 +1006,8 @@ Elimination}\label{solve-this-system-using-gaussian-elimination}}
 \systeme{x_1+x_2+2x_3=8, x_2-5x_3=-9, x_3=2} \(\Rightarrow\)
 \systeme*{x_1=3, x_2=1, x_3=2}
 
-\hypertarget{solve-this-system-using-gaussian-elimination-1}{%
 \paragraph{Solve this system using Gaussian
-Elimination}\label{solve-this-system-using-gaussian-elimination-1}}
+Elimination}\label{solve-this-system-using-gaussian-elimination-1}
 
 \systeme{x_1-2x_2+3x_3=0,-2x_1-3x_2-4x_3=0,2x_1-4x_2+4x_3=0}
 
@@ -1079,13 +1021,11 @@ Elimination}\label{solve-this-system-using-gaussian-elimination-1}}
 
 \newpage{}
 
-\hypertarget{inverses-and-determinants-0814}{%
 \subsubsection{``Inverses and Determinants''
-(08/14)}\label{inverses-and-determinants-0814}}
+(08/14)}\label{inverses-and-determinants-0814}
 
-\hypertarget{find-the-determinants-of-the-following}{%
 \paragraph{Find the determinants of the
-following:}\label{find-the-determinants-of-the-following}}
+following:}\label{find-the-determinants-of-the-following}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -1116,9 +1056,8 @@ following:}\label{find-the-determinants-of-the-following}}
 
 \(\begin{vmatrix}\cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{vmatrix} = \cos^2\theta + \sin^2\theta = 1\)
 
-\hypertarget{find-the-inverses-of-those-matrices}{%
 \paragraph{Find the INVERSES of those
-matrices:}\label{find-the-inverses-of-those-matrices}}
+matrices:}\label{find-the-inverses-of-those-matrices}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -1149,13 +1088,11 @@ matrices:}\label{find-the-inverses-of-those-matrices}}
 
 \(\begin{bmatrix}\cos\theta & \sin\theta \\ -\sin\theta & \cos\theta \end{bmatrix}^{-1} = \begin{bmatrix}\cos\theta & -\sin\theta \\ \sin\theta & \cos\theta \end{bmatrix}\)
 
-\hypertarget{inverses-and-determinants-0815}{%
 \subsubsection{Inverses and Determinants
-(08/15)}\label{inverses-and-determinants-0815}}
+(08/15)}\label{inverses-and-determinants-0815}
 
-\hypertarget{use-a-matrix-equation-to-solve-the-following-problems}{%
 \paragraph{Use a matrix equation to solve the following
-problems:}\label{use-a-matrix-equation-to-solve-the-following-problems}}
+problems:}\label{use-a-matrix-equation-to-solve-the-following-problems}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -1188,14 +1125,12 @@ problems:}\label{use-a-matrix-equation-to-solve-the-following-problems}}
 
 \newpage{}
 
-\hypertarget{consistent-systems-0821}{%
 \subsubsection{Consistent Systems
-(08/21)}\label{consistent-systems-0821}}
+(08/21)}\label{consistent-systems-0821}
 
-\hypertarget{solve-the-linear-systems-together-by-reducing-the-appropriate-augmented-matrix.}{%
 \paragraph{Solve the linear systems together by reducing the appropriate
 augmented
-matrix.}\label{solve-the-linear-systems-together-by-reducing-the-appropriate-augmented-matrix.}}
+matrix.}\label{solve-the-linear-systems-together-by-reducing-the-appropriate-augmented-matrix.}
 
 \systeme{x_1-5x_2=b_1,3x_1+2x_2=b_2}
 
@@ -1226,10 +1161,9 @@ And so, for the specific cases:
 
 \newpage{}
 
-\hypertarget{determine-the-conditions-on-b-if-any-in-order-to-guarantee-that-the-linear-system-is-consistent.}{%
 \paragraph{\texorpdfstring{Determine the conditions on \(b\), if any, in
 order to guarantee that the linear system is
-consistent.}{Determine the conditions on b, if any, in order to guarantee that the linear system is consistent.}}\label{determine-the-conditions-on-b-if-any-in-order-to-guarantee-that-the-linear-system-is-consistent.}}
+consistent.}{Determine the conditions on b, if any, in order to guarantee that the linear system is consistent.}}\label{determine-the-conditions-on-b-if-any-in-order-to-guarantee-that-the-linear-system-is-consistent.}
 
 \systeme{x_1+3x_2=b_1,-2x_1+x_2=b_2}
 
@@ -1238,9 +1172,8 @@ consistent.}{Determine the conditions on b, if any, in order to guarantee that t
 \end{align*} There are no conditions. The system is consistent for all
 values of \(b_1\) and \(b_2\).
 
-\hypertarget{another-determining-the-conditions-problem}{%
 \subsubsection{Another ``determining the conditions''
-problem:}\label{another-determining-the-conditions-problem}}
+problem:}\label{another-determining-the-conditions-problem}
 
 \systeme{x_1-2x_2-x_3=b_1, -4x_1+5x_2+2x_3=b_2, -4x_1+7x_2+4x_3=b_3}
 
@@ -1254,12 +1187,10 @@ and \(b_3\).
 
 \newpage{}
 
-\hypertarget{triangular-and-diagonal-matrices}{%
 \subsubsection{Triangular and Diagonal
-Matrices}\label{triangular-and-diagonal-matrices}}
+Matrices}\label{triangular-and-diagonal-matrices}
 
-\hypertarget{find-a2}{%
-\paragraph{\texorpdfstring{Find \(A^2\)}{Find A\^{}2}}\label{find-a2}}
+\paragraph{\texorpdfstring{Find \(A^2\)}{Find A\^{}2}}\label{find-a2}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -1281,10 +1212,9 @@ Matrices}\label{triangular-and-diagonal-matrices}}
 
 \newpage{}
 
-\hypertarget{find-a-k-such-that-k-is-some-nonzero-constant}{%
 \paragraph{\texorpdfstring{Find \(A^{-k}\), such that \(k\) is some
 nonzero
-constant}{Find A\^{}\{-k\}, such that k is some nonzero constant}}\label{find-a-k-such-that-k-is-some-nonzero-constant}}
+constant}{Find A\^{}\{-k\}, such that k is some nonzero constant}}\label{find-a-k-such-that-k-is-some-nonzero-constant}
 
 \(A=\begin{bmatrix}2 & 0 & 0 & 0 \\ 0 & -4 & 0 & 0 \\ 0 & 0 & -3 & 0 \\ 0 & 0 & 0 & 2 \end{bmatrix}\)
 \begin{align*}
@@ -1296,10 +1226,9 @@ A^{-k} &= \begin{bmatrix}2 & 0 & 0 & 0 \\ 0 & -4 & 0 & 0 \\ 0 & 0 & -3 & 0 \\ 0 
 
 \newpage{}
 
-\hypertarget{find-a-diagonal-matrix-a-that-satisfies-the-given-condition}{%
 \paragraph{\texorpdfstring{Find a diagonal matrix \(A\) that satisfies
 the given
-condition}{Find a diagonal matrix A that satisfies the given condition}}\label{find-a-diagonal-matrix-a-that-satisfies-the-given-condition}}
+condition}{Find a diagonal matrix A that satisfies the given condition}}\label{find-a-diagonal-matrix-a-that-satisfies-the-given-condition}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -1322,13 +1251,11 @@ condition}{Find a diagonal matrix A that satisfies the given condition}}\label{f
 
 \newpage{}
 
-\hypertarget{determinants-and-triangular-matrices-0829}{%
 \subsubsection{Determinants and Triangular Matrices
-(08/29)}\label{determinants-and-triangular-matrices-0829}}
+(08/29)}\label{determinants-and-triangular-matrices-0829}
 
-\hypertarget{what-is-c_32}{%
 \paragraph{\texorpdfstring{What is
-\(C_{32}\)}{What is C\_\{32\}}}\label{what-is-c_32}}
+\(C_{32}\)}{What is C\_\{32\}}}\label{what-is-c_32}
 
 \(A = \begin{bmatrix}2 & 3 & -1 & 1 \\ -3 & 2 & 0 & 3 \\ 3 & -2 & 1 & 0 \\ 3 & -2 & 1 & 4 \end{bmatrix}\)
 \begin{align*}
@@ -1340,10 +1267,9 @@ C_{32} &= (-1)^{3+2}\begin{vmatrix}2 & -1 & 1 \\ -3 & 0 & 3 \\ 3 & 1 & 0\end{vma
 &= 0
 \end{align*}
 
-\hypertarget{find-all-values-of-lambda-such-that-a-0}{%
 \paragraph{\texorpdfstring{Find all values of \(\lambda\) such that
 \textbar{}\(A\)\textbar{} =
-0}{Find all values of \textbackslash lambda such that \textbar A\textbar{} = 0}}\label{find-all-values-of-lambda-such-that-a-0}}
+0}{Find all values of \textbackslash lambda such that \textbar A\textbar{} = 0}}\label{find-all-values-of-lambda-such-that-a-0}
 
 \(A = \begin{bmatrix}\lambda-2 & 1 \\ -5 & \lambda+4\end{bmatrix}\)
 \begin{align*}
@@ -1358,12 +1284,11 @@ Therefore, \(\lambda = -3, 1\)
 
 \newpage{}
 
-\hypertarget{for-the-matrix-beginbmatrix3-0-0-2--1-5-1-9--4endbmatrix-find-the-determinant-3-sp.different-ways-with-cofactor-expansion.-pick-sp.different-rows-and-columns-each-time.}{%
 \paragraph{\texorpdfstring{For the matrix
 \(\begin{bmatrix}3 & 0 & 0 \\2 & -1 & 5 \\ 1 & 9 & -4\end{bmatrix}\)
 find the determinant 3 sp.different ways with cofactor expansion. Pick
 sp.different rows and columns each
-time.}{For the matrix \textbackslash begin\{bmatrix\}3 \& 0 \& 0 \textbackslash\textbackslash2 \& -1 \& 5 \textbackslash\textbackslash{} 1 \& 9 \& -4\textbackslash end\{bmatrix\} find the determinant 3 sp.different ways with cofactor expansion. Pick sp.different rows and columns each time.}}\label{for-the-matrix-beginbmatrix3-0-0-2--1-5-1-9--4endbmatrix-find-the-determinant-3-sp.different-ways-with-cofactor-expansion.-pick-sp.different-rows-and-columns-each-time.}}
+time.}{For the matrix \textbackslash begin\{bmatrix\}3 \& 0 \& 0 \textbackslash\textbackslash2 \& -1 \& 5 \textbackslash\textbackslash{} 1 \& 9 \& -4\textbackslash end\{bmatrix\} find the determinant 3 sp.different ways with cofactor expansion. Pick sp.different rows and columns each time.}}\label{for-the-matrix-beginbmatrix3-0-0-2--1-5-1-9--4endbmatrix-find-the-determinant-3-sp.different-ways-with-cofactor-expansion.-pick-sp.different-rows-and-columns-each-time.}
 
 \begin{align*}
 \det(A) &= 3\begin{vmatrix}-1 & 5 \\ 9 & -4\end{vmatrix}-0\begin{vmatrix}2 & 5 \\ 1 & -4\end{vmatrix}+0\begin{vmatrix}2 & -1 \\ 1 & 9\end{vmatrix} \\
@@ -1392,10 +1317,9 @@ time.}{For the matrix \textbackslash begin\{bmatrix\}3 \& 0 \& 0 \textbackslash\
 
 \newpage{}
 
-\hypertarget{evaluate-deta-by-a-cofactor-expansion-along-a-row-or-column-of-your-choice}{%
 \paragraph{\texorpdfstring{Evaluate \(\det(A)\) by a cofactor expansion
 along a row or column of your
-choice}{Evaluate \textbackslash det(A) by a cofactor expansion along a row or column of your choice}}\label{evaluate-deta-by-a-cofactor-expansion-along-a-row-or-column-of-your-choice}}
+choice}{Evaluate \textbackslash det(A) by a cofactor expansion along a row or column of your choice}}\label{evaluate-deta-by-a-cofactor-expansion-along-a-row-or-column-of-your-choice}
 
 \(A = \begin{bmatrix}1 & k & k^2 \\ 1 & k & k^2 \\ 1 & k & k^2\end{bmatrix}\)
 \begin{align*}
@@ -1404,10 +1328,9 @@ choice}{Evaluate \textbackslash det(A) by a cofactor expansion along a row or co
 &= 0
 \end{align*}
 
-\hypertarget{evaluate-the-determinant-of-the-following-matrices-by-just-looking-at-them.}{%
 \paragraph{Evaluate the determinant of the following matrices by just
 looking at
-them.}\label{evaluate-the-determinant-of-the-following-matrices-by-just-looking-at-them.}}
+them.}\label{evaluate-the-determinant-of-the-following-matrices-by-just-looking-at-them.}
 
 \(A=\begin{bmatrix}1 & 0 & 0 \\ 0 & -1 & 0 \\ 0 & 0 & 1 \end{bmatrix}\)
 \begin{align*}
@@ -1418,12 +1341,13 @@ them.}\label{evaluate-the-determinant-of-the-following-matrices-by-just-looking-
 \det(A) &= 1(1)(2)(3) = 6
 \end{align*}
 
-\hypertarget{show-that-the-value-of-the-determinant-is-independent-of-theta}{%
 \paragraph{\texorpdfstring{Show that the value of the determinant is
 independent of
-\(\theta\)}{Show that the value of the determinant is independent of \textbackslash theta}}\label{show-that-the-value-of-the-determinant-is-independent-of-theta}}
+\(\theta\)}{Show that the value of the determinant is independent of \textbackslash theta}}\label{show-that-the-value-of-the-determinant-is-independent-of-theta}
 
-\(A=\begin{vmatrix}\sin\theta & \cos\theta & 0 \\ -\cos\theta & \sin\theta & 0 \\ \sin\theta-\cos\theta & \sin\theta+\cos\theta & 1\end{vmatrix}\)
+\(A=\begin{vmatrix}\sin\theta & \cos\theta & 0 \\
+-\cos\theta & \sin\theta & 0 \\
+\sin\theta-\cos\theta & \sin\theta+\cos\theta & 1\end{vmatrix}\)
 \begin{align*}
 \det(A) &= \sin\theta\begin{vmatrix}\sin\theta & 0 \\ \sin\theta+\cos\theta & 1\end{vmatrix}-\cos\theta\begin{vmatrix}\cos\theta & 0 \\ \sin\theta+\cos\theta & 1\end{vmatrix}\\ 
 +0\begin{vmatrix}\cos\theta & \sin\theta \\ \sin\theta+\cos\theta & \sin\theta\end{vmatrix} \\
@@ -1435,15 +1359,13 @@ independent of
 
 \newpage{}
 
-\hypertarget{row-operations-and-determinants-0831}{%
 \subsubsection{Row operations and Determinants
-(08/31)}\label{row-operations-and-determinants-0831}}
+(08/31)}\label{row-operations-and-determinants-0831}
 
-\hypertarget{find-the-determinant-of-beginbmatrix1--3-0--2-4-1-5--2-2-endbmatrix-without-using-cofactor-expansion}{%
 \paragraph{\texorpdfstring{Find the determinant of
 \(\begin{bmatrix}1 & -3 & 0 \\ -2 & 4 & 1 \\ 5 & -2 & 2 \end{bmatrix}\)
 WITHOUT using cofactor
-expansion}{Find the determinant of \textbackslash begin\{bmatrix\}1 \& -3 \& 0 \textbackslash\textbackslash{} -2 \& 4 \& 1 \textbackslash\textbackslash{} 5 \& -2 \& 2 \textbackslash end\{bmatrix\} WITHOUT using cofactor expansion}}\label{find-the-determinant-of-beginbmatrix1--3-0--2-4-1-5--2-2-endbmatrix-without-using-cofactor-expansion}}
+expansion}{Find the determinant of \textbackslash begin\{bmatrix\}1 \& -3 \& 0 \textbackslash\textbackslash{} -2 \& 4 \& 1 \textbackslash\textbackslash{} 5 \& -2 \& 2 \textbackslash end\{bmatrix\} WITHOUT using cofactor expansion}}\label{find-the-determinant-of-beginbmatrix1--3-0--2-4-1-5--2-2-endbmatrix-without-using-cofactor-expansion}
 
 \begin{align*}
 \det(A) &= \begin{vmatrix}1 & -3 & 0 \\ -2 & 4 & 1 \\ 5 & -2 & 2 \end{vmatrix} \\
@@ -1455,9 +1377,8 @@ expansion}{Find the determinant of \textbackslash begin\{bmatrix\}1 \& -3 \& 0 \
 
 \newpage{}
 
-\hypertarget{find-the-determinant-of-beginbmatrix-2-1-3-1-1-0-1-1-0-2-1-0-0-1-2-3endbmatrix}{%
 \paragraph{\texorpdfstring{Find the determinant of
-\(\begin{bmatrix} 2 & 1 & 3 & 1 \\ 1 & 0 & 1 & 1 \\ 0 & 2 & 1 & 0 \\ 0 & 1 & 2 & 3\end{bmatrix}\)}{Find the determinant of \textbackslash begin\{bmatrix\} 2 \& 1 \& 3 \& 1 \textbackslash\textbackslash{} 1 \& 0 \& 1 \& 1 \textbackslash\textbackslash{} 0 \& 2 \& 1 \& 0 \textbackslash\textbackslash{} 0 \& 1 \& 2 \& 3\textbackslash end\{bmatrix\}}}\label{find-the-determinant-of-beginbmatrix-2-1-3-1-1-0-1-1-0-2-1-0-0-1-2-3endbmatrix}}
+\(\begin{bmatrix} 2 & 1 & 3 & 1 \\ 1 & 0 & 1 & 1 \\ 0 & 2 & 1 & 0 \\ 0 & 1 & 2 & 3\end{bmatrix}\)}{Find the determinant of \textbackslash begin\{bmatrix\} 2 \& 1 \& 3 \& 1 \textbackslash\textbackslash{} 1 \& 0 \& 1 \& 1 \textbackslash\textbackslash{} 0 \& 2 \& 1 \& 0 \textbackslash\textbackslash{} 0 \& 1 \& 2 \& 3\textbackslash end\{bmatrix\}}}\label{find-the-determinant-of-beginbmatrix-2-1-3-1-1-0-1-1-0-2-1-0-0-1-2-3endbmatrix}
 
 \begin{align*}
 \det(A) &= \begin{vmatrix} 2 & 1 & 3 & 1 \\ 1 & 0 & 1 & 1 \\ 0 & 2 & 1 & 0 \\ 0 & 1 & 2 & 3\end{vmatrix} \\
@@ -1469,15 +1390,13 @@ expansion}{Find the determinant of \textbackslash begin\{bmatrix\}1 \& -3 \& 0 \
 
 \newpage{}
 
-\hypertarget{adjoints-and-cramers-rule-0905}{%
 \subsubsection{Adjoints and Cramer's Rule
-(09/05)}\label{adjoints-and-cramers-rule-0905}}
+(09/05)}\label{adjoints-and-cramers-rule-0905}
 
-\hypertarget{find-the-inverse-of-abeginbmatrix2-5-5--1--1-0-2-4-3endbmatrix-using-the-adjoint-method}{%
 \paragraph{\texorpdfstring{Find the inverse of
 \(A=\begin{bmatrix}2 & 5 & 5 \\ -1 & -1 & 0 \\ 2 & 4 & 3\end{bmatrix}\)
 using the adjoint
-method}{Find the inverse of A=\textbackslash begin\{bmatrix\}2 \& 5 \& 5 \textbackslash\textbackslash{} -1 \& -1 \& 0 \textbackslash\textbackslash{} 2 \& 4 \& 3\textbackslash end\{bmatrix\} using the adjoint method}}\label{find-the-inverse-of-abeginbmatrix2-5-5--1--1-0-2-4-3endbmatrix-using-the-adjoint-method}}
+method}{Find the inverse of A=\textbackslash begin\{bmatrix\}2 \& 5 \& 5 \textbackslash\textbackslash{} -1 \& -1 \& 0 \textbackslash\textbackslash{} 2 \& 4 \& 3\textbackslash end\{bmatrix\} using the adjoint method}}\label{find-the-inverse-of-abeginbmatrix2-5-5--1--1-0-2-4-3endbmatrix-using-the-adjoint-method}
 
 \begin{align*}
 \det(A) &= 2\begin{vmatrix}-1 & 0 \\ 4 & 3\end{vmatrix}-5\begin{vmatrix}-1 & 0 \\ 2 & 3\end{vmatrix}+5\begin{vmatrix}-1 & -1 \\ 2 & 4\end{vmatrix} \\
@@ -1494,9 +1413,8 @@ method}{Find the inverse of A=\textbackslash begin\{bmatrix\}2 \& 5 \& 5 \textba
 
 \newpage{}
 
-\hypertarget{solve-the-following-system-of-equations-using-cramers-rule}{%
 \paragraph{Solve the following system of equations using Cramer's
-Rule}\label{solve-the-following-system-of-equations-using-cramers-rule}}
+Rule}\label{solve-the-following-system-of-equations-using-cramers-rule}
 
 \systeme{4x+5y=2,11x+y+2z=3,x+5y+2z=1}
 \(\longrightarrow \begin{vmatrix} 4 & 5 & 0 \\ 11 & 1 & 2 \\ 1 & 5 & 2\end{vmatrix} \longrightarrow 4\begin{vmatrix}1 & 2 \\ 5 & 2\end{vmatrix}-5\begin{vmatrix}11 & 2 \\ 1 & 2\end{vmatrix} = -132\)
@@ -1523,13 +1441,11 @@ Therefore, the solution
 
 \newpage{}
 
-\hypertarget{chapter-5-eigenvectors-and-eigenvalues}{%
 \section{Chapter 5: Eigenvectors and
-Eigenvalues}\label{chapter-5-eigenvectors-and-eigenvalues}}
+Eigenvalues}\label{chapter-5-eigenvectors-and-eigenvalues}
 
-\hypertarget{eigenvalues-and-eigenvectors-1106}{%
 \subsection{Eigenvalues and Eigenvectors
-(11/06)}\label{eigenvalues-and-eigenvectors-1106}}
+(11/06)}\label{eigenvalues-and-eigenvectors-1106}
 
 If \(A\) is an \(n \times n\) matrix, then a non-zero vector
 \(\symbf{x}\), in \(R^n\), is called an \ul{eigenvector} of \(A\) if
@@ -1558,41 +1474,35 @@ Some examples:
 
 However, there are some ways to get consistent results.
 
-\hypertarget{examples-2}{%
-\subsubsection{Examples}\label{examples-2}}
+\subsubsection{Examples}\label{examples-2}
 
-\hypertarget{vecx-beginbmatrix2-1-endbmatrix-is-an-eigenvector-of-a-beginbmatrix3--2-1-0endbmatrix-because}{%
 \paragraph{\texorpdfstring{\(\vec{x} = \begin{bmatrix}2 \\ 1 \end{bmatrix}\)
 is an eigenvector of \(A = \begin{bmatrix}3 & -2 \\ 1 & 0\end{bmatrix}\)
-because}{\textbackslash vec\{x\} = \textbackslash begin\{bmatrix\}2 \textbackslash\textbackslash{} 1 \textbackslash end\{bmatrix\} is an eigenvector of A = \textbackslash begin\{bmatrix\}3 \& -2 \textbackslash\textbackslash{} 1 \& 0\textbackslash end\{bmatrix\} because}}\label{vecx-beginbmatrix2-1-endbmatrix-is-an-eigenvector-of-a-beginbmatrix3--2-1-0endbmatrix-because}}
+because}{\textbackslash vec\{x\} = \textbackslash begin\{bmatrix\}2 \textbackslash\textbackslash{} 1 \textbackslash end\{bmatrix\} is an eigenvector of A = \textbackslash begin\{bmatrix\}3 \& -2 \textbackslash\textbackslash{} 1 \& 0\textbackslash end\{bmatrix\} because}}\label{vecx-beginbmatrix2-1-endbmatrix-is-an-eigenvector-of-a-beginbmatrix3--2-1-0endbmatrix-because}
 
 \(A\vec{x} = \begin{bmatrix}3 & -2 \\ 1 & 0\end{bmatrix}\begin{bmatrix}2 \\ 1\end{bmatrix} = \begin{bmatrix}4 \\ 2\end{bmatrix} = 2\begin{bmatrix}2 \\ 1\end{bmatrix} = 2\vec{x} \therefore \lambda = 2\)
 
-\hypertarget{let-a-beginbmatrix-1-6-5-2endbmatrix-vecu-beginbmatrix-6--5endbmatrix-vecv-beginbmatrix3--2-endbmatrix.-are-vecu-and-vecv-eigenvectors-of-a}{%
 \paragraph{\texorpdfstring{Let
 \(A = \begin{bmatrix} 1 & 6 \\ 5 & 2\end{bmatrix}, \vec{u} = \begin{bmatrix} 6 \\ -5\end{bmatrix}, \vec{v} = \begin{bmatrix}3 \\ -2 \end{bmatrix}\).
 Are \(\vec{u}\) and \(\vec{v}\) eigenvectors of
-\(A\)?}{Let A = \textbackslash begin\{bmatrix\} 1 \& 6 \textbackslash\textbackslash{} 5 \& 2\textbackslash end\{bmatrix\}, \textbackslash vec\{u\} = \textbackslash begin\{bmatrix\} 6 \textbackslash\textbackslash{} -5\textbackslash end\{bmatrix\}, \textbackslash vec\{v\} = \textbackslash begin\{bmatrix\}3 \textbackslash\textbackslash{} -2 \textbackslash end\{bmatrix\}. Are \textbackslash vec\{u\} and \textbackslash vec\{v\} eigenvectors of A?}}\label{let-a-beginbmatrix-1-6-5-2endbmatrix-vecu-beginbmatrix-6--5endbmatrix-vecv-beginbmatrix3--2-endbmatrix.-are-vecu-and-vecv-eigenvectors-of-a}}
+\(A\)?}{Let A = \textbackslash begin\{bmatrix\} 1 \& 6 \textbackslash\textbackslash{} 5 \& 2\textbackslash end\{bmatrix\}, \textbackslash vec\{u\} = \textbackslash begin\{bmatrix\} 6 \textbackslash\textbackslash{} -5\textbackslash end\{bmatrix\}, \textbackslash vec\{v\} = \textbackslash begin\{bmatrix\}3 \textbackslash\textbackslash{} -2 \textbackslash end\{bmatrix\}. Are \textbackslash vec\{u\} and \textbackslash vec\{v\} eigenvectors of A?}}\label{let-a-beginbmatrix-1-6-5-2endbmatrix-vecu-beginbmatrix-6--5endbmatrix-vecv-beginbmatrix3--2-endbmatrix.-are-vecu-and-vecv-eigenvectors-of-a}
 
 \(A\vec{u} = \begin{bmatrix} 1 & 6 \\ 5 & 2\end{bmatrix}\begin{bmatrix} 6 \\ -5\end{bmatrix} = \begin{bmatrix} 1(6)+6(-5) \\ 5(6)+2(-5)\end{bmatrix} = \begin{bmatrix} -24 \\ 20\end{bmatrix} = -4\begin{bmatrix}6 \\ -5\end{bmatrix} \therefore \ \lambda = -4\)
 
 \(A\vec{v} = \begin{bmatrix} 1 & 6 \\ 5 & 2\end{bmatrix}\begin{bmatrix} 3 \\ -2\end{bmatrix} = \begin{bmatrix} 1(3)+6(-2) \\ 5(3)+2(-2)\end{bmatrix} = \begin{bmatrix} -9 \\ 11\end{bmatrix} \neq \lambda\vec{v}\)
 
-\hypertarget{eigenvector-homework-problem-1106}{%
 \subsection{Eigenvector Homework Problem
-(11/06)}\label{eigenvector-homework-problem-1106}}
+(11/06)}\label{eigenvector-homework-problem-1106}
 
 \textbf{Confirm by multiplication that \(\symbf{x}\) is an eigenvector
 of \(\symbf{A}\), and find the corresponding eigenvalue.}
 
-\hypertarget{a-beginbmatrix4-0-1-2-3-2-1-0-4-endbmatrix-symbfx-beginbmatrix1-2-1endbmatrix}{%
-\subsubsection{\texorpdfstring{\(A = \begin{bmatrix}4 & 0 & 1 \\ 2 & 3 & 2 \\ 1 & 0 & 4 \end{bmatrix}; \symbf{x} = \begin{bmatrix}1 \\ 2 \\ 1\end{bmatrix}\)}{A = \textbackslash begin\{bmatrix\}4 \& 0 \& 1 \textbackslash\textbackslash{} 2 \& 3 \& 2 \textbackslash\textbackslash{} 1 \& 0 \& 4 \textbackslash end\{bmatrix\}; \textbackslash symbf\{x\} = \textbackslash begin\{bmatrix\}1 \textbackslash\textbackslash{} 2 \textbackslash\textbackslash{} 1\textbackslash end\{bmatrix\}}}\label{a-beginbmatrix4-0-1-2-3-2-1-0-4-endbmatrix-symbfx-beginbmatrix1-2-1endbmatrix}}
+\subsubsection{\texorpdfstring{\(A = \begin{bmatrix}4 & 0 & 1 \\ 2 & 3 & 2 \\ 1 & 0 & 4 \end{bmatrix}; \symbf{x} = \begin{bmatrix}1 \\ 2 \\ 1\end{bmatrix}\)}{A = \textbackslash begin\{bmatrix\}4 \& 0 \& 1 \textbackslash\textbackslash{} 2 \& 3 \& 2 \textbackslash\textbackslash{} 1 \& 0 \& 4 \textbackslash end\{bmatrix\}; \textbackslash symbf\{x\} = \textbackslash begin\{bmatrix\}1 \textbackslash\textbackslash{} 2 \textbackslash\textbackslash{} 1\textbackslash end\{bmatrix\}}}\label{a-beginbmatrix4-0-1-2-3-2-1-0-4-endbmatrix-symbfx-beginbmatrix1-2-1endbmatrix}
 
 \(A\symbf{x} = \begin{bmatrix}4 & 0 & 1 \\ 2 & 3 & 2 \\ 1 & 0 & 4 \end{bmatrix}\begin{bmatrix}1 \\ 2 \\ 1\end{bmatrix} = \begin{bmatrix}4(1)+0(2)+1(1) \\ 2(1)+3(2)+2(1) \\ 1(1)+0(2)+4(1)\end{bmatrix} = \begin{bmatrix}5 \\ 10 \\ 5\end{bmatrix} = 5\begin{bmatrix}1 \\ 2 \\ 1\end{bmatrix} \therefore \ \lambda = 5\)
 
-\hypertarget{finding-eigenvalues-and-eigenvectors-1107}{%
 \subsection{Finding Eigenvalues and Eigenvectors
-(11/07)}\label{finding-eigenvalues-and-eigenvectors-1107}}
+(11/07)}\label{finding-eigenvalues-and-eigenvectors-1107}
 
 Essential question:
 
@@ -1618,10 +1528,9 @@ Big Idea: If \(A\) is an \(n \times n\) matrix, then \(\lambda\) is an
 eigenvalue of \(A \iff \det(\lambda I-A) = 0\). This is called the
 \ul{characteristic equation} of \(A\).
 
-\hypertarget{find-the-characteristic-equation-and-the-eigenvalues-of-abeginbmatrix3-0-5-frac15--1-0-1-1--2endbmatrix}{%
 \subsubsection{\texorpdfstring{Find the characteristic equation and the
 eigenvalues of
-\(A=\begin{bmatrix}3 & 0 & 5\\ \frac{1}{5} & -1 & 0 \\ 1 & 1 & -2\end{bmatrix}\)}{Find the characteristic equation and the eigenvalues of A=\textbackslash begin\{bmatrix\}3 \& 0 \& 5\textbackslash\textbackslash{} \textbackslash frac\{1\}\{5\} \& -1 \& 0 \textbackslash\textbackslash{} 1 \& 1 \& -2\textbackslash end\{bmatrix\}}}\label{find-the-characteristic-equation-and-the-eigenvalues-of-abeginbmatrix3-0-5-frac15--1-0-1-1--2endbmatrix}}
+\(A=\begin{bmatrix}3 & 0 & 5\\ \frac{1}{5} & -1 & 0 \\ 1 & 1 & -2\end{bmatrix}\)}{Find the characteristic equation and the eigenvalues of A=\textbackslash begin\{bmatrix\}3 \& 0 \& 5\textbackslash\textbackslash{} \textbackslash frac\{1\}\{5\} \& -1 \& 0 \textbackslash\textbackslash{} 1 \& 1 \& -2\textbackslash end\{bmatrix\}}}\label{find-the-characteristic-equation-and-the-eigenvalues-of-abeginbmatrix3-0-5-frac15--1-0-1-1--2endbmatrix}
 
 \begin{align*}
 \det(\lambda I - A) &= 0 \\
@@ -1633,10 +1542,9 @@ eigenvalues of
 \lambda &= 0, \pm\sqrt{2}
 \end{align*}
 
-\hypertarget{find-the-characteristic-equation-and-the-eigenvalues-of-a-beginbmatrix-1-0-1--1-3-0--4-13--1-endbmatrix}{%
 \subsubsection{\texorpdfstring{Find the characteristic equation and the
 eigenvalues of
-\(A = \begin{bmatrix}-1 & 0 & 1 \\ -1 & 3 & 0 \\ -4 & 13 & -1 \end{bmatrix}\)}{Find the characteristic equation and the eigenvalues of A = \textbackslash begin\{bmatrix\}-1 \& 0 \& 1 \textbackslash\textbackslash{} -1 \& 3 \& 0 \textbackslash\textbackslash{} -4 \& 13 \& -1 \textbackslash end\{bmatrix\}}}\label{find-the-characteristic-equation-and-the-eigenvalues-of-a-beginbmatrix-1-0-1--1-3-0--4-13--1-endbmatrix}}
+\(A = \begin{bmatrix}-1 & 0 & 1 \\ -1 & 3 & 0 \\ -4 & 13 & -1 \end{bmatrix}\)}{Find the characteristic equation and the eigenvalues of A = \textbackslash begin\{bmatrix\}-1 \& 0 \& 1 \textbackslash\textbackslash{} -1 \& 3 \& 0 \textbackslash\textbackslash{} -4 \& 13 \& -1 \textbackslash end\{bmatrix\}}}\label{find-the-characteristic-equation-and-the-eigenvalues-of-a-beginbmatrix-1-0-1--1-3-0--4-13--1-endbmatrix}
 
 \begin{align*}
 \begin{vmatrix}-1-\lambda & 0 & 1 \\ -1 & 3-\lambda & 0 \\ -4 & 13 & -\lambda \end{vmatrix} = 0 \\
@@ -1651,9 +1559,8 @@ eigenvalues of
 
 \newpage{}
 
-\hypertarget{find-the-eigenvalues-of-a-beginbmatrix2-0-0-6-3-0-1-4-5-endbmatrix}{%
 \subsubsection{\texorpdfstring{Find the eigenvalues of
-\(A = \begin{bmatrix}2 & 0 & 0 \\ 6 & 3 & 0 \\ 1 & 4 & 5 \end{bmatrix}\)}{Find the eigenvalues of A = \textbackslash begin\{bmatrix\}2 \& 0 \& 0 \textbackslash\textbackslash{} 6 \& 3 \& 0 \textbackslash\textbackslash{} 1 \& 4 \& 5 \textbackslash end\{bmatrix\}}}\label{find-the-eigenvalues-of-a-beginbmatrix2-0-0-6-3-0-1-4-5-endbmatrix}}
+\(A = \begin{bmatrix}2 & 0 & 0 \\ 6 & 3 & 0 \\ 1 & 4 & 5 \end{bmatrix}\)}{Find the eigenvalues of A = \textbackslash begin\{bmatrix\}2 \& 0 \& 0 \textbackslash\textbackslash{} 6 \& 3 \& 0 \textbackslash\textbackslash{} 1 \& 4 \& 5 \textbackslash end\{bmatrix\}}}\label{find-the-eigenvalues-of-a-beginbmatrix2-0-0-6-3-0-1-4-5-endbmatrix}
 
 \begin{align*}
 \begin{vmatrix}\lambda-2 & 0 & 0 \\ 6 & \lambda-3 & 0 \\ 1 & 4 & \lambda-5\end{vmatrix} &= 0 \\
@@ -1662,9 +1569,8 @@ eigenvalues of
 \end{align*} Theorem 1: For a triangular matrix, the eigenvalues are the
 elements on the main diagonal.
 
-\hypertarget{find-the-eigenvalues-of-a3-if-abeginbmatrixfrac12-4-5--2-0--1-3--8-0-0-2-6-0-0-0-4endbmatrix}{%
 \subsubsection{\texorpdfstring{Find the eigenvalues of \(A^3\) if
-\(A=\begin{bmatrix}\frac{1}{2} & 4 & 5 & -2 \\ 0 & -1 & 3 & -8 \\ 0 & 0 & 2 & 6 \\ 0 & 0 & 0 & 4\end{bmatrix}\)}{Find the eigenvalues of A\^{}3 if A=\textbackslash begin\{bmatrix\}\textbackslash frac\{1\}\{2\} \& 4 \& 5 \& -2 \textbackslash\textbackslash{} 0 \& -1 \& 3 \& -8 \textbackslash\textbackslash{} 0 \& 0 \& 2 \& 6 \textbackslash\textbackslash{} 0 \& 0 \& 0 \& 4\textbackslash end\{bmatrix\}}}\label{find-the-eigenvalues-of-a3-if-abeginbmatrixfrac12-4-5--2-0--1-3--8-0-0-2-6-0-0-0-4endbmatrix}}
+\(A=\begin{bmatrix}\frac{1}{2} & 4 & 5 & -2 \\ 0 & -1 & 3 & -8 \\ 0 & 0 & 2 & 6 \\ 0 & 0 & 0 & 4\end{bmatrix}\)}{Find the eigenvalues of A\^{}3 if A=\textbackslash begin\{bmatrix\}\textbackslash frac\{1\}\{2\} \& 4 \& 5 \& -2 \textbackslash\textbackslash{} 0 \& -1 \& 3 \& -8 \textbackslash\textbackslash{} 0 \& 0 \& 2 \& 6 \textbackslash\textbackslash{} 0 \& 0 \& 0 \& 4\textbackslash end\{bmatrix\}}}\label{find-the-eigenvalues-of-a3-if-abeginbmatrixfrac12-4-5--2-0--1-3--8-0-0-2-6-0-0-0-4endbmatrix}
 
 \begin{align*}
 \lambda_A = \frac{1}{2}, -1, 2, 4 \\
@@ -1672,17 +1578,15 @@ elements on the main diagonal.
 \end{align*} Theorem 2: The eigenvalues of \(A^k\) are
 \(\lambda_1^k, \lambda_2^k, ...\)
 
-\hypertarget{give-me-a-matrix-with-eigenvalues-lambda-0-2-5}{%
 \subsubsection{\texorpdfstring{Give me a matrix with eigenvalues
-\(\lambda = 0, 2, 5\)}{Give me a matrix with eigenvalues \textbackslash lambda = 0, 2, 5}}\label{give-me-a-matrix-with-eigenvalues-lambda-0-2-5}}
+\(\lambda = 0, 2, 5\)}{Give me a matrix with eigenvalues \textbackslash lambda = 0, 2, 5}}\label{give-me-a-matrix-with-eigenvalues-lambda-0-2-5}
 
 \(A = \begin{bmatrix}0 & 0 & 0 \\ 1 & 2 & 0 \\ 2 & 2 & 5\end{bmatrix}\)
 
 Theorem 3: A square matrix \(A\) is invertible \(\iff \lambda \neq 0\)
 (which also means its determinant is 0).
 
-\hypertarget{finding-eigenvectors}{%
-\subsubsection{Finding eigenvectors!}\label{finding-eigenvectors}}
+\subsubsection{Finding eigenvectors!}\label{finding-eigenvectors}
 
 Find the nontrivial eigenvectors of:
 
@@ -1708,9 +1612,8 @@ For \(\lambda=-4\): \begin{align*}
 \end{align*} Therefore, the eigen space is:
 \(\left\{\langle-6, 5\rangle, \langle6, 6\rangle\right\}\)
 
-\hypertarget{diagonalization-and-similar-triangles}{%
 \subsection{Diagonalization and Similar
-Triangles}\label{diagonalization-and-similar-triangles}}
+Triangles}\label{diagonalization-and-similar-triangles}
 
 Similar matrices: If \(A\) and \(D\) are square matrices, we say that A
 and D are ``similar'' if there exists an invertible matrix \(P\) such
@@ -1718,9 +1621,8 @@ that:
 
 \(D = P^{-1}AP\).
 
-\hypertarget{properties-of-similar-matricces}{%
 \subsubsection{Properties of Similar
-Matricces}\label{properties-of-similar-matricces}}
+Matricces}\label{properties-of-similar-matricces}
 
 \begin{itemize}
 \tightlist
@@ -1736,8 +1638,7 @@ Matricces}\label{properties-of-similar-matricces}}
   They have the same eigenvalues
 \end{itemize}
 
-\hypertarget{procedure}{%
-\subsubsection{Procedure}\label{procedure}}
+\subsubsection{Procedure}\label{procedure}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1764,10 +1665,9 @@ Matricces}\label{properties-of-similar-matricces}}
   Check your work to find matrix \(D\) if reasonable
 \end{enumerate}
 
-\hypertarget{example-find-a-matrix-p-that-diagonalizes-a-and-compute-p-1ap}{%
 \subsubsection{\texorpdfstring{Example: Find a matrix \(P\) that
 diagonalizes \(A\) and compute
-\(P^{-1}AP\)}{Example: Find a matrix P that diagonalizes A and compute P\^{}\{-1\}AP}}\label{example-find-a-matrix-p-that-diagonalizes-a-and-compute-p-1ap}}
+\(P^{-1}AP\)}{Example: Find a matrix P that diagonalizes A and compute P\^{}\{-1\}AP}}\label{example-find-a-matrix-p-that-diagonalizes-a-and-compute-p-1ap}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -1803,8 +1703,7 @@ D &= P^{-1}AP \\
 &= \begin{bmatrix}-2 & 0 \\ 0 & 10\end{bmatrix}
 \end{align*}
 
-\hypertarget{conclusion}{%
-\subsubsection{Conclusion}\label{conclusion}}
+\subsubsection{Conclusion}\label{conclusion}
 
 \begin{itemize}
 \tightlist
@@ -1833,8 +1732,7 @@ Then, find \(P\): \begin{align*}
 P = \begin{bmatrix}1 & 0 & 2 \\ 0 & 1 & 0 \\ 0 & 0 & 1\end{bmatrix}
 \end{align*}
 
-\hypertarget{more-on-similar-matrices}{%
-\subsection{More on Similar Matrices}\label{more-on-similar-matrices}}
+\subsection{More on Similar Matrices}\label{more-on-similar-matrices}
 
 There are a few more properties of similar matrices:
 
@@ -1850,8 +1748,7 @@ There are a few more properties of similar matrices:
   They have the same row space
 \end{itemize}
 
-\hypertarget{example-3}{%
-\subsubsection{Example}\label{example-3}}
+\subsubsection{Example}\label{example-3}
 
 **Matrix \(A\) is similar to the following matrix:
 
@@ -1871,8 +1768,7 @@ Characteristic Polynomial: \begin{align*}
 
 \newpage{}
 
-\hypertarget{some-review}{%
-\subsubsection{Some review}\label{some-review}}
+\subsubsection{Some review}\label{some-review}
 
 \begin{itemize}
 \tightlist
@@ -1886,29 +1782,25 @@ Characteristic Polynomial: \begin{align*}
   \ul{Geometric multiplicity}: The number of eigenvectors it maps to.
 \end{itemize}
 
-\hypertarget{theorem-geometric-and-algebraic-multiplicity}{%
 \paragraph{Theorem: Geometric and Algebraic
-Multiplicity}\label{theorem-geometric-and-algebraic-multiplicity}}
+Multiplicity}\label{theorem-geometric-and-algebraic-multiplicity}
 
 If \(A\) is a square matrix, then: a. For every eigenvalue of \(A\), the
 geometric multiplicity is less than or equal to the algebraic
 multiplicity. b. \(A\) is diagonalizable \(\iff\) the geometric
 multiplicity of each eigenvalue is equal to the algebraic multiplicity.
 
-\hypertarget{similar-matrices-continued-11132023}{%
 \subsection{Similar Matrices Continued
-(11/13/2023)}\label{similar-matrices-continued-11132023}}
+(11/13/2023)}\label{similar-matrices-continued-11132023}
 
-\hypertarget{warm-up}{%
-\subsubsection{Warm-Up}\label{warm-up}}
+\subsubsection{Warm-Up}\label{warm-up}
 
 Can you write a new statement involving eigenvalues to add to the list
 of equivalent statements?
 
 \(\lambda = 0\) is not an eigenvalue of \(A\)
 
-\hypertarget{homework-review}{%
-\subsubsection{Homework Review}\label{homework-review}}
+\subsubsection{Homework Review}\label{homework-review}
 
 \(A = \begin{bmatrix} 19 & -9 & -6 \\ 25 & -11 & -9 \\ 17 & -9 & -4 \end{bmatrix}\)
 \begin{align*}
@@ -1920,10 +1812,9 @@ of equivalent statements?
 \(\lambda=1\) has an algebraic multiplicity of 2 and \(\lambda=2\) has
 an algebraic multiplicity of 1.
 
-\hypertarget{suppose-that-a-characteristic-polynomial-of-some-matrix-a-is-found-to-be}{%
 \subsubsection{\texorpdfstring{Suppose that a characteristic polynomial
 of some matrix \(A\) is found to
-be:}{Suppose that a characteristic polynomial of some matrix A is found to be:}}\label{suppose-that-a-characteristic-polynomial-of-some-matrix-a-is-found-to-be}}
+be:}{Suppose that a characteristic polynomial of some matrix A is found to be:}}\label{suppose-that-a-characteristic-polynomial-of-some-matrix-a-is-found-to-be}
 
 \(p(\lambda) = (\lambda-1)(\lambda-3)^2(\lambda=4)^3\)
 
@@ -1969,16 +1860,13 @@ be:}{Suppose that a characteristic polynomial of some matrix A is found to be:}}
 
 The eigenvalue must be 3 or 4.
 
-\hypertarget{semester-ii}{%
-\section{Semester II}\label{semester-ii}}
+\section{Semester II}\label{semester-ii}
 
-\hypertarget{introduction-to-multivariable-functions-0104}{%
 \subsection{Introduction to Multivariable functions
-(01/04)}\label{introduction-to-multivariable-functions-0104}}
+(01/04)}\label{introduction-to-multivariable-functions-0104}
 
-\hypertarget{definition-of-a-multivariable-function}{%
 \subsubsection{Definition of a Multivariable
-Function}\label{definition-of-a-multivariable-function}}
+Function}\label{definition-of-a-multivariable-function}
 
 Suppose \(D\) is a set of \(n\)-tuples of real numbers
 (\(x_1, x_2, ..., x_n\)). A function \(f\) on \(D\) is a rule that
@@ -1994,22 +1882,19 @@ variable} of \(f\), and \(f\) is a function of the \(n\)
 function's \textbf{input variables}; \(w\) is the function's
 \textbf{output variable}.
 
-\hypertarget{limits-and-continuity-0105}{%
 \subsection{Limits and Continuity
-(01/05)}\label{limits-and-continuity-0105}}
+(01/05)}\label{limits-and-continuity-0105}
 
-\hypertarget{level-curve-graph-surface}{%
 \subsubsection{Level Curve, Graph,
-Surface}\label{level-curve-graph-surface}}
+Surface}\label{level-curve-graph-surface}
 
 The set of points in the plane where a function \(f(x, y)\) has a
 constant value \(k\) is called a \textbf{level curve} of \(f\). The
 graph of \(f\) is the set of all points \((x, y, z)\) in space, where
 \(z = f(x, y)\). The graph of \(f\) is a surface in space.
 
-\hypertarget{limits-with-multivariable-functions}{%
 \subsubsection{Limits With Multivariable
-Functions}\label{limits-with-multivariable-functions}}
+Functions}\label{limits-with-multivariable-functions}
 
 \emph{Limits}: Let \(f\) be a function of two variables defined on an
 open region, except possibly at \$(x\_0, \(y_0\)).
@@ -2025,8 +1910,7 @@ In 3-D:
 \(\lim_{(x, y) \rightarrow (x_0, y_0)^-} f(x, y) = L \in \mathbb{R}\)
 from \ul{all} directions.
 
-\hypertarget{examples-3}{%
-\subsubsection{Examples}\label{examples-3}}
+\subsubsection{Examples}\label{examples-3}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2051,87 +1935,74 @@ common factors.
   \(\lim_{(x, y) \rightarrow (4, 3)} \cfrac{\sqrt{x}-\sqrt{y+1}}{x-y-1}\)
 \end{enumerate}
 
-\hypertarget{homework}{%
-\subsubsection{Homework}\label{homework}}
+\subsubsection{Homework}\label{homework}
 
-\hypertarget{evaluate-the-limit-lim_x-y-rightarrow-0-0-cfrac3x2-y25x2y22}{%
 \paragraph{\texorpdfstring{Evaluate the limit
-\(\lim_{(x, y) \rightarrow (0, 0)} \cfrac{3x^2-y^2+5}{x^2+y^2+2}\)}{Evaluate the limit \textbackslash lim\_\{(x, y) \textbackslash rightarrow (0, 0)\} \textbackslash cfrac\{3x\^{}2-y\^{}2+5\}\{x\^{}2+y\^{}2+2\}}}\label{evaluate-the-limit-lim_x-y-rightarrow-0-0-cfrac3x2-y25x2y22}}
+\(\lim_{(x, y) \rightarrow (0, 0)} \cfrac{3x^2-y^2+5}{x^2+y^2+2}\)}{Evaluate the limit \textbackslash lim\_\{(x, y) \textbackslash rightarrow (0, 0)\} \textbackslash cfrac\{3x\^{}2-y\^{}2+5\}\{x\^{}2+y\^{}2+2\}}}\label{evaluate-the-limit-lim_x-y-rightarrow-0-0-cfrac3x2-y25x2y22}
 
 \(\left.\lim_{(x, y) \rightarrow (0, 0)} \cfrac{3x^2-y^2+5}{x^2+y^2+2}\right\vert_{(0,0)} = \cfrac{5}{2}\)
 
-\hypertarget{evaluate-the-limit-lim_x-y-rightarrow-1-1-cossqrt3xy-1}{%
 \paragraph{\texorpdfstring{Evaluate the limit
-\(\lim_{(x, y) \rightarrow (1, 1)} \cos\sqrt[3]{|xy|-1}\)}{Evaluate the limit \textbackslash lim\_\{(x, y) \textbackslash rightarrow (1, 1)\} \textbackslash cos\textbackslash sqrt{[}3{]}\{\textbar xy\textbar-1\}}}\label{evaluate-the-limit-lim_x-y-rightarrow-1-1-cossqrt3xy-1}}
+\(\lim_{(x, y) \rightarrow (1, 1)} \cos\sqrt[3]{|xy|-1}\)}{Evaluate the limit \textbackslash lim\_\{(x, y) \textbackslash rightarrow (1, 1)\} \textbackslash cos\textbackslash sqrt{[}3{]}\{\textbar xy\textbar-1\}}}\label{evaluate-the-limit-lim_x-y-rightarrow-1-1-cossqrt3xy-1}
 
 \(\left.\lim_{(x, y) \rightarrow (1, 1)} \cos\sqrt[3]{|xy|-1}\right\vert_{(1, 1} = \cos0 = 1\)
 
-\hypertarget{evaluate-the-limit-lim_x-y-rightarrow-1-1-cfracxy-y-2x2x-1}{%
 \paragraph{\texorpdfstring{Evaluate the limit
-\(\lim_{(x, y) \rightarrow (1, 1)} \cfrac{xy-y-2x+2}{x-1}\)}{Evaluate the limit \textbackslash lim\_\{(x, y) \textbackslash rightarrow (1, 1)\} \textbackslash cfrac\{xy-y-2x+2\}\{x-1\}}}\label{evaluate-the-limit-lim_x-y-rightarrow-1-1-cfracxy-y-2x2x-1}}
+\(\lim_{(x, y) \rightarrow (1, 1)} \cfrac{xy-y-2x+2}{x-1}\)}{Evaluate the limit \textbackslash lim\_\{(x, y) \textbackslash rightarrow (1, 1)\} \textbackslash cfrac\{xy-y-2x+2\}\{x-1\}}}\label{evaluate-the-limit-lim_x-y-rightarrow-1-1-cfracxy-y-2x2x-1}
 
 \(\lim_{(x, y) \rightarrow (1, 1)} \cfrac{xy-y-2x+2}{x-1}=\cfrac{(x-1)(y-2)}{x-1}=\left.y-2\right\vert_{(1,1)} = -1\)
 
-\hypertarget{on-what-interval-is-the-function-fx-y-sinxy-continuous}{%
 \paragraph{\texorpdfstring{On what interval is the function
 \(f(x, y) = \sin(x+y)\)
-continuous?}{On what interval is the function f(x, y) = \textbackslash sin(x+y) continuous?}}\label{on-what-interval-is-the-function-fx-y-sinxy-continuous}}
+continuous?}{On what interval is the function f(x, y) = \textbackslash sin(x+y) continuous?}}\label{on-what-interval-is-the-function-fx-y-sinxy-continuous}
 
 The \(\sin\) function is continuous everywhere, so
 \((x, y) \in \mathbb{R}^2\)
 
-\hypertarget{on-what-interval-is-the-function-fx-y-z-x2y2-2z2-continuous}{%
 \paragraph{\texorpdfstring{On what interval is the function
 \(f(x, y, z) = x^2+y^2-2z^2\)
-continuous?}{On what interval is the function f(x, y, z) = x\^{}2+y\^{}2-2z\^{}2 continuous?}}\label{on-what-interval-is-the-function-fx-y-z-x2y2-2z2-continuous}}
+continuous?}{On what interval is the function f(x, y, z) = x\^{}2+y\^{}2-2z\^{}2 continuous?}}\label{on-what-interval-is-the-function-fx-y-z-x2y2-2z2-continuous}
 
 \((x, y, z) \in \mathbb{R}^3\)
 
-\hypertarget{on-what-interval-is-the-function-fx-y-z-xysinleftfrac1zright-continuous}{%
 \paragraph{\texorpdfstring{On what interval is the function
 \(f(x, y, z) = xy\sin\left(\frac{1}{z}\right)\)
-continuous?}{On what interval is the function f(x, y, z) = xy\textbackslash sin\textbackslash left(\textbackslash frac\{1\}\{z\}\textbackslash right) continuous?}}\label{on-what-interval-is-the-function-fx-y-z-xysinleftfrac1zright-continuous}}
+continuous?}{On what interval is the function f(x, y, z) = xy\textbackslash sin\textbackslash left(\textbackslash frac\{1\}\{z\}\textbackslash right) continuous?}}\label{on-what-interval-is-the-function-fx-y-z-xysinleftfrac1zright-continuous}
 
 Can't divide by zero, so \((x, y, z) \in \mathbb{R}^3 | z \ne 0\)
 
-\hypertarget{limits-that-do-not-exist-in-3-space-0108}{%
 \subsection{Limits that DO NOT EXIST in 3-Space
-(01/08)}\label{limits-that-do-not-exist-in-3-space-0108}}
+(01/08)}\label{limits-that-do-not-exist-in-3-space-0108}
 
-\hypertarget{question-does-the-function-fxy-cfrac2x2yx4y2-have-a-limit-as-xy-approaches-00}{%
 \subsubsection{\texorpdfstring{Question: Does the function
 \(f(x,y) = \cfrac{2x^2y}{x^4+y^2}\) have a limit as (x,y) approaches
-(0,0)?}{Question: Does the function f(x,y) = \textbackslash cfrac\{2x\^{}2y\}\{x\^{}4+y\^{}2\} have a limit as (x,y) approaches (0,0)?}}\label{question-does-the-function-fxy-cfrac2x2yx4y2-have-a-limit-as-xy-approaches-00}}
+(0,0)?}{Question: Does the function f(x,y) = \textbackslash cfrac\{2x\^{}2y\}\{x\^{}4+y\^{}2\} have a limit as (x,y) approaches (0,0)?}}\label{question-does-the-function-fxy-cfrac2x2yx4y2-have-a-limit-as-xy-approaches-00}
 
 Nope, it approaches the point sp.differently.
 
-\hypertarget{find-left.fx-yrightvert_yx2-and-compute-lim_x-y-rightarrow-0-0-fx-y-along-yx2}{%
 \subsubsection{\texorpdfstring{Find \(\left.f(x, y)\right\vert_{y=x^2}\)
 and compute \(\lim_{(x, y) \rightarrow (0, 0)} f(x, y)\) along
-\(y=x^2\)}{Find \textbackslash left.f(x, y)\textbackslash right\textbackslash vert\_\{y=x\^{}2\} and compute \textbackslash lim\_\{(x, y) \textbackslash rightarrow (0, 0)\} f(x, y) along y=x\^{}2}}\label{find-left.fx-yrightvert_yx2-and-compute-lim_x-y-rightarrow-0-0-fx-y-along-yx2}}
+\(y=x^2\)}{Find \textbackslash left.f(x, y)\textbackslash right\textbackslash vert\_\{y=x\^{}2\} and compute \textbackslash lim\_\{(x, y) \textbackslash rightarrow (0, 0)\} f(x, y) along y=x\^{}2}}\label{find-left.fx-yrightvert_yx2-and-compute-lim_x-y-rightarrow-0-0-fx-y-along-yx2}
 
 \(\left.f(x,y) = \cfrac{2x^2y}{x^4 +y^2}\right\vert_{y=x^2} = \cfrac{2x^4}{2x^4} = 1\)
 
-\hypertarget{find-left.fx-yrightvert_y-x2-and-compute-lim_x-y-rightarrow-0-0-fx-y-along-y-x2}{%
 \subsubsection{\texorpdfstring{Find
 \(\left.f(x, y)\right\vert_{y=-x^2}\) and compute
 \(\lim_{(x, y) \rightarrow (0, 0)} f(x, y)\) along
-\(y=-x^2\)}{Find \textbackslash left.f(x, y)\textbackslash right\textbackslash vert\_\{y=-x\^{}2\} and compute \textbackslash lim\_\{(x, y) \textbackslash rightarrow (0, 0)\} f(x, y) along y=-x\^{}2}}\label{find-left.fx-yrightvert_y-x2-and-compute-lim_x-y-rightarrow-0-0-fx-y-along-y-x2}}
+\(y=-x^2\)}{Find \textbackslash left.f(x, y)\textbackslash right\textbackslash vert\_\{y=-x\^{}2\} and compute \textbackslash lim\_\{(x, y) \textbackslash rightarrow (0, 0)\} f(x, y) along y=-x\^{}2}}\label{find-left.fx-yrightvert_y-x2-and-compute-lim_x-y-rightarrow-0-0-fx-y-along-y-x2}
 
 \(\left.f(x,y) = \cfrac{2x^2y}{x^4 +y^2}\right\vert_{y=x^2} = \cfrac{-2x^4}{2x^4} = 1\)
 
-\hypertarget{explain-why-we-can-conclude-that-lim_x-y-rightarrow-0-0-fxy-does-not-exist}{%
 \subsubsection{\texorpdfstring{Explain why we can conclude that
 \(\lim_{(x, y) \rightarrow (0, 0)} f(x,y)\) does not
-exist}{Explain why we can conclude that \textbackslash lim\_\{(x, y) \textbackslash rightarrow (0, 0)\} f(x,y) does not exist}}\label{explain-why-we-can-conclude-that-lim_x-y-rightarrow-0-0-fxy-does-not-exist}}
+exist}{Explain why we can conclude that \textbackslash lim\_\{(x, y) \textbackslash rightarrow (0, 0)\} f(x,y) does not exist}}\label{explain-why-we-can-conclude-that-lim_x-y-rightarrow-0-0-fxy-does-not-exist}
 
 \(\lim_{(x,y) \rightarrow(0,0)}f(x,y)\) along \(y=x^2\)
 \(\ne \lim_{(x, y)\rightarrow(0, 0)}f(x, y)\) along \(y=-x^2\)
 
-\hypertarget{how-did-we-know-to-choose-yx2-and-y-x2-to-evaluate-the-limit}{%
 \subsubsection{\texorpdfstring{How did we know to choose \(y=x^2\) and
 \(y=-x^2\) to evaluate the
-limit?}{How did we know to choose y=x\^{}2 and y=-x\^{}2 to evaluate the limit?}}\label{how-did-we-know-to-choose-yx2-and-y-x2-to-evaluate-the-limit}}
+limit?}{How did we know to choose y=x\^{}2 and y=-x\^{}2 to evaluate the limit?}}\label{how-did-we-know-to-choose-yx2-and-y-x2-to-evaluate-the-limit}
 
 You want to try to choose things that, as you plug them in, you get a
 nice expression that you can simplify. For this problem in particular,
@@ -2139,69 +2010,57 @@ we chose paths towards \((0, 0)\) that would be easy to solve and yield
 sp.different answers upon simplification. We could've also used the
 equation of the x-axis (\(y=0\)).
 
-\hypertarget{show-that-these-functions-have-no-limit-as-x-y-approaches-0-0-by-considering-sp.different-paths-of-approach.}{%
 \subsubsection{\texorpdfstring{Show that these functions have no limit
 as \((x, y)\) approaches \((0, 0)\) by considering sp.different paths of
-approach.}{Show that these functions have no limit as (x, y) approaches (0, 0) by considering sp.different paths of approach.}}\label{show-that-these-functions-have-no-limit-as-x-y-approaches-0-0-by-considering-sp.different-paths-of-approach.}}
+approach.}{Show that these functions have no limit as (x, y) approaches (0, 0) by considering sp.different paths of approach.}}\label{show-that-these-functions-have-no-limit-as-x-y-approaches-0-0-by-considering-sp.different-paths-of-approach.}
 
-\hypertarget{fxy-cfracx4x4y2}{%
-\paragraph{\texorpdfstring{\(f(x,y) = \cfrac{x^4}{x^4+y^2}\)}{f(x,y) = \textbackslash cfrac\{x\^{}4\}\{x\^{}4+y\^{}2\}}}\label{fxy-cfracx4x4y2}}
+\paragraph{\texorpdfstring{\(f(x,y) = \cfrac{x^4}{x^4+y^2}\)}{f(x,y) = \textbackslash cfrac\{x\^{}4\}\{x\^{}4+y\^{}2\}}}\label{fxy-cfracx4x4y2}
 
 \(\lim_{(x, y)\rightarrow(0, 0)} f(x, y)\) along
 \(y=2x^2 = \cfrac{x^4}{5x^4}=\cfrac{1}{5}\)
 \(\ne \lim_{(x, y)\rightarrow(0, 0)} f(x, y)\) along
 \(y=x^2 = \cfrac{x^4}{2x^4} = \cfrac{1}{2}\)
 
-\hypertarget{fx-y-cfracx2yy}{%
-\paragraph{\texorpdfstring{\(f(x, y) = \cfrac{x^2+y}{y}\)}{f(x, y) = \textbackslash cfrac\{x\^{}2+y\}\{y\}}}\label{fx-y-cfracx2yy}}
+\paragraph{\texorpdfstring{\(f(x, y) = \cfrac{x^2+y}{y}\)}{f(x, y) = \textbackslash cfrac\{x\^{}2+y\}\{y\}}}\label{fx-y-cfracx2yy}
 
 \(\lim_{(x, y)\rightarrow(0,0)} f(x, y)\) along
 \(y=x^2 = \cfrac{2y}{y} = 2\)
 \(\ne \lim_{(x, y)\rightarrow(0,0)} f(x, y)\) along
 \(y=2x^2 = \cfrac{3x^2}{2x^2} = \cfrac{3}{2}\)
 
-\hypertarget{partial-derivatives-0110}{%
-\subsection{Partial Derivatives
-(01/10)}\label{partial-derivatives-0110}}
+\subsection{Partial Derivatives (01/10)}\label{partial-derivatives-0110}
 
-\hypertarget{first-order-partial-derivatives}{%
 \subsubsection{First Order Partial
-Derivatives}\label{first-order-partial-derivatives}}
+Derivatives}\label{first-order-partial-derivatives}
 
 A \textbf{partial derivative} is obtained by holding all but one of the
 independent variables constant and differentiating with respect to that
 variable.
 
-\hypertarget{notation}{%
-\paragraph{Notation}\label{notation}}
+\paragraph{Notation}\label{notation}
 
 \(\frac{\partial f}{\partial x} = f_x = \frac{\partial}{\partial x}f(x, y)\)
 is the partial derivative of \(f\) with respect to \(x\)
 
-\hypertarget{examples-4}{%
-\subsubsection{Examples}\label{examples-4}}
+\subsubsection{Examples}\label{examples-4}
 
-\hypertarget{fx-y-2x3y-4x2y35x4}{%
-\paragraph{\texorpdfstring{\(f(x, y) = 2x^3y-4x^2y^3+5x^4\)}{f(x, y) = 2x\^{}3y-4x\^{}2y\^{}3+5x\^{}4}}\label{fx-y-2x3y-4x2y35x4}}
+\paragraph{\texorpdfstring{\(f(x, y) = 2x^3y-4x^2y^3+5x^4\)}{f(x, y) = 2x\^{}3y-4x\^{}2y\^{}3+5x\^{}4}}\label{fx-y-2x3y-4x2y35x4}
 
 \(f_x = 6x^2y-8xy^3+20x^3\)\\
 \(f_y = 2x^3-12x^2y^2\)
 
-\hypertarget{fx-y-4x2y-8x3y42xy7}{%
-\paragraph{\texorpdfstring{\(f(x, y) = 4x^2y-8x^3y^4+2xy^7\)}{f(x, y) = 4x\^{}2y-8x\^{}3y\^{}4+2xy\^{}7}}\label{fx-y-4x2y-8x3y42xy7}}
+\paragraph{\texorpdfstring{\(f(x, y) = 4x^2y-8x^3y^4+2xy^7\)}{f(x, y) = 4x\^{}2y-8x\^{}3y\^{}4+2xy\^{}7}}\label{fx-y-4x2y-8x3y42xy7}
 
 \(f_x = 8xy-24x^2y^4+2y^7\)\\
 \(f_y = 4x^2-32x^3y^3+14xy^6\)
 
-\hypertarget{fxytan2x-y}{%
-\paragraph{\texorpdfstring{\(f(x,y)=\tan(2x-y)\)}{f(x,y)=\textbackslash tan(2x-y)}}\label{fxytan2x-y}}
+\paragraph{\texorpdfstring{\(f(x,y)=\tan(2x-y)\)}{f(x,y)=\textbackslash tan(2x-y)}}\label{fxytan2x-y}
 
 \(f_x = 2\sec^2(2x-y)\)\\
 \(f_y = -\sec^2(2x-y)\)
 
-\hypertarget{the-second-fundamental-theorem-of-multivariable-calculus}{%
 \subsubsection{The Second Fundamental Theorem of (Multivariable)
-Calculus}\label{the-second-fundamental-theorem-of-multivariable-calculus}}
+Calculus}\label{the-second-fundamental-theorem-of-multivariable-calculus}
 
 \begin{itemize}
 \tightlist
@@ -2211,23 +2070,21 @@ Calculus}\label{the-second-fundamental-theorem-of-multivariable-calculus}}
   \(\frac{\mathrm{d}}{\mathrm{d}x}\int_5^{x^2} f(t) \mathrm{d}t = 2x \cdot f(x^2)\)
 \end{itemize}
 
-\hypertarget{examples-5}{%
-\subsubsection{Examples}\label{examples-5}}
+\subsubsection{Examples}\label{examples-5}
 
-\hypertarget{fxy-int_3x2yt2-1mathrmdt}{%
-\paragraph{\texorpdfstring{\(f(x,y) = \int_{3x}^{2y}(t^2-1)\mathrm{d}t\)}{f(x,y) = \textbackslash int\_\{3x\}\^{}\{2y\}(t\^{}2-1)\textbackslash mathrm\{d\}t}}\label{fxy-int_3x2yt2-1mathrmdt}}
+\paragraph{\texorpdfstring{\(f(x,y) = \int_{3x}^{2y}(t^2-1)\mathrm{d}t\)}{f(x,y) = \textbackslash int\_\{3x\}\^{}\{2y\}(t\^{}2-1)\textbackslash mathrm\{d\}t}}\label{fxy-int_3x2yt2-1mathrmdt}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
 \CommentTok{\# import libraries}
 \ImportTok{import}\NormalTok{ sympy }\ImportTok{as}\NormalTok{ sp}
 \ImportTok{from}\NormalTok{ IPython.display }\ImportTok{import}\NormalTok{ display, Math, Latex}
+\NormalTok{x, y, t, z, r, θ, p, q }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}x y t z r θ p q\textquotesingle{}}\NormalTok{, real}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
 \end{Highlighting}
 \end{Shaded}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{x, y, t, z, r, θ, p, q }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}x y t z r θ p q\textquotesingle{}}\NormalTok{, real}\OperatorTok{=}\VariableTok{True}\NormalTok{, positive}\OperatorTok{=}\VariableTok{True}\NormalTok{)}
 \NormalTok{f }\OperatorTok{=}\NormalTok{ sp.integrate(t}\OperatorTok{**}\DecValTok{2}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, (t, }\DecValTok{3}\OperatorTok{*}\NormalTok{x, }\DecValTok{2}\OperatorTok{*}\NormalTok{y))}
 \NormalTok{display(sp.diff(f, x))}
 \NormalTok{display(sp.diff(f, y))}
@@ -2238,10 +2095,9 @@ $\displaystyle 3 - 27 x^{2}$
 
 $\displaystyle 8 y^{2} - 2$
 
-\hypertarget{find-both-partial-derivatives-and-evaluate-each-at-the-point-1-ln-2}{%
 \paragraph{\texorpdfstring{Find both partial derivatives and evaluate
 each at the point
-\((1, \ln 2)\)}{Find both partial derivatives and evaluate each at the point (1, \textbackslash ln 2)}}\label{find-both-partial-derivatives-and-evaluate-each-at-the-point-1-ln-2}}
+\((1, \ln 2)\)}{Find both partial derivatives and evaluate each at the point (1, \textbackslash ln 2)}}\label{find-both-partial-derivatives-and-evaluate-each-at-the-point-1-ln-2}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi}.}
@@ -2268,14 +2124,12 @@ $\displaystyle 2 + 4 \log{\left(2 \right)}$
 
 $\displaystyle 2$
 
-\hypertarget{nd-partial-derivatives-0111}{%
 \subsection{2nd Partial Derivatives
-(01/11)}\label{nd-partial-derivatives-0111}}
+(01/11)}\label{nd-partial-derivatives-0111}
 
-\hypertarget{first-lets-see-this-one.-if-fx-y-z-xsiny3z-find-f_x-f_y-f_z.}{%
 \subsubsection{\texorpdfstring{First, let's see this one. If
 \(f(x, y, z) = x\sin(y+3z)\), find
-\(f_x, f_y, f_z\).}{First, let's see this one. If f(x, y, z) = x\textbackslash sin(y+3z), find f\_x, f\_y, f\_z.}}\label{first-lets-see-this-one.-if-fx-y-z-xsiny3z-find-f_x-f_y-f_z.}}
+\(f_x, f_y, f_z\).}{First, let's see this one. If f(x, y, z) = x\textbackslash sin(y+3z), find f\_x, f\_y, f\_z.}}\label{first-lets-see-this-one.-if-fx-y-z-xsiny3z-find-f_x-f_y-f_z.}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
@@ -2292,27 +2146,23 @@ $\displaystyle x \cos{\left(y + 3 z \right)}$
 
 $\displaystyle 3 x \cos{\left(y + 3 z \right)}$
 
-\hypertarget{nd-order-partial-derivatives}{%
 \subsubsection{2nd-Order Partial
-Derivatives}\label{nd-order-partial-derivatives}}
+Derivatives}\label{nd-order-partial-derivatives}
 
 The \textbf{second-order partial derivatives} of \(f\) are the partial
 derivatives of the partial derivatives of \(f\).
 
-\hypertarget{notation-1}{%
-\paragraph{Notation}\label{notation-1}}
+\paragraph{Notation}\label{notation-1}
 
 \(f_{xx} = \frac{\partial^2 f}{\partial x^2} = \frac{\partial}{\partial x}\left(\frac{\partial f}{\partial x}\right)\)
 
-\hypertarget{mixed-partial-derivatives}{%
 \subsubsection{Mixed Partial
-Derivatives}\label{mixed-partial-derivatives}}
+Derivatives}\label{mixed-partial-derivatives}
 
 The \textbf{mixed partial derivatives} of \(f\) are the partial
 derivatives of \(f\) with respect to many other different variables.
 
-\hypertarget{notation-2}{%
-\paragraph{Notation}\label{notation-2}}
+\paragraph{Notation}\label{notation-2}
 
 \(f_{xy} = \frac{\partial^2 f}{\partial x \partial y} = \frac{\partial}{\partial x}\left(\frac{\partial f}{\partial y}\right)\)
 
@@ -2321,20 +2171,17 @@ right to left. For example, \(f_{xy}\) is the partial derivative of
 \(f_x\) with respect to \(y\), which is notated as
 \(\frac{\partial^2 f}{\partial x \partial y}\).
 
-\hypertarget{theorem-clairauts-theorem}{%
 \subsubsection{Theorem (Clairaut's
-Theorem)}\label{theorem-clairauts-theorem}}
+Theorem)}\label{theorem-clairauts-theorem}
 
 If \(f_{xy}\) and \(f_{yx}\) are continuous on an open region \(D\),
 then \(f_{xy}(a, b) = f_{yx}(a, b)\) on \(D\).
 
-\hypertarget{examples-6}{%
-\subsubsection{Examples}\label{examples-6}}
+\subsubsection{Examples}\label{examples-6}
 
-\hypertarget{given-that-fx-y-x2y-y3ln-x-find-all-2nd-order-partial-derivatives}{%
 \paragraph{\texorpdfstring{Given that \(f(x, y) = x^2y-y^3+\ln x\), find
 \textbf{all} 2nd order partial
-derivatives}{Given that f(x, y) = x\^{}2y-y\^{}3+\textbackslash ln x, find all 2nd order partial derivatives}}\label{given-that-fx-y-x2y-y3ln-x-find-all-2nd-order-partial-derivatives}}
+derivatives}{Given that f(x, y) = x\^{}2y-y\^{}3+\textbackslash ln x, find all 2nd order partial derivatives}}\label{given-that-fx-y-x2y-y3ln-x-find-all-2nd-order-partial-derivatives}
 
 f = x**2*y - y**3 + sp.ln(x) display(sp.diff(f, y, x))
 display(sp.diff(f, x, y)) display(sp.diff(f, x, x)) display(sp.diff(f,
@@ -2353,125 +2200,83 @@ For this problem, you need to "choose wisely." Knowing that the function and it'
 
 #### $f(x, y) = x(y-1)$
 
-::: {.cell execution_count=5}
-``` {.python .cell-code}
+```{python}
 f = x*(y-1)
 display(sp.diff(f, x))
 display(sp.diff(f, y))
 \end{verbatim}
 
-$\displaystyle y - 1$
-
-$\displaystyle x$
-
-:::
-
-\hypertarget{fx-y-5xy---7x2---y2-3x---6y-2}{%
-\subsubsection{\texorpdfstring{\(f(x, y) = 5xy - 7x^2 - y^2 + 3x - 6y +2\)}{f(x, y) = 5xy - 7x\^{}2 - y\^{}2 + 3x - 6y +2}}\label{fx-y-5xy---7x2---y2-3x---6y-2}}
+\subsubsection{\texorpdfstring{\(f(x, y) = 5xy - 7x^2 - y^2 + 3x - 6y +2\)}{f(x, y) = 5xy - 7x\^{}2 - y\^{}2 + 3x - 6y +2}}\label{fx-y-5xy---7x2---y2-3x---6y-2}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{f }\OperatorTok{=} \DecValTok{5}\OperatorTok{*}\NormalTok{x}\OperatorTok{*}\NormalTok{y }\OperatorTok{{-}} \DecValTok{7}\OperatorTok{*}\NormalTok{x}\OperatorTok{**}\DecValTok{2} \OperatorTok{{-}}\NormalTok{ y}\OperatorTok{**}\DecValTok{2} \OperatorTok{+} \DecValTok{3}\OperatorTok{*}\NormalTok{x }\OperatorTok{{-}} \DecValTok{6}\OperatorTok{*}\NormalTok{y }\OperatorTok{+} \DecValTok{2}
+\NormalTok{f = 5*x*y {-} 7*x**2 {-} y**2 + 3*x {-} 6*y + 2}
 \NormalTok{display(sp.diff(f, x))}
 \NormalTok{display(sp.diff(f, y))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle - 14 x + 5 y + 3$
-
-$\displaystyle 5 x - 2 y - 6$
-
-\hypertarget{fx-y-sqrtx2y2}{%
-\subsubsection{\texorpdfstring{\(f(x, y) = \sqrt{x^2+y^2}\)}{f(x, y) = \textbackslash sqrt\{x\^{}2+y\^{}2\}}}\label{fx-y-sqrtx2y2}}
+\subsubsection{\texorpdfstring{\(f(x, y) = \sqrt{x^2+y^2}\)}{f(x, y) = \textbackslash sqrt\{x\^{}2+y\^{}2\}}}\label{fx-y-sqrtx2y2}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{f }\OperatorTok{=}\NormalTok{ sp.sqrt(x}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\NormalTok{ y}\OperatorTok{**}\DecValTok{2}\NormalTok{)}
+\NormalTok{f = sp.sqrt(x**2 + y**2)}
 \NormalTok{display(sp.diff(f, x))}
 \NormalTok{display(sp.diff(f, y))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle \frac{x}{\sqrt{x^{2} + y^{2}}}$
-
-$\displaystyle \frac{y}{\sqrt{x^{2} + y^{2}}}$
-
-\hypertarget{fx-y-exy1}{%
-\subsubsection{\texorpdfstring{\(f(x, y) = e^{(x+y+1)}\)}{f(x, y) = e\^{}\{(x+y+1)\}}}\label{fx-y-exy1}}
+\subsubsection{\texorpdfstring{\(f(x, y) = e^{(x+y+1)}\)}{f(x, y) = e\^{}\{(x+y+1)\}}}\label{fx-y-exy1}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{f }\OperatorTok{=}\NormalTok{ sp.exp(x}\OperatorTok{+}\NormalTok{y}\OperatorTok{+}\DecValTok{1}\NormalTok{) }
+\NormalTok{f = sp.exp(x+y+1) }
 \NormalTok{display(sp.diff(f, x))}
 \NormalTok{display(sp.diff(f, y))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle e^{x + y + 1}$
-
-$\displaystyle e^{x + y + 1}$
-
-\hypertarget{fx-y-int_xy-gt-mathrmdt}{%
-\subsubsection{\texorpdfstring{\(f(x, y) = \int_x^y g(t) \mathrm{d}t\)}{f(x, y) = \textbackslash int\_x\^{}y g(t) \textbackslash mathrm\{d\}t}}\label{fx-y-int_xy-gt-mathrmdt}}
+\subsubsection{\texorpdfstring{\(f(x, y) = \int_x^y g(t) \mathrm{d}t\)}{f(x, y) = \textbackslash int\_x\^{}y g(t) \textbackslash mathrm\{d\}t}}\label{fx-y-int_xy-gt-mathrmdt}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{g }\OperatorTok{=}\NormalTok{ sp.Function(}\StringTok{\textquotesingle{}g\textquotesingle{}}\NormalTok{)}
-\NormalTok{f }\OperatorTok{=}\NormalTok{ sp.integrate(g(t), (t, x, y))}
+\NormalTok{g = sp.Function(\textquotesingle{}g\textquotesingle{})}
+\NormalTok{f = sp.integrate(g(t), (t, x, y))}
 \NormalTok{display(sp.diff(f, x))}
 \NormalTok{display(sp.diff(f, y))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle - g{\left(x \right)}$
-
-$\displaystyle g{\left(y \right)}$
-
-\hypertarget{fx-y-z-xyyzxz}{%
-\subsubsection{\texorpdfstring{\(f(x, y, z) = xy+yz+xz\)}{f(x, y, z) = xy+yz+xz}}\label{fx-y-z-xyyzxz}}
+\subsubsection{\texorpdfstring{\(f(x, y, z) = xy+yz+xz\)}{f(x, y, z) = xy+yz+xz}}\label{fx-y-z-xyyzxz}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{f }\OperatorTok{=}\NormalTok{ x}\OperatorTok{*}\NormalTok{y }\OperatorTok{+}\NormalTok{ y}\OperatorTok{*}\NormalTok{z }\OperatorTok{+}\NormalTok{ x}\OperatorTok{*}\NormalTok{z}
+\NormalTok{f = x*y + y*z + x*z}
 \NormalTok{display(sp.diff(f, x))}
 \NormalTok{display(sp.diff(f, y))}
 \NormalTok{display(sp.diff(f, z))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle y + z$
-
-$\displaystyle x + z$
-
-$\displaystyle x + y$
-
-\hypertarget{fx-y-z-lnx-2y-3z}{%
-\subsubsection{\texorpdfstring{\(f(x, y, z) = \ln(x + 2y + 3z)\)}{f(x, y, z) = \textbackslash ln(x + 2y + 3z)}}\label{fx-y-z-lnx-2y-3z}}
+\subsubsection{\texorpdfstring{\(f(x, y, z) = \ln(x + 2y + 3z)\)}{f(x, y, z) = \textbackslash ln(x + 2y + 3z)}}\label{fx-y-z-lnx-2y-3z}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{f }\OperatorTok{=}\NormalTok{ sp.ln(x }\OperatorTok{+} \DecValTok{2}\OperatorTok{*}\NormalTok{y }\OperatorTok{+} \DecValTok{3}\OperatorTok{*}\NormalTok{z)}
+\NormalTok{f = sp.ln(x + 2*y + 3*z)}
 \NormalTok{display(sp.diff(f, x))}
 \NormalTok{display(sp.diff(f, y))}
 \NormalTok{display(sp.diff(f, z))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle \frac{1}{x + 2 y + 3 z}$
-
-$\displaystyle \frac{2}{x + 2 y + 3 z}$
-
-$\displaystyle \frac{3}{x + 2 y + 3 z}$
-
-\hypertarget{if-fxy-xcosyyex-find-fracpartial2-fpartial-x2-fracpartial2-fpartial-y2-fracpartial2-fpartial-x-partial-y-and-fracpartial2-fpartial-y-partial-x}{%
 \subsubsection{\texorpdfstring{If \(f(x,y) = x\cos(y)+ye^x\), find
 \(\frac{\partial^2 f}{\partial x^2}, \frac{\partial^2 f}{\partial y^2}, \frac{\partial^2 f}{\partial x \partial y},\)
 and
-\(\frac{\partial^2 f}{\partial y \partial x}\)}{If f(x,y) = x\textbackslash cos(y)+ye\^{}x, find \textbackslash frac\{\textbackslash partial\^{}2 f\}\{\textbackslash partial x\^{}2\}, \textbackslash frac\{\textbackslash partial\^{}2 f\}\{\textbackslash partial y\^{}2\}, \textbackslash frac\{\textbackslash partial\^{}2 f\}\{\textbackslash partial x \textbackslash partial y\}, and \textbackslash frac\{\textbackslash partial\^{}2 f\}\{\textbackslash partial y \textbackslash partial x\}}}\label{if-fxy-xcosyyex-find-fracpartial2-fpartial-x2-fracpartial2-fpartial-y2-fracpartial2-fpartial-x-partial-y-and-fracpartial2-fpartial-y-partial-x}}
+\(\frac{\partial^2 f}{\partial y \partial x}\)}{If f(x,y) = x\textbackslash cos(y)+ye\^{}x, find \textbackslash frac\{\textbackslash partial\^{}2 f\}\{\textbackslash partial x\^{}2\}, \textbackslash frac\{\textbackslash partial\^{}2 f\}\{\textbackslash partial y\^{}2\}, \textbackslash frac\{\textbackslash partial\^{}2 f\}\{\textbackslash partial x \textbackslash partial y\}, and \textbackslash frac\{\textbackslash partial\^{}2 f\}\{\textbackslash partial y \textbackslash partial x\}}}\label{if-fxy-xcosyyex-find-fracpartial2-fpartial-x2-fracpartial2-fpartial-y2-fracpartial2-fpartial-x-partial-y-and-fracpartial2-fpartial-y-partial-x}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{f }\OperatorTok{=}\NormalTok{ x}\OperatorTok{*}\NormalTok{sp.cos(y) }\OperatorTok{+}\NormalTok{ y}\OperatorTok{*}\NormalTok{sp.exp(x)}
+\NormalTok{f = x*sp.cos(y) + y*sp.exp(x)}
 \NormalTok{display(sp.diff(f, x, x))}
 \NormalTok{display(sp.diff(f, y, y))}
 \NormalTok{display(sp.diff(f, x, y))}
@@ -2479,17 +2284,8 @@ and
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle y e^{x}$
-
-$\displaystyle - x \cos{\left(y \right)}$
-
-$\displaystyle e^{x} - \sin{\left(y \right)}$
-
-$\displaystyle e^{x} - \sin{\left(y \right)}$
-
-\hypertarget{definition-of-differentiability-0116}{%
 \subsection{Definition of Differentiability
-(01/16)}\label{definition-of-differentiability-0116}}
+(01/16)}\label{definition-of-differentiability-0116}
 
 So, how do we solve the apparent contradiction?
 
@@ -2499,9 +2295,8 @@ The function \(f(x, y)\) is said to be differentiable if there exists a
 \emph{linear function} at the point (a, b):\\
 \(L(x, y) = f(a, b) + p(x-a) + q(y-b)\)
 
-\hypertarget{remember-local-linearization}{%
 \subsubsection{Remember local
-linearization?}\label{remember-local-linearization}}
+linearization?}\label{remember-local-linearization}
 
 \ldots what it means for a function to be ``locally linear?''
 
@@ -2529,98 +2324,81 @@ m\_x(x-x\_0)+m\_y(y-y\_0)+(z-z\_0)\\
 \ldots where \(\vec{n} = \langle A, B, C \rangle\) and
 \(p = (x_0, y_0, z_0)\)
 
-\hypertarget{examples-7}{%
-\subsubsection{Examples}\label{examples-7}}
+\subsubsection{Examples}\label{examples-7}
 
-\hypertarget{find-the-linearization-of-fx-y-y2-2xy---frac12x2-at-the-point-2-3.}{%
 \paragraph{\texorpdfstring{Find the linearization of
 \(f(x, y) = y^2 + 2xy - \frac{1}{2}x^2\) at the point
-\((2, 3)\).}{Find the linearization of f(x, y) = y\^{}2 + 2xy - \textbackslash frac\{1\}\{2\}x\^{}2 at the point (2, 3).}}\label{find-the-linearization-of-fx-y-y2-2xy---frac12x2-at-the-point-2-3.}}
+\((2, 3)\).}{Find the linearization of f(x, y) = y\^{}2 + 2xy - \textbackslash frac\{1\}\{2\}x\^{}2 at the point (2, 3).}}\label{find-the-linearization-of-fx-y-y2-2xy---frac12x2-at-the-point-2-3.}
 
-\hypertarget{homework-1}{%
-\subsubsection{Homework}\label{homework-1}}
+\subsubsection{Homework}\label{homework-1}
 
-\hypertarget{find-the-linearization-of-fx-y-x2-y2-1-at-1-1}{%
 \paragraph{\texorpdfstring{Find the linearization of
 \(f(x, y) = x^2 + y^2 + 1\) at
-\((1, 1)\)}{Find the linearization of f(x, y) = x\^{}2 + y\^{}2 + 1 at (1, 1)}}\label{find-the-linearization-of-fx-y-x2-y2-1-at-1-1}}
+\((1, 1)\)}{Find the linearization of f(x, y) = x\^{}2 + y\^{}2 + 1 at (1, 1)}}\label{find-the-linearization-of-fx-y-x2-y2-1-at-1-1}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{f }\OperatorTok{=}\NormalTok{ x}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\NormalTok{ y}\OperatorTok{**}\DecValTok{2} \OperatorTok{+} \DecValTok{1}
-\NormalTok{x\_0 }\OperatorTok{=} \DecValTok{1}
-\NormalTok{y\_0 }\OperatorTok{=} \DecValTok{1}
-\NormalTok{z\_0 }\OperatorTok{=}\NormalTok{ f.subs(\{x:x\_0, y:y\_0\})}
-\NormalTok{f\_x }\OperatorTok{=}\NormalTok{ sp.diff(f, x).subs(\{x:x\_0, y:y\_0\})}
-\NormalTok{f\_y }\OperatorTok{=}\NormalTok{ sp.diff(f, y).subs(\{x:x\_0, y:y\_0\})}
-\NormalTok{display(z\_0 }\OperatorTok{+}\NormalTok{ f\_x}\OperatorTok{*}\NormalTok{(x}\OperatorTok{{-}}\NormalTok{x\_0) }\OperatorTok{+}\NormalTok{ f\_y}\OperatorTok{*}\NormalTok{(y}\OperatorTok{{-}}\NormalTok{y\_0))}
+\NormalTok{f = x**2 + y**2 + 1}
+\NormalTok{x\_0 = 1}
+\NormalTok{y\_0 = 1}
+\NormalTok{z\_0 = f.subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_x = sp.diff(f, x).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_y = sp.diff(f, y).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{display(z\_0 + f\_x*(x{-}x\_0) + f\_y*(y{-}y\_0))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle 2 x + 2 y - 1$
-
-\hypertarget{find-the-linearization-of-fx-y-3x-4y5-at-1-1}{%
 \paragraph{\texorpdfstring{Find the linearization of
 \(f(x, y) = 3x-4y+5\) at
-\((1, 1)\)}{Find the linearization of f(x, y) = 3x-4y+5 at (1, 1)}}\label{find-the-linearization-of-fx-y-3x-4y5-at-1-1}}
+\((1, 1)\)}{Find the linearization of f(x, y) = 3x-4y+5 at (1, 1)}}\label{find-the-linearization-of-fx-y-3x-4y5-at-1-1}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{f }\OperatorTok{=} \DecValTok{3}\OperatorTok{*}\NormalTok{x }\OperatorTok{{-}} \DecValTok{4}\OperatorTok{*}\NormalTok{y }\OperatorTok{+} \DecValTok{5}
-\NormalTok{x\_0 }\OperatorTok{=} \DecValTok{1}
-\NormalTok{y\_0 }\OperatorTok{=} \DecValTok{1}
-\NormalTok{z\_0 }\OperatorTok{=}\NormalTok{ f.subs(\{x:x\_0, y:y\_0\})}
-\NormalTok{f\_x }\OperatorTok{=}\NormalTok{ sp.diff(f, x).subs(\{x:x\_0, y:y\_0\})}
-\NormalTok{f\_y }\OperatorTok{=}\NormalTok{ sp.diff(f, y).subs(\{x:x\_0, y:y\_0\})}
-\NormalTok{display(z\_0 }\OperatorTok{+}\NormalTok{ f\_x}\OperatorTok{*}\NormalTok{(x}\OperatorTok{{-}}\NormalTok{x\_0) }\OperatorTok{+}\NormalTok{ f\_y}\OperatorTok{*}\NormalTok{(y}\OperatorTok{{-}}\NormalTok{y\_0))}
+\NormalTok{f = 3*x {-} 4*y + 5}
+\NormalTok{x\_0 = 1}
+\NormalTok{y\_0 = 1}
+\NormalTok{z\_0 = f.subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_x = sp.diff(f, x).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_y = sp.diff(f, y).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{display(z\_0 + f\_x*(x{-}x\_0) + f\_y*(y{-}y\_0))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle 3 x - 4 y + 5$
-
-\hypertarget{find-the-linearization-of-fx-y-ex-cos-y-at-0-fracpi2}{%
 \paragraph{\texorpdfstring{Find the linearization of
 \(f(x, y) = e^x \cos y\) at
-\((0, \frac{\pi}{2})\)}{Find the linearization of f(x, y) = e\^{}x \textbackslash cos y at (0, \textbackslash frac\{\textbackslash pi\}\{2\})}}\label{find-the-linearization-of-fx-y-ex-cos-y-at-0-fracpi2}}
+\((0, \frac{\pi}{2})\)}{Find the linearization of f(x, y) = e\^{}x \textbackslash cos y at (0, \textbackslash frac\{\textbackslash pi\}\{2\})}}\label{find-the-linearization-of-fx-y-ex-cos-y-at-0-fracpi2}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{f }\OperatorTok{=}\NormalTok{ sp.exp(x)}\OperatorTok{*}\NormalTok{sp.cos(y)}
-\NormalTok{x\_0 }\OperatorTok{=} \DecValTok{0}
-\NormalTok{y\_0 }\OperatorTok{=}\NormalTok{ sp.pi}\OperatorTok{/}\DecValTok{2}
-\NormalTok{z\_0 }\OperatorTok{=}\NormalTok{ f.subs(\{x:x\_0, y:y\_0\})}
-\NormalTok{f\_x }\OperatorTok{=}\NormalTok{ sp.diff(f, x).subs(\{x:x\_0, y:y\_0\})}
-\NormalTok{f\_y }\OperatorTok{=}\NormalTok{ sp.diff(f, y).subs(\{x:x\_0, y:y\_0\})}
-\NormalTok{display(z\_0 }\OperatorTok{+}\NormalTok{ f\_x}\OperatorTok{*}\NormalTok{(x}\OperatorTok{{-}}\NormalTok{x\_0) }\OperatorTok{+}\NormalTok{ f\_y}\OperatorTok{*}\NormalTok{(y}\OperatorTok{{-}}\NormalTok{y\_0))}
+\NormalTok{f = sp.exp(x)*sp.cos(y)}
+\NormalTok{x\_0 = 0}
+\NormalTok{y\_0 = sp.pi/2}
+\NormalTok{z\_0 = f.subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_x = sp.diff(f, x).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_y = sp.diff(f, y).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{display(z\_0 + f\_x*(x{-}x\_0) + f\_y*(y{-}y\_0))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle - y + \frac{\pi}{2}$
+\subsection{Chain Rule (01/18)}\label{chain-rule-0118}
 
-\hypertarget{chain-rule-0118}{%
-\subsection{Chain Rule (01/18)}\label{chain-rule-0118}}
-
-\hypertarget{warmup-find-the-linearization-of-fx-y-x3y4-at-the-point-1-1}{%
 \subsubsection{\texorpdfstring{Warmup: Find the linearization of
 \(f(x, y) = x^3y^4\) at the point \$(1,
-1)}{Warmup: Find the linearization of f(x, y) = x\^{}3y\^{}4 at the point \$(1, 1)}}\label{warmup-find-the-linearization-of-fx-y-x3y4-at-the-point-1-1}}
+1)}{Warmup: Find the linearization of f(x, y) = x\^{}3y\^{}4 at the point \$(1, 1)}}\label{warmup-find-the-linearization-of-fx-y-x3y4-at-the-point-1-1}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{f }\OperatorTok{=}\NormalTok{ x}\OperatorTok{**}\DecValTok{3}\OperatorTok{*}\NormalTok{y}\OperatorTok{**}\DecValTok{4}
-\NormalTok{x\_0 }\OperatorTok{=} \DecValTok{1}
-\NormalTok{y\_0 }\OperatorTok{=} \DecValTok{1}
-\NormalTok{z\_0 }\OperatorTok{=}\NormalTok{ f.subs(\{x:x\_0, y:y\_0\})}
-\NormalTok{f\_x }\OperatorTok{=}\NormalTok{ sp.diff(f, x).subs(\{x:x\_0, y:y\_0\})}
-\NormalTok{f\_y }\OperatorTok{=}\NormalTok{ sp.diff(f, y).subs(\{x:x\_0, y:y\_0\})}
-\NormalTok{display(z\_0 }\OperatorTok{+}\NormalTok{ f\_x}\OperatorTok{*}\NormalTok{(x}\OperatorTok{{-}}\NormalTok{x\_0) }\OperatorTok{+}\NormalTok{ f\_y}\OperatorTok{*}\NormalTok{(y}\OperatorTok{{-}}\NormalTok{y\_0))}
+\NormalTok{f = x**3*y**4}
+\NormalTok{x\_0 = 1}
+\NormalTok{y\_0 = 1}
+\NormalTok{z\_0 = f.subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_x = sp.diff(f, x).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{f\_y = sp.diff(f, y).subs(\{x:x\_0, y:y\_0\})}
+\NormalTok{display(z\_0 + f\_x*(x{-}x\_0) + f\_y*(y{-}y\_0))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle 3 x + 4 y - 6$
-
-\hypertarget{chain-rule-1-variable}{%
-\subsubsection{Chain Rule (1-Variable)}\label{chain-rule-1-variable}}
+\subsubsection{Chain Rule (1-Variable)}\label{chain-rule-1-variable}
 
 The ``normal'' chain rule formula:
 
@@ -2629,9 +2407,8 @@ The ``normal'' chain rule formula:
  = \frac{df}{dt}\cdot \frac{dg}{dt} = \frac{df}{dt}
 \]
 
-\hypertarget{chain-rule-multi-variable}{%
 \subsubsection{Chain Rule (Multi
-Variable)}\label{chain-rule-multi-variable}}
+Variable)}\label{chain-rule-multi-variable}
 
 Let \(w = f(x, y)\) where \(f\) is a differentiable function of \(x\)
 and \(y\). If \(x = g(t)\) and \(y = h(t)\) where \(g\) and \(h\) are
@@ -2639,148 +2416,106 @@ differentiable functions of \(t\), then \(w\) is also a differentiable
 function of \(t\) and
 \(\frac{\mathrm{d}w}{\mathrm{d}t} = \frac{\partial w}{\partial x}\cdot \frac{\mathrm{d}x}{\mathrm{d}t} + \frac{\partial w}{\partial y}\cdot \frac{\mathrm{d}y}{\mathrm{d}t}\)
 
-\hypertarget{examples-8}{%
-\subsubsection{Examples}\label{examples-8}}
+\subsubsection{Examples}\label{examples-8}
 
-\hypertarget{if-w-x2y-y2-where-xsin-t-and-yet-find-fracmathrmdwmathrmdt-at-t0}{%
-\paragraph{\texorpdfstring{If \(w= x^2y-y^2\) where \(x\sin t\) and
+\paragraph{\texorpdfstring{If \(w=  x^2y-y^2\) where \(x\sin t\) and
 \(y=e^t\), find \(\frac{\mathrm{d}w}{\mathrm{d}t}\) at
-\(t=0\)}{If w= x\^{}2y-y\^{}2 where x\textbackslash sin t and y=e\^{}t, find \textbackslash frac\{\textbackslash mathrm\{d\}w\}\{\textbackslash mathrm\{d\}t\} at t=0}}\label{if-w-x2y-y2-where-xsin-t-and-yet-find-fracmathrmdwmathrmdt-at-t0}}
+\(t=0\)}{If w=  x\^{}2y-y\^{}2 where x\textbackslash sin t and y=e\^{}t, find \textbackslash frac\{\textbackslash mathrm\{d\}w\}\{\textbackslash mathrm\{d\}t\} at t=0}}\label{if-w-x2y-y2-where-xsin-t-and-yet-find-fracmathrmdwmathrmdt-at-t0}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{w }\OperatorTok{=}\NormalTok{ x}\OperatorTok{**}\DecValTok{2}\OperatorTok{*}\NormalTok{y }\OperatorTok{{-}}\NormalTok{ y}\OperatorTok{**}\DecValTok{2}
-\NormalTok{w\_t }\OperatorTok{=}\NormalTok{ w.subs(\{x: sp.sin(t), y: sp.exp(t)\})}
-\NormalTok{dw\_dt }\OperatorTok{=}\NormalTok{ sp.diff(w\_t, t)}
-\NormalTok{display(dw\_dt.subs(t, }\DecValTok{0}\NormalTok{))}
+\NormalTok{w = x**2*y {-} y**2}
+\NormalTok{w\_t = w.subs(\{x: sp.sin(t), y: sp.exp(t)\})}
+\NormalTok{dw\_dt = sp.diff(w\_t, t)}
+\NormalTok{display(dw\_dt.subs(t, 0))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle -2$
-
-\hypertarget{if-w-xy-xz-yz-and-x-t-1-yt2-1-zt-find-fracmathrmdwmathrmdt}{%
 \paragraph{\texorpdfstring{If \(w = xy + xz + yz\) and
 \(x = t-1, y=t^2-1, z=t\), find
-\(\frac{\mathrm{d}w}{\mathrm{d}t}\)}{If w = xy + xz + yz and x = t-1, y=t\^{}2-1, z=t, find \textbackslash frac\{\textbackslash mathrm\{d\}w\}\{\textbackslash mathrm\{d\}t\}}}\label{if-w-xy-xz-yz-and-x-t-1-yt2-1-zt-find-fracmathrmdwmathrmdt}}
+\(\frac{\mathrm{d}w}{\mathrm{d}t}\)}{If w = xy + xz + yz and x = t-1, y=t\^{}2-1, z=t, find \textbackslash frac\{\textbackslash mathrm\{d\}w\}\{\textbackslash mathrm\{d\}t\}}}\label{if-w-xy-xz-yz-and-x-t-1-yt2-1-zt-find-fracmathrmdwmathrmdt}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{w }\OperatorTok{=}\NormalTok{ x}\OperatorTok{*}\NormalTok{y }\OperatorTok{+}\NormalTok{ x}\OperatorTok{*}\NormalTok{z }\OperatorTok{+}\NormalTok{ y}\OperatorTok{*}\NormalTok{z}
-\NormalTok{w\_t }\OperatorTok{=}\NormalTok{ w.subs(\{x: t}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, y: t}\OperatorTok{**}\DecValTok{2}\OperatorTok{{-}}\DecValTok{1}\NormalTok{, z: t\})}
+\NormalTok{w = x*y + x*z + y*z}
+\NormalTok{w\_t = w.subs(\{x: t{-}1, y: t**2{-}1, z: t\})}
 \NormalTok{display(sp.diff(w\_t, t))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle 4 t^{2} + 2 t \left(t - 1\right) + 2 t - 3$
+\subsubsection{Homework}\label{homework-2}
 
-\hypertarget{homework-2}{%
-\subsubsection{Homework}\label{homework-2}}
-
-\hypertarget{w-x2y2-xcos-t-ysin-t-at-tpi}{%
 \paragraph{\texorpdfstring{\(w = x^2+y^2, x=\cos t, y=\sin t\) at
-\(t=\pi\)}{w = x\^{}2+y\^{}2, x=\textbackslash cos t, y=\textbackslash sin t at t=\textbackslash pi}}\label{w-x2y2-xcos-t-ysin-t-at-tpi}}
+\(t=\pi\)}{w = x\^{}2+y\^{}2, x=\textbackslash cos t, y=\textbackslash sin t at t=\textbackslash pi}}\label{w-x2y2-xcos-t-ysin-t-at-tpi}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{w }\OperatorTok{=}\NormalTok{ x}\OperatorTok{**}\DecValTok{2} \OperatorTok{+}\NormalTok{ y}\OperatorTok{**}\DecValTok{2}
-\NormalTok{w\_t }\OperatorTok{=}\NormalTok{ w.subs(\{x: sp.cos(t), y: sp.sin(t)\})}
+\NormalTok{w = x**2 + y**2}
+\NormalTok{w\_t = w.subs(\{x: sp.cos(t), y: sp.sin(t)\})}
 \NormalTok{display(sp.diff(w\_t, t))}
 \NormalTok{display(sp.diff(w\_t, t).subs(t, sp.pi))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle 0$
-
-$\displaystyle 0$
-
-\hypertarget{w-2yex---ln-z-x-lnt2-1-y-arctan-t-zet-at-t1}{%
 \paragraph{\texorpdfstring{\(w = 2ye^x - \ln z, x = \ln(t^2 + 1), y = \arctan t, z=e^t\)
 at
-\(t=1\)}{w = 2ye\^{}x - \textbackslash ln z, x = \textbackslash ln(t\^{}2 + 1), y = \textbackslash arctan t, z=e\^{}t at t=1}}\label{w-2yex---ln-z-x-lnt2-1-y-arctan-t-zet-at-t1}}
+\(t=1\)}{w = 2ye\^{}x - \textbackslash ln z, x = \textbackslash ln(t\^{}2 + 1), y = \textbackslash arctan t, z=e\^{}t at t=1}}\label{w-2yex---ln-z-x-lnt2-1-y-arctan-t-zet-at-t1}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{w }\OperatorTok{=} \DecValTok{2}\OperatorTok{*}\NormalTok{y}\OperatorTok{*}\NormalTok{sp.exp(x) }\OperatorTok{{-}}\NormalTok{ sp.ln(z)}
-\NormalTok{part\_wx }\OperatorTok{=}\NormalTok{ sp.diff(w, x)}
-\NormalTok{part\_wy }\OperatorTok{=}\NormalTok{ sp.diff(w, y)}
-\NormalTok{part\_wz }\OperatorTok{=}\NormalTok{ sp.diff(w, z)}
-\NormalTok{dx\_dt }\OperatorTok{=}\NormalTok{ sp.diff(sp.ln(t}\OperatorTok{**}\DecValTok{2} \OperatorTok{+} \DecValTok{1}\NormalTok{), t)}
-\NormalTok{dy\_dt }\OperatorTok{=}\NormalTok{ sp.diff(sp.atan(t), t)}
-\NormalTok{dz\_dt }\OperatorTok{=}\NormalTok{ sp.diff(sp.exp(t), t)}
-\NormalTok{dw\_dt }\OperatorTok{=}\NormalTok{ part\_wx }\OperatorTok{*}\NormalTok{ dx\_dt }\OperatorTok{+}\NormalTok{ part\_wy }\OperatorTok{*}\NormalTok{ dy\_dt }\OperatorTok{+}\NormalTok{ part\_wz }\OperatorTok{*}\NormalTok{ dz\_dt}
+\NormalTok{w = 2*y*sp.exp(x) {-} sp.ln(z)}
+\NormalTok{part\_wx = sp.diff(w, x)}
+\NormalTok{part\_wy = sp.diff(w, y)}
+\NormalTok{part\_wz = sp.diff(w, z)}
+\NormalTok{dx\_dt = sp.diff(sp.ln(t**2 + 1), t)}
+\NormalTok{dy\_dt = sp.diff(sp.atan(t), t)}
+\NormalTok{dz\_dt = sp.diff(sp.exp(t), t)}
+\NormalTok{dw\_dt = part\_wx * dx\_dt + part\_wy * dy\_dt + part\_wz * dz\_dt}
 \NormalTok{display(dw\_dt)}
-\NormalTok{display(dw\_dt.subs(t, }\DecValTok{1}\NormalTok{))}
+\NormalTok{display(dw\_dt.subs(t, 1))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle \frac{4 t y e^{x}}{t^{2} + 1} + \frac{2 e^{x}}{t^{2} + 1} - \frac{e^{t}}{z}$
-
-$\displaystyle 2 y e^{x} + e^{x} - \frac{e}{z}$
-
-\hypertarget{z-4exln-y-xln-rcostheta-yrsintheta-r-theta-left2-fracpi4right}{%
-\paragraph{\texorpdfstring{\(z = 4e^x\ln y, x=\ln (r\cos\theta), y=r\sin\theta; (r, \theta) = \left(2, \frac{\pi}{4}\right)\)}{z = 4e\^{}x\textbackslash ln y, x=\textbackslash ln (r\textbackslash cos\textbackslash theta), y=r\textbackslash sin\textbackslash theta; (r, \textbackslash theta) = \textbackslash left(2, \textbackslash frac\{\textbackslash pi\}\{4\}\textbackslash right)}}\label{z-4exln-y-xln-rcostheta-yrsintheta-r-theta-left2-fracpi4right}}
+\paragraph{\texorpdfstring{\(z = 4e^x\ln y, x=\ln (r\cos\theta), y=r\sin\theta; (r, \theta) = \left(2, \frac{\pi}{4}\right)\)}{z = 4e\^{}x\textbackslash ln y, x=\textbackslash ln (r\textbackslash cos\textbackslash theta), y=r\textbackslash sin\textbackslash theta; (r, \textbackslash theta) = \textbackslash left(2, \textbackslash frac\{\textbackslash pi\}\{4\}\textbackslash right)}}\label{z-4exln-y-xln-rcostheta-yrsintheta-r-theta-left2-fracpi4right}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{z }\OperatorTok{=} \DecValTok{4}\OperatorTok{*}\NormalTok{sp.exp(x)}\OperatorTok{*}\NormalTok{sp.ln(y)}
-\NormalTok{part\_zx }\OperatorTok{=}\NormalTok{ sp.diff(z, x)}
-\NormalTok{part\_zy }\OperatorTok{=}\NormalTok{ sp.diff(z, y)}
-\NormalTok{dx\_dr }\OperatorTok{=}\NormalTok{ sp.diff(sp.ln(r}\OperatorTok{*}\NormalTok{sp.cos(θ)), r)}
-\NormalTok{dx\_dθ }\OperatorTok{=}\NormalTok{ sp.diff(sp.ln(r}\OperatorTok{*}\NormalTok{sp.cos(θ)), θ)}
-\NormalTok{dy\_dr }\OperatorTok{=}\NormalTok{ sp.diff(r}\OperatorTok{*}\NormalTok{sp.sin(θ), r)}
-\NormalTok{dy\_dθ }\OperatorTok{=}\NormalTok{ sp.diff(r}\OperatorTok{*}\NormalTok{sp.sin(θ), θ)}
-\NormalTok{dz\_dr }\OperatorTok{=}\NormalTok{ part\_zx }\OperatorTok{*}\NormalTok{ dx\_dr }\OperatorTok{+}\NormalTok{ part\_zy }\OperatorTok{*}\NormalTok{ dy\_dr}
-\NormalTok{dz\_dθ }\OperatorTok{=}\NormalTok{ part\_zx }\OperatorTok{*}\NormalTok{ dx\_dθ }\OperatorTok{+}\NormalTok{ part\_zy }\OperatorTok{*}\NormalTok{ dy\_dθ}
-\NormalTok{display(Latex(}\VerbatimStringTok{r"$\textbackslash{}frac\{\textbackslash{}partial z\}\{\textbackslash{}partial r\} = "} \OperatorTok{+}\NormalTok{ sp.latex(dz\_dr) }\OperatorTok{+} \StringTok{"$"}\NormalTok{))}
-\NormalTok{display(Latex(}\VerbatimStringTok{r"$\textbackslash{}frac\{\textbackslash{}partial z\}\{\textbackslash{}partial\textbackslash{}theta\} = "} \OperatorTok{+}\NormalTok{ sp.latex(dz\_dθ) }\OperatorTok{+} \StringTok{"$"}\NormalTok{))}
-\NormalTok{display(dz\_dr.subs(\{r:}\DecValTok{2}\NormalTok{, θ:sp.pi}\OperatorTok{/}\DecValTok{4}\NormalTok{\}))}
-\NormalTok{display(dz\_dθ.subs(\{r:}\DecValTok{2}\NormalTok{, θ:sp.pi}\OperatorTok{/}\DecValTok{4}\NormalTok{\}))}
+\NormalTok{z = 4*sp.exp(x)*sp.ln(y)}
+\NormalTok{part\_zx = sp.diff(z, x)}
+\NormalTok{part\_zy = sp.diff(z, y)}
+\NormalTok{dx\_dr = sp.diff(sp.ln(r*sp.cos(θ)), r)}
+\NormalTok{dx\_dθ = sp.diff(sp.ln(r*sp.cos(θ)), θ)}
+\NormalTok{dy\_dr = sp.diff(r*sp.sin(θ), r)}
+\NormalTok{dy\_dθ = sp.diff(r*sp.sin(θ), θ)}
+\NormalTok{dz\_dr = part\_zx * dx\_dr + part\_zy * dy\_dr}
+\NormalTok{dz\_dθ = part\_zx * dx\_dθ + part\_zy * dy\_dθ}
+\NormalTok{display(Latex(r"$\textbackslash{}frac\{\textbackslash{}partial z\}\{\textbackslash{}partial r\} = " + sp.latex(dz\_dr) + "$"))}
+\NormalTok{display(Latex(r"$\textbackslash{}frac\{\textbackslash{}partial z\}\{\textbackslash{}partial\textbackslash{}theta\} = " + sp.latex(dz\_dθ) + "$"))}
+\NormalTok{display(dz\_dr.subs(\{r:2, θ:sp.pi/4\}))}
+\NormalTok{display(dz\_dθ.subs(\{r:2, θ:sp.pi/4\}))}
 \end{Highlighting}
 \end{Shaded}
 
-$\frac{\partial z}{\partial r} = \frac{4 e^{x} \sin{\left(θ \right)}}{y} + \frac{4 e^{x} \log{\left(y \right)}}{r}$
-
-$\frac{\partial z}{\partial\theta} = \frac{4 r e^{x} \cos{\left(θ \right)}}{y} - \frac{4 e^{x} \log{\left(y \right)} \sin{\left(θ \right)}}{\cos{\left(θ \right)}}$
-
-$\displaystyle 2 e^{x} \log{\left(y \right)} + \frac{2 \sqrt{2} e^{x}}{y}$
-
-$\displaystyle - 4 e^{x} \log{\left(y \right)} + \frac{4 \sqrt{2} e^{x}}{y}$
-
-\hypertarget{u-fracp-qq-r-p-xyz-q-x---y-z-r-xy-z-x-y-z-sqrt3-2-1}{%
-\paragraph{\texorpdfstring{\(u = \frac{p-q}{q-r}, p = x+y+z, q = x - y +z, r = x+y-z; (x, y, z) = (\sqrt{3}, 2, 1)\)}{u = \textbackslash frac\{p-q\}\{q-r\}, p = x+y+z, q = x - y +z, r = x+y-z; (x, y, z) = (\textbackslash sqrt\{3\}, 2, 1)}}\label{u-fracp-qq-r-p-xyz-q-x---y-z-r-xy-z-x-y-z-sqrt3-2-1}}
+\paragraph{\texorpdfstring{\(u = \frac{p-q}{q-r}, p = x+y+z, q = x - y +z, r = x+y-z; (x, y, z) = (\sqrt{3}, 2, 1)\)}{u = \textbackslash frac\{p-q\}\{q-r\}, p = x+y+z, q = x - y +z, r = x+y-z; (x, y, z) = (\textbackslash sqrt\{3\}, 2, 1)}}\label{u-fracp-qq-r-p-xyz-q-x---y-z-r-xy-z-x-y-z-sqrt3-2-1}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{u }\OperatorTok{=}\NormalTok{ (p}\OperatorTok{{-}}\NormalTok{q)}\OperatorTok{/}\NormalTok{(q}\OperatorTok{{-}}\NormalTok{r)}
-\NormalTok{part\_ux }\OperatorTok{=}\NormalTok{ sp.diff(u.subs(\{p: x}\OperatorTok{+}\NormalTok{y}\OperatorTok{+}\NormalTok{z, q: x}\OperatorTok{{-}}\NormalTok{y}\OperatorTok{+}\NormalTok{z, r: x}\OperatorTok{+}\NormalTok{y}\OperatorTok{{-}}\NormalTok{z\}), x)}
-\NormalTok{part\_uy }\OperatorTok{=}\NormalTok{ sp.diff(u.subs(\{p: x}\OperatorTok{+}\NormalTok{y}\OperatorTok{+}\NormalTok{z, q: x}\OperatorTok{{-}}\NormalTok{y}\OperatorTok{+}\NormalTok{z, r: x}\OperatorTok{+}\NormalTok{y}\OperatorTok{{-}}\NormalTok{z\}), y)}
-\NormalTok{display(Latex(}\VerbatimStringTok{r"$\textbackslash{}frac\{\textbackslash{}partial u\}\{\textbackslash{}partial x\} = "} \OperatorTok{+}\NormalTok{ sp.latex(part\_ux) }\OperatorTok{+} \StringTok{"$"}\NormalTok{))}
-\NormalTok{display(Latex(}\VerbatimStringTok{r"$\textbackslash{}frac\{\textbackslash{}partial u\}\{\textbackslash{}partial y\} = "} \OperatorTok{+}\NormalTok{ sp.latex(part\_uy) }\OperatorTok{+} \StringTok{"$"}\NormalTok{))}
-\NormalTok{display(Latex(}\VerbatimStringTok{r"$\textbackslash{}frac\{\textbackslash{}partial u\}\{\textbackslash{}partial z\} = \textbackslash{}frac}\SpecialCharTok{\{4y\}}\VerbatimStringTok{\{({-}2y+2z)\^{}2\}$"}\NormalTok{))}
-\NormalTok{display(part\_ux.subs(\{x:sp.sqrt(}\DecValTok{3}\NormalTok{), y:}\DecValTok{2}\NormalTok{, z:}\DecValTok{1}\NormalTok{\}))}
-\NormalTok{display(part\_uy.subs(\{x:sp.sqrt(}\DecValTok{3}\NormalTok{), y:}\DecValTok{2}\NormalTok{, z:}\DecValTok{1}\NormalTok{\}))}
-\NormalTok{display(Latex(}\VerbatimStringTok{r"${-}2$"}\NormalTok{))}
+\NormalTok{u = (p{-}q)/(q{-}r)}
+\NormalTok{part\_ux = sp.diff(u.subs(\{p: x+y+z, q: x{-}y+z, r: x+y{-}z\}), x)}
+\NormalTok{part\_uy = sp.diff(u.subs(\{p: x+y+z, q: x{-}y+z, r: x+y{-}z\}), y)}
+\NormalTok{display(Latex(r"$\textbackslash{}frac\{\textbackslash{}partial u\}\{\textbackslash{}partial x\} = " + sp.latex(part\_ux) + "$"))}
+\NormalTok{display(Latex(r"$\textbackslash{}frac\{\textbackslash{}partial u\}\{\textbackslash{}partial y\} = " + sp.latex(part\_uy) + "$"))}
+\NormalTok{display(Latex(r"$\textbackslash{}frac\{\textbackslash{}partial u\}\{\textbackslash{}partial z\} = \textbackslash{}frac\{4y\}\{({-}2y+2z)\^{}2\}$"))}
+\NormalTok{display(part\_ux.subs(\{x:sp.sqrt(3), y:2, z:1\}))}
+\NormalTok{display(part\_uy.subs(\{x:sp.sqrt(3), y:2, z:1\}))}
+\NormalTok{display(Latex(r"${-}2$"))}
 \end{Highlighting}
 \end{Shaded}
 
-$\frac{\partial u}{\partial x} = - \frac{16 y e^{x} \log{\left(y \right)}}{\left(- 2 y + 8 e^{x} \log{\left(y \right)}\right)^{2}}$
-
-$\frac{\partial u}{\partial y} = \frac{2 y \left(2 - \frac{8 e^{x}}{y}\right)}{\left(- 2 y + 8 e^{x} \log{\left(y \right)}\right)^{2}} + \frac{2}{- 2 y + 8 e^{x} \log{\left(y \right)}}$
-
-$\frac{\partial u}{\partial z} = \frac{4y}{(-2y+2z)^2}$
-
-$\displaystyle -2$
-
-$\displaystyle 1 - 4 e^{\sqrt{3}}$
-
-$-2$
-
-\hypertarget{related-rates-and-implicit-differentiation-0122}{%
 \subsection{Related Rates and Implicit Differentiation
-(01/22)}\label{related-rates-and-implicit-differentiation-0122}}
+(01/22)}\label{related-rates-and-implicit-differentiation-0122}
 
-\hypertarget{related-rates-in-calc-i}{%
-\subsubsection{Related rates in Calc I}\label{related-rates-in-calc-i}}
+\subsubsection{Related rates in Calc I}\label{related-rates-in-calc-i}
 
 \begin{enumerate}
 \def\labelenumi{\arabic{enumi})}
@@ -2797,46 +2532,39 @@ $-2$
 
 In Calc III, you can remove step 2 and just use chain rule for step 3.
 
-\hypertarget{examples-9}{%
-\subsubsection{Examples}\label{examples-9}}
+\subsubsection{Examples}\label{examples-9}
 
-\hypertarget{a-right-circular-cylinder-with-a-n-open-top-has-height-h-radius-r-and-surface-area-a.-if-fracmathrmdhmathrmdt-3-and-fracmathrmdrmathrmdt--2-find-fracmathrmdamathrmdt-when-h10-and-r5.}{%
 \paragraph{\texorpdfstring{A right circular cylinder with a n open top
 has height \(h\), radius \(r\), and surface area \(A\). If
 \(\frac{\mathrm{d}h}{\mathrm{d}t} = 3\) and
 \(\frac{\mathrm{d}r}{\mathrm{d}t} = -2\), find
 \(\frac{\mathrm{d}A}{\mathrm{d}t}\) when \(h=10\) and
-\(r=5\).}{A right circular cylinder with a n open top has height h, radius r, and surface area A. If \textbackslash frac\{\textbackslash mathrm\{d\}h\}\{\textbackslash mathrm\{d\}t\} = 3 and \textbackslash frac\{\textbackslash mathrm\{d\}r\}\{\textbackslash mathrm\{d\}t\} = -2, find \textbackslash frac\{\textbackslash mathrm\{d\}A\}\{\textbackslash mathrm\{d\}t\} when h=10 and r=5.}}\label{a-right-circular-cylinder-with-a-n-open-top-has-height-h-radius-r-and-surface-area-a.-if-fracmathrmdhmathrmdt-3-and-fracmathrmdrmathrmdt--2-find-fracmathrmdamathrmdt-when-h10-and-r5.}}
+\(r=5\).}{A right circular cylinder with a n open top has height h, radius r, and surface area A. If \textbackslash frac\{\textbackslash mathrm\{d\}h\}\{\textbackslash mathrm\{d\}t\} = 3 and \textbackslash frac\{\textbackslash mathrm\{d\}r\}\{\textbackslash mathrm\{d\}t\} = -2, find \textbackslash frac\{\textbackslash mathrm\{d\}A\}\{\textbackslash mathrm\{d\}t\} when h=10 and r=5.}}\label{a-right-circular-cylinder-with-a-n-open-top-has-height-h-radius-r-and-surface-area-a.-if-fracmathrmdhmathrmdt-3-and-fracmathrmdrmathrmdt--2-find-fracmathrmdamathrmdt-when-h10-and-r5.}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
-\NormalTok{h, r, t }\OperatorTok{=}\NormalTok{ sp.symbols(}\StringTok{\textquotesingle{}h r t\textquotesingle{}}\NormalTok{)}
-\NormalTok{A }\OperatorTok{=}\NormalTok{ sp.pi}\OperatorTok{*}\NormalTok{r}\OperatorTok{**}\DecValTok{2} \OperatorTok{+} \DecValTok{2}\OperatorTok{*}\NormalTok{sp.pi}\OperatorTok{*}\NormalTok{r}\OperatorTok{*}\NormalTok{h}
-\NormalTok{dhdt }\OperatorTok{=} \DecValTok{3}
-\NormalTok{drdt }\OperatorTok{=} \OperatorTok{{-}}\DecValTok{2}
-\NormalTok{dAdt }\OperatorTok{=}\NormalTok{ sp.diff(A, r)}\OperatorTok{*}\NormalTok{drdt }\OperatorTok{+}\NormalTok{ sp.diff(A, h)}\OperatorTok{*}\NormalTok{dhdt}
-\NormalTok{display(dAdt.subs(\{h:}\DecValTok{10}\NormalTok{, r:}\DecValTok{5}\NormalTok{\}))}
+\NormalTok{h, r, t = sp.symbols(\textquotesingle{}h r t\textquotesingle{})}
+\NormalTok{A = sp.pi*r**2 + 2*sp.pi*r*h}
+\NormalTok{dhdt = 3}
+\NormalTok{drdt = {-}2}
+\NormalTok{dAdt = sp.diff(A, r)*drdt + sp.diff(A, h)*dhdt}
+\NormalTok{display(dAdt.subs(\{h:10, r:5\}))}
 \end{Highlighting}
 \end{Shaded}
 
-$\displaystyle - 30 \pi$
-
-\hypertarget{implicit-differentiation-from-calc-i}{%
 \subsubsection{Implicit Differentiation From Calc
-I}\label{implicit-differentiation-from-calc-i}}
+I}\label{implicit-differentiation-from-calc-i}
 
-\hypertarget{find-fracmathrmdymathrmdx-given-that-y3-4x2---2xy-3x-19}{%
 \paragraph{\texorpdfstring{Find \(\frac{\mathrm{d}y}{\mathrm{d}x}\)
 given that
-\(y^3 + 4x^2 - 2xy +3x = 19\)}{Find \textbackslash frac\{\textbackslash mathrm\{d\}y\}\{\textbackslash mathrm\{d\}x\} given that y\^{}3 + 4x\^{}2 - 2xy +3x = 19}}\label{find-fracmathrmdymathrmdx-given-that-y3-4x2---2xy-3x-19}}
+\(y^3 + 4x^2 - 2xy +3x =  19\)}{Find \textbackslash frac\{\textbackslash mathrm\{d\}y\}\{\textbackslash mathrm\{d\}x\} given that y\^{}3 + 4x\^{}2 - 2xy +3x =  19}}\label{find-fracmathrmdymathrmdx-given-that-y3-4x2---2xy-3x-19}
 
 \(y' = \frac{8x+2y-3}{3y^2-2x}\)
 
-\hypertarget{now-suppose-that-fxy-y3-4x2---2xy-3x---19.-find-fracpartial-fpartial-x-and-fracpartial-fpartial-y.}{%
 \paragraph{\texorpdfstring{Now suppose that
 \(f(x,y) = y^3 + 4x^2 - 2xy +3x - 19\). Find
 \(\frac{\partial f}{\partial x}\) and
-\(\frac{\partial f}{\partial y}\).}{Now suppose that f(x,y) = y\^{}3 + 4x\^{}2 - 2xy +3x - 19. Find \textbackslash frac\{\textbackslash partial f\}\{\textbackslash partial x\} and \textbackslash frac\{\textbackslash partial f\}\{\textbackslash partial y\}.}}\label{now-suppose-that-fxy-y3-4x2---2xy-3x---19.-find-fracpartial-fpartial-x-and-fracpartial-fpartial-y.}}
+\(\frac{\partial f}{\partial y}\).}{Now suppose that f(x,y) = y\^{}3 + 4x\^{}2 - 2xy +3x - 19. Find \textbackslash frac\{\textbackslash partial f\}\{\textbackslash partial x\} and \textbackslash frac\{\textbackslash partial f\}\{\textbackslash partial y\}.}}\label{now-suppose-that-fxy-y3-4x2---2xy-3x---19.-find-fracpartial-fpartial-x-and-fracpartial-fpartial-y.}
 
 \begin{Shaded}
 \begin{Highlighting}[numbers=left,,]
@@ -2844,10 +2572,6 @@ given that
 \NormalTok{display(sp.diff(f, y))}
 \end{Highlighting}
 \end{Shaded}
-
-$\displaystyle 3 x^{2} y^{4}$
-
-$\displaystyle 4 x^{3} y^{3}$
 
 If \(f(x,y) = 0\) defines \(y\) implicitly as a differentiable fnuction
 of \(x\), then
@@ -2860,9 +2584,8 @@ differentiable function of \(x\) and \(y\), then
 \frac{\mathrm{d}z}{\mathrm{d}x} = -\frac{\frac{\partial f}{\partial x}}{\frac{\partial f}{\partial z}} \text{ and } \frac{\mathrm{d}z}{\mathrm{d}y} = -\frac{\frac{\partial f}{\partial y}}{\frac{\partial f}{\partial z}}
 \]
 
-\hypertarget{directional-derivatives-and-gradient-vectors-0125}{%
 \subsection{Directional Derivatives and Gradient Vectors
-(01/25)}\label{directional-derivatives-and-gradient-vectors-0125}}
+(01/25)}\label{directional-derivatives-and-gradient-vectors-0125}
 
 Suppose that \(f\) is differentiable at \((x_0, y_0)\) and
 \(\vec{u} = \langle u_1, u_2 \rangle\) is any \ul{unit} vector. Then the
@@ -2878,11 +2601,10 @@ The directional derivative is also denoted by:
 \((D_uf)_{p_0}\); ``The derivative of \(f\) at \(P_0\) in the direction
 of \(u\)''
 
-\hypertarget{find-the-directional-derivative-of-fxy-x2sin-2y-at-left1-fracpi2right-in-the-direction-of-vecv-3veci---4vecj.}{%
 \subsubsection{\texorpdfstring{Find the directional derivative of
 \(f(x,y) = x^2\sin 2y\) at \(\left(1, \frac{\pi}{2}\right)\) in the
 direction of
-\(\vec{v} = 3\vec{i} - 4\vec{j}\).}{Find the directional derivative of f(x,y) = x\^{}2\textbackslash sin 2y at \textbackslash left(1, \textbackslash frac\{\textbackslash pi\}\{2\}\textbackslash right) in the direction of \textbackslash vec\{v\} = 3\textbackslash vec\{i\} - 4\textbackslash vec\{j\}.}}\label{find-the-directional-derivative-of-fxy-x2sin-2y-at-left1-fracpi2right-in-the-direction-of-vecv-3veci---4vecj.}}
+\(\vec{v} = 3\vec{i} - 4\vec{j}\).}{Find the directional derivative of f(x,y) = x\^{}2\textbackslash sin 2y at \textbackslash left(1, \textbackslash frac\{\textbackslash pi\}\{2\}\textbackslash right) in the direction of \textbackslash vec\{v\} = 3\textbackslash vec\{i\} - 4\textbackslash vec\{j\}.}}\label{find-the-directional-derivative-of-fxy-x2sin-2y-at-left1-fracpi2right-in-the-direction-of-vecv-3veci---4vecj.}
 
 \begin{align*}
 f_x &= 2x\sin 2y \\
@@ -2895,8 +2617,7 @@ D_{\vec{u}}f(1, \frac{\pi}{2}) &= 0 \cdot \frac{3}{5} - 2 \cdot -\frac{4}{5} \\
 &= \frac{8}{5}
 \end{align*}
 
-\hypertarget{thinking-questions}{%
-\subsubsection{Thinking questions}\label{thinking-questions}}
+\subsubsection{Thinking questions}\label{thinking-questions}
 
 Not too bad, right?
 
@@ -2913,8 +2634,7 @@ So, all of this time, when you've been findign \(f_x\) and \(f_y\) at a
 point \((x_0, y_0)\), you've really just been finding the components to
 a (not unit) vector that contains both derivatives
 
-\hypertarget{the-gradient}{%
-\subsubsection{The Gradient}\label{the-gradient}}
+\subsubsection{The Gradient}\label{the-gradient}
 
 Let \(z = f(x, y)\) be a function of \(x\) and \(y\) such that \(f_x\)
 and \(f_y\) exist. Then the gradient of \(f\) denoted by
@@ -2922,16 +2642,215 @@ and \(f_y\) exist. Then the gradient of \(f\) denoted by
 
 \(\nabla f(x, y) = f_x(x, y)\vec{i} + f_y(x, y)\vec{j}\)
 
-\hypertarget{find-the-gradient-of-fx-y-yln-x-xy2-at-the-point-e3-2}{%
 \subsubsection{\texorpdfstring{Find the gradient of
 \(f(x, y) = y\ln x + xy^2\) at the point
-\((e^3, 2)\)}{Find the gradient of f(x, y) = y\textbackslash ln x + xy\^{}2 at the point (e\^{}3, 2)}}\label{find-the-gradient-of-fx-y-yln-x-xy2-at-the-point-e3-2}}
+\((e^3, 2)\)}{Find the gradient of f(x, y) = y\textbackslash ln x + xy\^{}2 at the point (e\^{}3, 2)}}\label{find-the-gradient-of-fx-y-yln-x-xy2-at-the-point-e3-2}
 
 \begin{align*}
 f_x &= \frac{y}{x} + y^2 \\
 f_y &= \ln x + 2xy \\
 \nabla f(x, y) &= \langle \frac{2}{e^3} + 4 , 3+4e^3 \rangle
 \end{align*}
+
+Wait a second\ldots{} go back to how we calculate a directional
+derivative\ldots{}
+
+\(D_{\vec{u}}f(x_0, y_0) = f_x(x_0, y_0)u_1 + f_y(x_0, y_0)u_2\)
+
+This is the same as the dot product of the gradient and the unit vector!
+
+\(D_{\vec{u}}f(x_0, y_0) = \nabla f(x_0, y_0) \cdot \vec{u}\)
+
+\subsubsection{Homework}\label{homework-3}
+
+Find the gradient of the following:
+
+\paragraph{\texorpdfstring{\(g(x, y) = y-x^2, (-1, 0)\)}{g(x, y) = y-x\^{}2, (-1, 0)}}\label{gx-y-y-x2--1-0}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{g = y {-} x**2}
+\NormalTok{g\_x = sp.diff(g, x)}
+\NormalTok{g\_y = sp.diff(g, y)}
+\NormalTok{display(g\_x.subs(\{x:{-}1, y:0\}))}
+\NormalTok{display(g\_y.subs(\{x:{-}1, y:0\}))}
+\end{Highlighting}
+\end{Shaded}
+
+Find the directional derivative of \(f\) at \(P_0\) in the direction of
+\(A\).
+
+\paragraph{\texorpdfstring{\(f(x, y) = 2xy - 3y^2, P_0 = (5, 5), A = \langle 4, 3 \rangle\)}{f(x, y) = 2xy - 3y\^{}2, P\_0 = (5, 5), A = \textbackslash langle 4, 3 \textbackslash rangle}}\label{fx-y-2xy---3y2-p_0-5-5-a-langle-4-3-rangle}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{f = 2*x*y {-} 3*y**2}
+\NormalTok{f\_x = sp.diff(f, x).subs(\{x:5, y:5\})}
+\NormalTok{f\_y = sp.diff(f, y).subs(\{x:5, y:5\})}
+\NormalTok{A = sp.sqrt(4**2 + 3**2)}
+\NormalTok{u\_1 = 4/A}
+\NormalTok{u\_2 = 3/A}
+\NormalTok{display(f\_x*u\_1 + f\_y*u\_2)}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{\texorpdfstring{\(f(x, y) = x- \left(\frac{y^2}{x}\right) + \sqrt{3}\sec^{-1}(2xy), P_0 = (1, 1), A = \langle 12, 5 \rangle\)}{f(x, y) = x- \textbackslash left(\textbackslash frac\{y\^{}2\}\{x\}\textbackslash right) + \textbackslash sqrt\{3\}\textbackslash sec\^{}\{-1\}(2xy), P\_0 = (1, 1), A = \textbackslash langle 12, 5 \textbackslash rangle}}\label{fx-y-x--leftfracy2xright-sqrt3sec-12xy-p_0-1-1-a-langle-12-5-rangle}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{f = x {-} y**2/x + sp.sqrt(3)*sp.asec(2*x*y)}
+\NormalTok{f\_x = sp.diff(f, x).subs(\{x:1, y:1\})}
+\NormalTok{f\_y = sp.diff(f, y).subs(\{x:1, y:1\})}
+\NormalTok{A = sp.sqrt(12**2 + 5**2)}
+\NormalTok{u\_1 = 12/A}
+\NormalTok{u\_2 = 5/A}
+\NormalTok{display(f\_x*u\_1 + f\_y*u\_2)}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{\texorpdfstring{\(f(x, y) = xy + yz + zx, P_0 = (1, -1, 2), A = \angle 3, 6, -2 \rangle\)}{f(x, y) = xy + yz + zx, P\_0 = (1, -1, 2), A = \textbackslash angle 3, 6, -2 \textbackslash rangle}}\label{fx-y-xy-yz-zx-p_0-1--1-2-a-angle-3-6--2-rangle}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{x, y, z = sp.symbols(\textquotesingle{}x y z\textquotesingle{}, real=True)}
+\NormalTok{f = x*y + y*z + z*x}
+\NormalTok{f\_x = sp.diff(f, x).subs(\{x:1, y:{-}1, z:2\})}
+\NormalTok{f\_y = sp.diff(f, y).subs(\{x:1, y:{-}1, z:2\})}
+\NormalTok{f\_z = sp.diff(f, z).subs(\{x:1, y:{-}1, z:2\})}
+\NormalTok{A = sp.sqrt(3**2 + 6**2 + ({-}2)**2)}
+\NormalTok{u\_1 = 3/A}
+\NormalTok{u\_2 = 6/A}
+\NormalTok{u\_3 = {-}2/A}
+\NormalTok{display(f\_x*u\_1 + f\_y*u\_2 + f\_z*u\_3)}
+\end{Highlighting}
+\end{Shaded}
+
+\subsection{More Gradient and Tangent Planes
+(01/29)}\label{more-gradient-and-tangent-planes-0129}
+
+\subsubsection{Properties of Gradients}\label{properties-of-gradients}
+
+\(D_{\vec{u}}f = \nabla f \cdot \vec{u} = ||\nabla f||||u||\cos\theta\)
+
+In order to maximize this value, \(\cos\theta\) must be 1.
+
+Some consequences:
+
+\begin{itemize}
+\tightlist
+\item
+  \(f\) increases most rapidly when \(\cos\theta = 1 (\theta = 0)\),
+  which implies that \(\nabla f\) and \(\vec{u}\) are in the same
+  direction.
+\item
+  This maximum rate of increase \(= ||\nabla f||\)
+\item
+  \(f\) decreases most rapidly when \(\cos\theta = -1 (\theta = \pi)\),
+  which implies that \(\nabla f\) and \(\vec{u}\) are in opposite
+  directions.
+\item
+  This maximum rate of decrease \(= -||\nabla f||\)
+\end{itemize}
+
+Bit more interesting: \ul{What if I wanted the directional derivative to
+be zero?}
+
+\(D_{\vec{u}}f = \nabla f \cdot \vec{u} = 0\)
+
+When the dot product equals 0.
+
+\subsubsection{Examples}\label{examples-10}
+
+\paragraph{\texorpdfstring{Find the maximum rate of increase/decrease of
+the function \(f(x, y) = x^2+y^2\) at
+\((1, 3)\)}{Find the maximum rate of increase/decrease of the function f(x, y) = x\^{}2+y\^{}2 at (1, 3)}}\label{find-the-maximum-rate-of-increasedecrease-of-the-function-fx-y-x2y2-at-1-3}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{f = x**2 + y**2}
+\NormalTok{f\_x = sp.diff(f, x)}
+\NormalTok{f\_y = sp.diff(f, y)}
+\NormalTok{display(Latex(r"$\textbackslash{}nabla f(x, y) = " + sp.latex(sp.Matrix([f\_x, f\_y])) + "$"))}
+\NormalTok{display(Latex(r"$||\textbackslash{}nabla f(x, y)|| = " + sp.latex(sp.sqrt(f\_x**2 + f\_y**2)) + "$"))}
+\NormalTok{display(Latex(r"$||\textbackslash{}nabla f(1, 3)|| = " + sp.latex(sp.sqrt(f\_x.subs(\{x:1, y:3\})**2 + f\_y.subs(\{x:1, y:3\})**2)) + "$"))}
+\end{Highlighting}
+\end{Shaded}
+
+\paragraph{\texorpdfstring{The temperature in Celsius on the surface of
+a metal plate is \(T(x, y) = 20-4x^2-y^2\) where \(x\) and \(y\) are
+measured in cm. In what direction from \((2, -3)\) does the
+temperature}{The temperature in Celsius on the surface of a metal plate is T(x, y) = 20-4x\^{}2-y\^{}2 where x and y are measured in cm. In what direction from (2, -3) does the temperature}}\label{the-temperature-in-celsius-on-the-surface-of-a-metal-plate-is-tx-y-20-4x2-y2-where-x-and-y-are-measured-in-cm.-in-what-direction-from-2--3-does-the-temperature}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\tightlist
+\item
+  Increase most rapidly?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{T = 20 {-} 4*x**2 {-} y**2}
+\NormalTok{T\_x = sp.diff(T, x)}
+\NormalTok{T\_y = sp.diff(T, y)}
+\NormalTok{\# The gradient at (2, {-}3)}
+\NormalTok{gradient = sp.Matrix([T\_x.subs(\{x:2, y:{-}3\}), T\_y.subs(\{x:2, y:{-}3\})])}
+\NormalTok{magnitude = sp.sqrt(T\_x.subs(\{x:2, y:{-}3\})**2 + T\_y.subs(\{x:2, y:{-}3\})**2)}
+\NormalTok{unit\_vector = gradient/magnitude}
+\NormalTok{display(unit\_vector)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  Decrease most rapidly?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{display({-}unit\_vector)}
+\end{Highlighting}
+\end{Shaded}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi}.}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  Not change at all?
+\end{enumerate}
+
+\begin{Shaded}
+\begin{Highlighting}[numbers=left,,]
+\NormalTok{display(sp.Matrix([6, 16]), sp.Matrix([{-}6, {-}16]))}
+\end{Highlighting}
+\end{Shaded}
+
+\subsubsection{More Applications of
+Gradients}\label{more-applications-of-gradients}
+
+Given a surface \(z=f(x, y), [f(x, y)-z=0]\), the plane tangent to \(z\)
+at the point \(P_0(x_0, y_0, z_0)\) is given by:
+
+The equation of a plane is given by:
+
+\(f_x(x_0, y_0, z_0)(x-x_0)+f_y(x_0, y_0, z_0)(y-y_0)+f_z(x_0, y_0, z_0)(z-z_0) = 0\)
+where \(f_x, f_x, f_z \in \nabla (f(x, y)-z)\)
+
+The equations of the normal line to the surface are given by:
+
+\begin{itemize}
+\tightlist
+\item
+  \(x = x_0 + f_x(x_0, y_0, z_0)t\)
+\item
+  \(y = y_0 + f_y(x_0, y_0, z_0)t\)
+\item
+  \(z = z_0 + f_z(x_0, y_0, z_0)t\)
+\end{itemize}
 
 
 
