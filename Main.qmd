@@ -1832,3 +1832,88 @@ The equations of the normal line to the surface are given by:
 - $x = x_0 + f_x(x_0, y_0, z_0)t$
 - $y = y_0 + f_y(x_0, y_0, z_0)t$
 - $z = z_0 + f_z(x_0, y_0, z_0)t$
+
+{{< pagebreak >}}
+
+## Local Extrema and Saddle Points (02/02)
+
+In multivariable calculus, mins/maxes on a closed region occur in the following conditions:
+
+- An interior point where **both** first partial derivatives equal 0 (Critical point!)
+- An interior point where one **or** both first partial derivatives DNE (Critical point?)
+- Any boundary point of the region (End point)
+
+What would a tangent plane look like at one of those interior critical points?
+
+$0(x...) + 0(y...)+f_z(z...) = 0$
+
+### Types of Extrema
+
+- $f(a, b)$ is a relative max of $f$ if $f(a, b) \ge f(x, y) \forall$ domain points in an open disk centered at $(a, b)$
+- $f(a, b)$ is a relative min of $f$ if $f(a, b) \le f(x, y) \forall$ domain points in an open disk centered at $(a, b)$
+- If $(a, b)$ is a critical point $(f_x = f_y = 0)$ and there are domain points where $f(x, y) > f(a,b)$ and where $f(x,y) < f(a,b)$, then $(a, b, f(a, b))$ is a saddle point.
+
+### The Second Partials Test
+Suppose $f(x,y)$ and its first and second partial derivatives are continuous on an open region centered at $(a, b)$ and $f_x(a, b) = f_y(a, b) = 0$. Then:
+
+a) $f$ has a rel [max]{.underline} at $(a, b)$ if $f_{xx} < 0$ AND $f_{xx}f_{yy}-(f_{xy})^2 > 0$ at $(a, b)$
+  - (if $f$ is concave down in the x and y direction, then it's a relative max)
+b) $f$ has a rel [min]{.underline} at $(a, b)$ if $f_{xx} > 0$ AND $f_{xx}f_{yy}-(f_{xy})^2 > 0$ at $(a, b)$
+  - (if $f$ is concave up in the x and y direction, then it's a relative min)
+c) $f$ has a saddle point if $f_{xx}f_{yy} - (f_{xy})^2 < 0$ at $(a, b)$
+  - (if the concavity of $f$ disagree **or** $f_{xy}$ is too large, then it's a saddle point)
+d) The test is inconclusive if $f_{xx}f_{yy} - (f_{xy})^2 = 0$ at $(a, b)$
+
+{{< pagebreak >}}
+## Absolute Extrema (02/07)
+Recap of the extreme value theorem (EVT): \
+If $f(x)$ is continuous over $[a, b]$, then $f(x)$ *must* have an absolute max *and* min.
+
+### Calc I Approach
+1) Create list of candidates (critical points, end points)
+2) Brute force which one is largest/smallest. Plug and chug
+
+### Problems with Calc I Approach in 3D
+It's not that different in multi! Although... we don't have endpoints because we don't have *ends*. In 2D, boundaries to possible values of $x$ are 1-dimensional ([little $x$, big $x$]).
+
+In 3D, both **x** and **y** can have boundaries, so we *could* have [little $x$, big $x$] and [little $y$, big $y$]. But that boundary system describes a rectangle...
+
+What if I wanted boundaries that looked like a triangle? A circle? Anything else...?
+
+### Multi Approach
+To find absolute extrema of a continuous function $f(x,y)$ on a closed bounded region $R$: \
+1) Graph region $R$
+2) Find the critical points of $f$
+3) Find the boundary points of $R$ which are also critical points
+4) Find the coordinates of corners of $R$
+5) Evaluate $f$ *at all these points* and answer the question
+
+{{< pagebreak >}}
+## Lagrange Multipliers (02/08)
+When looking for a max/min on a surface constrained by another function, the two gradients of those functions at the maximum/minimum point are multiples of each other. That multiplier is the **Lagrange Multiplier**.
+
+### More formal definition
+Suppose $f(x,y,z)$ and $g(x,y,z)$ are functions with continuous first partial derivatives and $\nabla g(x,y,z) \ne 0$ on the surface $g(x,y,z) = 0$. Suppose also that the minimum/maximum of $f(x, y, z)$ subject to the constraint $g(x,y,z) = 0$ occurs at $(x_0, y_0, z_0)$. Then $\nabla f(x_0, y_0, z_0) = \lambda \nabla g(x_0, y_0, z_0)$ for some non-zero constant $\lambda$ called the Lagrange multiplier.
+
+Essentially, it's saying the two functions have a proportional set of partial derivatives.
+
+### Steps
+#### Two variables
+1) Set up the equation $\nabla f = \lambda \nabla g$
+2) Solve each equation for $\lambda$ and set them equal to create an equation with just $x$ and $y$
+3) Solve for a variable and plug it into the constraint equation
+4) Solve the constraint equation and back substitute to find the other variable
+5) Evaluate the function at that point to find the max/min
+
+#### Three variables
+1) Set up the equation $\nabla f = \lambda \nabla g$
+2) Solve each equation for a non-$\lambda$ variable so that each is a function of $\lambda$
+3) Plug all lambda equations into constraint to create equations in terms of one variable
+4) Solve for lambda and back substitute into each variable
+5) If you have multiple points, evaluate the function at each point to find the max/min
+
+### More than one multiplier
+When optimizing with two constraints, $g$ and $h$, we introduce a second multiplier, $\mu$ and our system becomes: \ 
+- $f_x = \lambda g_x + \mu h_x$
+- $f_y = \lambda g_y + \mu h_y$
+- $f_z = \lambda g_z + \mu h_z$

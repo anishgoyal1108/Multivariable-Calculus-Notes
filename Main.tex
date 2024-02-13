@@ -2852,6 +2852,225 @@ The equations of the normal line to the surface are given by:
   \(z = z_0 + f_z(x_0, y_0, z_0)t\)
 \end{itemize}
 
+\newpage{}
+
+\subsection{Local Extrema and Saddle Points
+(02/02)}\label{local-extrema-and-saddle-points-0202}
+
+In multivariable calculus, mins/maxes on a closed region occur in the
+following conditions:
+
+\begin{itemize}
+\tightlist
+\item
+  An interior point where \textbf{both} first partial derivatives equal
+  0 (Critical point!)
+\item
+  An interior point where one \textbf{or} both first partial derivatives
+  DNE (Critical point?)
+\item
+  Any boundary point of the region (End point)
+\end{itemize}
+
+What would a tangent plane look like at one of those interior critical
+points?
+
+\(0(x...) + 0(y...)+f_z(z...) = 0\)
+
+\subsubsection{Types of Extrema}\label{types-of-extrema}
+
+\begin{itemize}
+\tightlist
+\item
+  \(f(a, b)\) is a relative max of \(f\) if
+  \(f(a, b) \ge f(x, y) \forall\) domain points in an open disk centered
+  at \((a, b)\)
+\item
+  \(f(a, b)\) is a relative min of \(f\) if
+  \(f(a, b) \le f(x, y) \forall\) domain points in an open disk centered
+  at \((a, b)\)
+\item
+  If \((a, b)\) is a critical point \((f_x = f_y = 0)\) and there are
+  domain points where \(f(x, y) > f(a,b)\) and where
+  \(f(x,y) < f(a,b)\), then \((a, b, f(a, b))\) is a saddle point.
+\end{itemize}
+
+\subsubsection{The Second Partials Test}\label{the-second-partials-test}
+
+Suppose \(f(x,y)\) and its first and second partial derivatives are
+continuous on an open region centered at \((a, b)\) and
+\(f_x(a, b) = f_y(a, b) = 0\). Then:
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\tightlist
+\item
+  \(f\) has a rel \ul{max} at \((a, b)\) if \(f_{xx} < 0\) AND
+  \(f_{xx}f_{yy}-(f_{xy})^2 > 0\) at \((a, b)\)
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  (if \(f\) is concave down in the x and y direction, then it's a
+  relative max)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{1}
+\tightlist
+\item
+  \(f\) has a rel \ul{min} at \((a, b)\) if \(f_{xx} > 0\) AND
+  \(f_{xx}f_{yy}-(f_{xy})^2 > 0\) at \((a, b)\)
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  (if \(f\) is concave up in the x and y direction, then it's a relative
+  min)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{2}
+\tightlist
+\item
+  \(f\) has a saddle point if \(f_{xx}f_{yy} - (f_{xy})^2 < 0\) at
+  \((a, b)\)
+\end{enumerate}
+
+\begin{itemize}
+\tightlist
+\item
+  (if the concavity of \(f\) disagree \textbf{or} \(f_{xy}\) is too
+  large, then it's a saddle point)
+\end{itemize}
+
+\begin{enumerate}
+\def\labelenumi{\alph{enumi})}
+\setcounter{enumi}{3}
+\tightlist
+\item
+  The test is inconclusive if \(f_{xx}f_{yy} - (f_{xy})^2 = 0\) at
+  \((a, b)\)
+\end{enumerate}
+
+\newpage{}
+
+\subsection{Absolute Extrema (02/07)}\label{absolute-extrema-0207}
+
+Recap of the extreme value theorem (EVT):\\
+If \(f(x)\) is continuous over \([a, b]\), then \(f(x)\) \emph{must}
+have an absolute max \emph{and} min.
+
+\subsubsection{Calc I Approach}\label{calc-i-approach}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Create list of candidates (critical points, end points)
+\item
+  Brute force which one is largest/smallest. Plug and chug
+\end{enumerate}
+
+\subsubsection{Problems with Calc I Approach in
+3D}\label{problems-with-calc-i-approach-in-3d}
+
+It's not that different in multi! Although\ldots{} we don't have
+endpoints because we don't have \emph{ends}. In 2D, boundaries to
+possible values of \(x\) are 1-dimensional ({[}little \(x\), big
+\(x\){]}).
+
+In 3D, both \textbf{x} and \textbf{y} can have boundaries, so we
+\emph{could} have {[}little \(x\), big \(x\){]} and {[}little \(y\), big
+\(y\){]}. But that boundary system describes a rectangle\ldots{}
+
+What if I wanted boundaries that looked like a triangle? A circle?
+Anything else\ldots?
+
+\subsubsection{Multi Approach}\label{multi-approach}
+
+To find absolute extrema of a continuous function \(f(x,y)\) on a closed
+bounded region \(R\):\\
+1) Graph region \(R\) 2) Find the critical points of \(f\) 3) Find the
+boundary points of \(R\) which are also critical points 4) Find the
+coordinates of corners of \(R\) 5) Evaluate \(f\) \emph{at all these
+points} and answer the question
+
+\newpage{}
+
+\subsection{Lagrange Multipliers
+(02/08)}\label{lagrange-multipliers-0208}
+
+When looking for a max/min on a surface constrained by another function,
+the two gradients of those functions at the maximum/minimum point are
+multiples of each other. That multiplier is the \textbf{Lagrange
+Multiplier}.
+
+\subsubsection{More formal definition}\label{more-formal-definition}
+
+Suppose \(f(x,y,z)\) and \(g(x,y,z)\) are functions with continuous
+first partial derivatives and \(\nabla g(x,y,z) \ne 0\) on the surface
+\(g(x,y,z) = 0\). Suppose also that the minimum/maximum of
+\(f(x, y, z)\) subject to the constraint \(g(x,y,z) = 0\) occurs at
+\((x_0, y_0, z_0)\). Then
+\(\nabla f(x_0, y_0, z_0) = \lambda \nabla g(x_0, y_0, z_0)\) for some
+non-zero constant \(\lambda\) called the Lagrange multiplier.
+
+Essentially, it's saying the two functions have a proportional set of
+partial derivatives.
+
+\subsubsection{Steps}\label{steps}
+
+\paragraph{Two variables}\label{two-variables}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Set up the equation \(\nabla f = \lambda \nabla g\)
+\item
+  Solve each equation for \(\lambda\) and set them equal to create an
+  equation with just \(x\) and \(y\)
+\item
+  Solve for a variable and plug it into the constraint equation
+\item
+  Solve the constraint equation and back substitute to find the other
+  variable
+\item
+  Evaluate the function at that point to find the max/min
+\end{enumerate}
+
+\paragraph{Three variables}\label{three-variables}
+
+\begin{enumerate}
+\def\labelenumi{\arabic{enumi})}
+\tightlist
+\item
+  Set up the equation \(\nabla f = \lambda \nabla g\)
+\item
+  Solve each equation for a non-\(\lambda\) variable so that each is a
+  function of \(\lambda\)
+\item
+  Plug all lambda equations into constraint to create equations in terms
+  of one variable
+\item
+  Solve for lambda and back substitute into each variable
+\item
+  If you have multiple points, evaluate the function at each point to
+  find the max/min
+\end{enumerate}
+
+\subsubsection{More than one multiplier}\label{more-than-one-multiplier}
+
+When optimizing with two constraints, \(g\) and \(h\), we introduce a
+second multiplier, \(\mu\) and our system becomes: ~ -
+\(f_x = \lambda g_x + \mu h_x\) - \(f_y = \lambda g_y + \mu h_y\) -
+\(f_z = \lambda g_z + \mu h_z\)
+
 
 
 \end{document}
